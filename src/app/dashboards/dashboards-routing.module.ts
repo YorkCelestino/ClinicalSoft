@@ -10,7 +10,7 @@ const routes: Routes = [{
   path: 'analytics',
   component: DashboardComponent,
   data: {
-    title: 'Analytics Dashboard'
+    title: 'ClinicalSoft'
   }
 }, {
   path: 'ecommerce',
