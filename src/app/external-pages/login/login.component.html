@@ -1,0 +1,47 @@
+<div class="portal-accent-bg portal-login-container" fxLayoutAlign="center center" fxLayoutAlign.lt-sm="none">
+    <mat-card class="portal-login-card mat-elevation-z" fxFlex="100" fxFlex.md="80" fxFlex.gt-md="60" fxLayout.lt-sm="column">
+        <mat-card-content fxFlex="auto" fxFlex.gt-sm="50%" fxLayout="column" fxLayoutAlign="space-between none" class="portal-primary-bg">
+            <div>
+
+                <mat-card-title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+                    <img class="portal-login-card__logo" src="assets/images/imagenes_general/logo.jpg" />
+                    <h1 i18n>ClinicalSoft</h1>
+                </mat-card-title>
+                <div>
+                    <img src="assets/images/imagenes_general/logo_general.png" width="100%" height="200px" alt="">
+
+                </div>
+            </div>
+            <!--a mat-raised-button i18n color="accent" (click)="register()"
+            Create an account
+            </a-->
+        </mat-card-content>
+        <mat-card-content fxFlex="auto" fxFlex.gt-sm="50%" fxLayout="column" fxLayoutAlign="space-between none">
+            <mat-card-title fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+                <img class="portal-login-card__logo" src="assets/images/imagenes_general/inciarsesion.png" />
+                <h1><strong>Iniciar sesión</strong></h1>
+            </mat-card-title>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+
+                <mat-form-field>
+                    <input matInput type="text" formControlName="email" placeholder="Usuario">
+                    <!-- (keyup.enter)="login()"-->
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="password" formControlName="password" placeholder="Contraseña">
+                    <!-- (keyup.enter)="login()"-->
+                </mat-form-field>
+            </form>
+            <div fxLayout="column" fxLayoutGap="16px">
+                <div fxLayout="row" fxLayoutGap="16px" fxLayout.lt-md="column">
+                    <button mat-raised-button i18n type="submit" fxFlex="50%" fxFlex.lt-md="none" color="primary" (click)="onSubmit(loginForm)" [disabled]="!loginForm.valid">
+                        Entrar
+                    </button>
+                    <a mat-button i18n fxFlex="60%" fxFlex.lt-md="none" (click)="forgotPassword()">
+                        Olvidate tu contraseña?
+                    </a>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
