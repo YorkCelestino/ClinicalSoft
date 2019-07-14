@@ -5,14 +5,14 @@ import { ModuleWithProviders } from '@angular/core';
 import { DashboardComponent } from './analytics/analytics.component';
 import { EcommerceComponent } from './ecommerce/ecommerce.component';
 import { ProjectDashboardComponent } from './project-dashboard/project-dashboard.component';
-import { UsersComponent } from './users/users.component';
+
 
 
 const routes: Routes = [{
   path: 'analytics',
-  component: UsersComponent,
+  component: DashboardComponent,
   data: {
-    title: 'Usuarios'//Analytics Dashboard fue cambiado por inicio
+    title: 'analytics' // Analytics Dashboard fue cambiado por inicio
   }
 }, {
   path: 'ecommerce',

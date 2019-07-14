@@ -24,6 +24,19 @@ import { ChatModule } from './chat/chat.module';
 import { CalendarAppModule } from './calendar/calendar.module';
 import { NotesModule } from './notes/notes.module';
 import { SpotifyModule } from './spotify/spotify.module';
+import { UsersComponent } from './users/users.component';
+import { UsersDataComponent } from './users/users-data/users-data.component';
+
+// flex layout module
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+
+// angular material modules
+import { MatDialogModule } from '@angular/material/dialog';
+import { PatientComponent } from './patient/patient.component';
+import { PatientDataComponent } from './patient/patient-data/patient-data.component';
+
+
 
 @NgModule({
   imports: [
@@ -36,7 +49,19 @@ import { SpotifyModule } from './spotify/spotify.module';
     TodoModule,
     CalendarAppModule,
     NotesModule,
-    SpotifyModule
+    SpotifyModule,
+    MatDialogModule,
+    FlexLayoutModule
+  ],
+  declarations: [
+    UsersComponent,
+    UsersDataComponent,
+    PatientComponent,
+    PatientDataComponent
+  ],
+  entryComponents: [
+    UsersDataComponent,
+    PatientDataComponent
   ]
 })
 export class AppsModule { }

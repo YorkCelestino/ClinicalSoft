@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../auth/login.service';
 // tslint:disable-next-line:rxjs-no-wholesale
 import {  Subject } from 'rxjs';
 

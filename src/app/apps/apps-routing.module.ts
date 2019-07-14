@@ -15,6 +15,8 @@ import { EmailComponent } from './email/email/email.component';
 import { SpotifyComponent } from './spotify/components/spotify/spotify.component';
 
 import { SpotifyAuthService } from './spotify/guards/spotify-auth.service';
+import { UsersComponent } from './users/users.component';
+import { PatientComponent } from './patient/patient.component';
 
 const routes: Routes = [{
   path: 'email',
@@ -81,6 +83,21 @@ const routes: Routes = [{
   data: {
     title: 'Notes'
   }
-}];
+},
+{
+  path: 'usuarios',
+  component: UsersComponent,
+  data: {
+    title: 'Usuarios'
+  }
+},
+{
+  path: 'pacientes',
+  component: PatientComponent,
+  data: {
+    title: 'Pacientes'
+  }
+}
+];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);

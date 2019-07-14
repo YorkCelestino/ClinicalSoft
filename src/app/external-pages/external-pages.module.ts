@@ -14,7 +14,7 @@ import { LockComponent } from './lock/lock.component';
 import { AuthInterceptor } from '../auth/auth.interceptor';
 import {  HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from '../auth/auth.guard';
-import { LoginService } from '../services/login.service';
+import { LoginService } from '../auth/login.service';
 
 
 @NgModule({

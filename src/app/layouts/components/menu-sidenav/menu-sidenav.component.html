@@ -18,8 +18,8 @@
             <mat-nav-list>
                 <a mat-list-item routerLink="/dashboards/analytics" routerLinkActive="portal-menu--active">
                     <mat-icon matListIcon>perm_identity</mat-icon>
-                    <h3 matLine>Usuarios</h3>
-                    
+                    <h3 matLine>Analytics</h3>
+
                 </a>
                 <a mat-list-item routerLink="/dashboards/ecommerce" routerLinkActive="portal-menu--active">
                     <mat-icon matListIcon>shopping_cart</mat-icon>
@@ -39,7 +39,10 @@
         <!-- apps menu -->
 
         <h3 class="portal-sidnav-menu__subheader">Apps</h3>
+
+
         <mat-expansion-panel>
+
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     <mat-icon>desktop_windows</mat-icon>
@@ -47,6 +50,14 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <mat-nav-list>
+                <a mat-list-item routerLink='/apps/usuarios' routerLinkActive="portal-menu--active">
+                    <mat-icon matListIcon>perm_identity</mat-icon>
+                    <h3 matLine>usuarios</h3>
+                </a>
+                <a mat-list-item routerLink='/apps/pacientes' routerLinkActive="portal-menu--active">
+                    <mat-icon matListIcon>people</mat-icon>
+                    <h3 matLine>Pacientes</h3>
+                </a>
                 <a mat-list-item [routerLink]="['/apps/email', { outlets: { list: 'inbox', messages: 'none' } }]" routerLinkActive="portal-menu--active">
                     <mat-icon matListIcon>email</mat-icon>
                     <h3 matLine>Email</h3>
@@ -292,7 +303,7 @@
                 <a mat-list-item routerLink="/elements/sortable" routerLinkActive="portal-menu--active">
                     <h3 matLine>Sortable</h3>
                 </a>
-                
+
             </mat-nav-list>
         </mat-expansion-panel>
         <a mat-list-item routerLink="/elements/paginator" routerLinkActive="portal-menu--active">

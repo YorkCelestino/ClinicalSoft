@@ -1,0 +1,83 @@
+<mat-toolbar>
+    <span>{{userService.form.controls['$key'].value?"actualizar Usuario":"Registrar Usuario"}}</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="closeDialog()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="userService.form" class="normal-form" (submit)="addUser()">
+    <mat-grid-list cols="2" rowHeight="300px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <input type="hidden" formControlName="$key">
+                <mat-form-field>
+                    <input formControlName="fullName" matInput placeholder="Nombre Completo*">
+                    <mat-error>Nombre Completo es requerido.</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="idCard" matInput placeholder="Cedula*">
+                    <mat-error>Cedula es requerido.</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="username" matInput placeholder="Usuario*">
+                    <mat-error>Nombre de suario es Requerido </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="cellPhone" matInput placeholder="Número de teléfono*">
+                    <mat-error *ngIf="userService.form.controls['cellPhone'].errors?.required">Número de teléfono es requerido.</mat-error>
+                    <mat-error *ngIf="userService.form.controls['cellPhone'].errors?.minlength">Se nececitan minimo 8 caracteres</mat-error>
+                </mat-form-field>
+
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field>
+                    <input formControlName="speciality" matInput placeholder="Especialidad*">
+                    <mat-error>Especialidad es requerido.</mat-error>
+                </mat-form-field>
+                <!--mat-form-field>
+                    <input formControlName="userType" matInput placeholder="Tipo de usuario*">
+                    <mat-error>Tipo de usuario es requerido.</mat-error>
+                </mat-form-field-->
+                <span>Tipo de usuario*</span>
+                <div class="add-bottom-padding">
+
+                    <mat-radio-group formControlName="userType">
+                        <mat-radio-button value="2">Doct@r</mat-radio-button>
+                        <mat-radio-button value="3">Secretari@</mat-radio-button>
+                        <mat-radio-button value="1">Administrador</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+
+                <mat-form-field>
+                    <input formControlName="email" matInput placeholder="Email*">
+                    <mat-error>Email incorrecto.</mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="password" matInput placeholder="Contraseña*">
+                    <mat-error>contraseña es requerida.</mat-error>
+                </mat-form-field>
+
+                <!--mat-form-field>
+                    <mat-select formControlName="department" placeholder="Department">
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor="let department of departmentService.array">
+                            <mat-option value="{{department.$key}}">{{department.code}}-{{department.name}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <input formControlName="hireDate" matInput [matDatepicker]="picker" placeholder="Hire Date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div class="add-bottom-padding">
+                    <mat-checkbox formControlName="isPermanent">Permanent Employee</mat-checkbox>
+                </div-->
+                <div class="button-row">
+                    <button mat-raised-button color="warn" (click)="onClear()">Cancelar</button>
+                    <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid">Submit</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

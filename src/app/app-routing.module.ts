@@ -13,7 +13,7 @@ const routes: Routes =
 [
   {
     path: '',
-    redirectTo: 'dashboards/analytics',
+    redirectTo: 'dashboards/usuarios',
     pathMatch: 'full'
   },
   {
@@ -21,7 +21,7 @@ const routes: Routes =
     data: {
       base: true
     },
-    // activa las tutas
+    // activa las rutas
     canActivate: [AuthGuard],
     component: LayoutClassicComponent,
     children: [

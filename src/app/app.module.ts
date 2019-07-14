@@ -12,7 +12,7 @@ import 'hammerjs';
 
 
 // servicios
-import { UserService } from './services/user.service';
+import { UserService } from './apps/users/user.service';
 
 @NgModule({
   declarations: [

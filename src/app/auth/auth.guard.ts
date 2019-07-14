@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 // tslint:disable-next-line:rxjs-no-wholesale
 import { Observable } from 'rxjs';
-import { LoginService } from '../services/login.service';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
       if (!this.loginService.isloggedIn()) {
         this.router.navigateByUrl('/external/login');
       }
-      
+
     return true;
   }
 }

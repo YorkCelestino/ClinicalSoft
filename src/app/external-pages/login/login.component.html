@@ -24,12 +24,12 @@
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
 
                 <mat-form-field>
-                    <input matInput type="text" formControlName="email" placeholder="Usuario">
-                    <!-- (keyup.enter)="login()"-->
+                    <input matInput type="text" formControlName="email" placeholder="Usuario" (keyup.enter)="onSubmit(loginForm)">
+
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput type="password" formControlName="password" placeholder="Contraseña">
-                    <!-- (keyup.enter)="login()"-->
+                    <input matInput type="password" formControlName="password" placeholder="Contraseña" (keyup.enter)="onSubmit(loginForm)">
+
                 </mat-form-field>
             </form>
             <div fxLayout="column" fxLayoutGap="16px">

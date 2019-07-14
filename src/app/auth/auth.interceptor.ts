@@ -2,7 +2,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/c
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { LoginService } from '../services/login.service';
+import { LoginService } from './login.service';
 
 
 

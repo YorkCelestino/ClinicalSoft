@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from '../../../services/login.service';
+import { LoginService } from '../../../auth/login.service';
 
 @Component({
   selector: 'portal-user-menu',
