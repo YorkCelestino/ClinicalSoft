@@ -38,7 +38,7 @@ export class UserService {
         username: '',
         password: '',
         email: '',
-        cellPhone: 0,
+        cellPhone: '',
         speciality: '',
         userType: '2'
     });

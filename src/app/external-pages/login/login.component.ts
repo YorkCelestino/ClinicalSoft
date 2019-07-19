@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     });
 
     if (this.loginService.isloggedIn()) {
-      this.router.navigate(['/dashboards/analytics']);
+      this.router.navigate(['/dashboards/home']);
     }
 
   }
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
        // console.log(this.loginService.login(form.value));
        this.wrong = false;
         this.loginService.setToken(res['token']);
-        this.router.navigateByUrl('/dashboards/analytics');
+        this.router.navigateByUrl('/dashboards/home');
       },
       err => {
         this.serverErrorMessages = err.error.message;

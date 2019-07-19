@@ -61,7 +61,7 @@ const routes: Routes =
   },
   {
     path: '**',
-    redirectTo: '/external/404'
+    redirectTo: '/external/login'
   }
 ];
 

@@ -1,0 +1,20 @@
+.tp-card {
+  max-width: 700px;
+  max-height: 150px;
+}
+.tp-header-image {
+  background-image: url('https://www.tutorialspoint.com/materialize/src/html5-mini-logo.jpg');
+  background-size: cover;
+}
+
+.portal-ecommerce-page-wrapper {
+  padding: 16px;
+  min-height: 90%;
+  overflow-y: auto;
+}
+mat-grid-tile {
+  background: rgb(255, 255, 255);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+
+  display: flex;
+}

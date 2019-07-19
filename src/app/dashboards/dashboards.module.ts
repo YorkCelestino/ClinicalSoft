@@ -46,6 +46,7 @@ import { ProjectStatesComponent } from './project-dashboard/components/project-s
 
 // Directives
 import { CounterDirective } from './counter.directive';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   imports: [
@@ -91,6 +92,7 @@ import { CounterDirective } from './counter.directive';
     BacklogDashboardComponent,
     UserTasksComponent,
     ProjectStatesComponent,
+    HomeComponent,
   ]
 })
 export class DashboardsModule { }

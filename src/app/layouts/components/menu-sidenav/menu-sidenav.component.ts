@@ -3,6 +3,7 @@ import { filter } from 'rxjs/operators';
 import { Router, RouterEvent, NavigationStart } from '@angular/router';
 import { Component, OnDestroy, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material';
+import { LoginService } from '../../../auth/login.service';
 
 @Component({
   selector: 'portal-menu-sidenav',
@@ -16,7 +17,11 @@ export class MenuSidenavComponent implements OnDestroy {
   @Input() sidenav: MatSidenav;
   routerSubscription: Subscription;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private loginService: LoginService,
+
+    ) {
     this.routerSubscription = this.router.events
       .pipe(
         filter(event => event instanceof NavigationStart),
@@ -31,4 +36,9 @@ export class MenuSidenavComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.routerSubscription.unsubscribe();
   }
+  onLogut(): void {
+    this.loginService.deleteToken();
+    this.router.navigateByUrl('/external/login');
+}
+
 }
