@@ -100,11 +100,51 @@
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Paso 2</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
+      <mat-grid-list cols="2" rowHeight="200px">
+          <mat-grid-tile>
+              <div class="controles-container">
+                  <mat-form-field>
+                      <input  matInput placeholder="Nombre*">
+                      <mat-error>Nombre requerido.</mat-error>
+                    </mat-form-field>
+                   
+                    <mat-form-field>
+                        <input matInput placeholder="Cedula*">
+                        <mat-error>Cedula requerida.</mat-error>
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <input  matInput placeholder="Telefono*">
+                    </mat-form-field>
+                <!--<mat-form-field>
+                  <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+                </mat-form-field-->
+              </div>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <div class="controles-container">
+                <mat-form-field>
+                    <input  matInput placeholder="Apellido*">
+                    <mat-error>Apellido requerido.</mat-error>
+                  </mat-form-field>
+                  
+                  <mat-form-field>
+                      <input  matInput placeholder="Correo*">
+                      <mat-error>Apellido requerido.</mat-error>
+                  </mat-form-field>
+                 
+                  <span>Estado civil*</span>
+                    <div class="add-bottom-padding">
+                        <mat-radio-group >
+                            <mat-radio-button value="Casado">Casado</mat-radio-button>
+                            <mat-radio-button value="Soltero">Soltero</mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+            </div>
+          </mat-grid-tile>
+        </mat-grid-list>
       <div align="end">
-        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperPrevious>Atras</button>
         <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
       </div>
     </form>

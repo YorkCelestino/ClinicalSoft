@@ -1,5 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
-import { ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, Component } from '@angular/core';
 
 import { NotesComponent } from './notes/notes/notes.component';
 import { AppCalendarComponent } from './calendar/calendar/calendar.component';
@@ -17,6 +17,8 @@ import { SpotifyComponent } from './spotify/components/spotify/spotify.component
 import { SpotifyAuthService } from './spotify/guards/spotify-auth.service';
 import { UsersComponent } from './users/users.component';
 import { PatientComponent } from './patient/patient.component';
+import { AppointmentComponent } from './appointment/appointment.component';
+import { AppointmentDataComponent } from './appointment/appointment-data/appointment-data.component';
 
 const routes: Routes = [{
   path: 'email',
@@ -97,7 +99,23 @@ const routes: Routes = [{
   data: {
     title: 'Pacientes'
   }
+},
+{
+  path: 'cita',
+  component: AppointmentComponent,
+  data:{
+    title:'Cita'
+  }
+},
+{
+  path: 'agregarcita',
+  component: AppointmentDataComponent,
+  data:{
+    title: 'Agregar cita'
+  }
+
 }
+ 
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);

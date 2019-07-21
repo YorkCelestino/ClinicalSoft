@@ -14,31 +14,7 @@
                     <h3 matLine>Inicio</h3>
                 </a>
 
-        </mat-nav-list>
-        <mat-expansion-panel expanded="false">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    <mat-icon>home</mat-icon>
-                    <h3>Dashboards</h3>
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <mat-nav-list>
-               
-                <a mat-list-item routerLink="/dashboards/ecommerce" routerLinkActive="portal-menu--active">
-                    <mat-icon matListIcon>shopping_cart</mat-icon>
-                    <h3 matLine>Ecommerce</h3>
-                </a>
-                <a mat-list-item routerLink="/dashboards/crypto" routerLinkActive="portal-menu--active">
-                    <mat-icon matListIcon>euro_symbol</mat-icon>
-                    <h3 matLine>CryptoCurrency</h3>
-                </a>
-                <a mat-list-item routerLink="/dashboards/project" routerLinkActive="portal-menu--active">
-                    <mat-icon matListIcon>event_note</mat-icon>
-                    <h3 matLine>Project</h3>
-                </a>
-            </mat-nav-list>
-        </mat-expansion-panel>
- 
+        </mat-nav-list> 
         <mat-expansion-panel>
 
             <mat-expansion-panel-header>
@@ -73,15 +49,16 @@
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <mat-nav-list>
-                    <a mat-list-item routerLink='**' routerLinkActive="portal-menu--active">
+                    <a mat-list-item routerLink='/apps/cita' routerLinkActive="portal-menu--active">
                         <mat-icon matListIcon>list_alt</mat-icon>
                         <h3 matLine>Lista de cita</h3>
                     </a>
+                   
                     <a mat-list-item routerLink='**' routerLinkActive="portal-menu--active">
                             <mat-icon matListIcon>today</mat-icon>
                             <h3 matLine>Cita de hoy</h3>
                         </a>
-                        <a mat-list-item routerLink='**' routerLinkActive="portal-menu--active">
+                        <a mat-list-item routerLink='/apps/agregarcita' routerLinkActive="portal-menu--active">
                                 <mat-icon matListIcon>add_circle_outline</mat-icon>
                                 <h3 matLine>Añadir cita</h3>
                             </a>

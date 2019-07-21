@@ -1,9 +1,56 @@
 <div class="portal-ecommerce-page-wrapper">
-<mat-grid-list cols="1" rowHeight="150px">
-    <mat-grid-tile>1</mat-grid-tile>
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.8%" 
+    fxLayoutAlign="center">
+        <div fxFlex="35%">
+            <mat-card fxLayout="row" fxLayoutAlign="space-between stretch">
+                <div class="portal-area-chart">
+                    <img class="images_home" src="../../../assets/images/imagenes_general/doctor.png" />
+                </div>
+                <div class="portal-widget__padding" fxflex="auto">
+                    <div fxLayout="column" fxLayoutAlign="start end">
+                        <h4 class="mat-caption portal-mini-caption portal-widget__no-margin" il8n>Doctores disponible</h4>
+                        <div>
+                            <mat-icon class="portal-trend-up">trending_up</mat-icon>
+                            <span class="mat-display-1 portal-font-weight-light portal-commerce-count portal-widget__no-margin"></span>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>       
+        </div>
+        <div fxFlex="35%">
+                <mat-card fxLayout="row" fxLayoutAlign="space-between stretch">
+                    <div class="portal-area-chart">
+                        <img class="images_home" src="../../../assets/images/imagenes_general/cita.jpg" />
+                    </div>
+                    <div class="portal-widget__padding" fxflex="auto">
+                        <div fxLayout="column" fxLayoutAlign="start end">
+                            <h4 class="mat-caption portal-mini-caption portal-widget__no-margin" il8n>Total de cita</h4>
+                            <div>
+                                <mat-icon class="portal-trend-up">trending_up</mat-icon>
+                                <span class="mat-display-1 portal-font-weight-light portal-commerce-count portal-widget__no-margin"></span>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card>       
+        </div>
+        <div fxFlex="35%">
+            <mat-card fxLayout="row" fxLayoutAlign="space-between stretch">
+                <div class="portal-area-chart">
+                    <img class="images_home" src="../../../assets/images/imagenes_general/cita_hoy.png" />
+                </div>
+                <div class="portal-widget__padding" fxflex="auto">
+                    <div fxLayout="column" fxLayoutAlign="start end">
+                        <h4 class="mat-caption portal-mini-caption portal-widget__no-margin" il8n>Cita de hoy</h4>
+                        <div>
+                            <mat-icon class="portal-trend-up">trending_up</mat-icon>
+                            <span class="mat-display-1 portal-font-weight-light portal-commerce-count portal-widget__no-margin"></span>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>       
+        </div>
+        
+        
+    </div>
     
-    </mat-grid-list>
-    <mat-grid-list cols="1" rowHeight="150px">
-            <mat-grid-tile>1</mat-grid-tile>
-            </mat-grid-list>
 </div>

@@ -6,15 +6,15 @@ export interface IPatient {
     cellPhone?: any;
     idCard?: any;
     civilStatus: string;
-    gender: string;
-    birthdate: string ;
-    scholarship: string ;
-    attend?: string ;
-    work?: string ;
-    socialSecurityNumber?: any;
+    gender: string;// genero
+    birthdate: string ;// fecha de nacimiento
+    scholarship: string ;// escolaridad
+    attend?: string ;// asiste
+    work?: string ;// trabaja
+    socialSecurityNumber?: any;// numero de seguridad social
     riskFactorsDiseases?: string;
-    admissionDate?: any;
-    egressDate?: any;
+    admissionDate?: any;// fecha de ingresp
+    egressDate?: any;// fecha de egreso
     sdss?: {
         ars?: any;
         summary?: any;

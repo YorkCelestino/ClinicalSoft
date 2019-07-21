@@ -35,6 +35,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PatientComponent } from './patient/patient.component';
 import { PatientDataComponent } from './patient/patient-data/patient-data.component';
+import { AppointmentComponent } from './appointment/appointment.component';
+import { AppointmentDataComponent } from './appointment/appointment-data/appointment-data.component';
 
 
 
@@ -57,11 +59,14 @@ import { PatientDataComponent } from './patient/patient-data/patient-data.compon
     UsersComponent,
     UsersDataComponent,
     PatientComponent,
-    PatientDataComponent
+    PatientDataComponent,
+    AppointmentComponent,
+    AppointmentDataComponent
   ],
   entryComponents: [
     UsersDataComponent,
-    PatientDataComponent
+    PatientDataComponent,
+    AppointmentDataComponent
   ]
 })
 export class AppsModule { }

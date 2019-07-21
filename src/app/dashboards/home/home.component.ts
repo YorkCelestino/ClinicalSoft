@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription, timer, BehaviorSubject } from 'rxjs';
 
+import { LayoutService } from '../../layouts/layout.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,7 +10,7 @@ import { Subscription, timer, BehaviorSubject } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public layoutService: LayoutService) { }
 
   ngOnInit() {
   }
