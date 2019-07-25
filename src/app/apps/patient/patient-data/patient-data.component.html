@@ -45,116 +45,128 @@
 </form>-->
 
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Paso1</ng-template>
-      <mat-grid-list cols="2" rowHeight="200px">
-        <mat-grid-tile>
-            <div class="controles-container">
-                <mat-form-field>
-                    <input  matInput placeholder="Nombre*">
-                    <mat-error>Nombre requerido.</mat-error>
-                  </mat-form-field>
-                 
-                  <mat-form-field>
-                      <input matInput placeholder="Cedula*">
-                      <mat-error>Cedula requerida.</mat-error>
-                  </mat-form-field>
-                  
-                  <mat-form-field>
-                      <input  matInput placeholder="Telefono*">
-                  </mat-form-field>
-              <!--<mat-form-field>
-                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-              </mat-form-field-->
-            </div>
-        </mat-grid-tile>
-        <mat-grid-tile>
-          <div class="controles-container">
-              <mat-form-field>
-                  <input  matInput placeholder="Apellido*">
-                  <mat-error>Apellido requerido.</mat-error>
-                </mat-form-field>
-                
-                <mat-form-field>
-                    <input  matInput placeholder="Correo*">
-                    <mat-error>Apellido requerido.</mat-error>
-                </mat-form-field>
-               
-                <span>Estado civil*</span>
-                  <div class="add-bottom-padding">
-                      <mat-radio-group >
-                          <mat-radio-button value="Casado">Casado</mat-radio-button>
-                          <mat-radio-button value="Soltero">Soltero</mat-radio-button>
-                      </mat-radio-group>
-                  </div>
+  <!--Primer paso del formulario-->
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Paso1</ng-template>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+  
+          <mat-form-field fxFlex="50">
+            <input  matInput placeholder="Nombre*">
+            <mat-error>Nombre requerido.</mat-error>
+          </mat-form-field>
+  
+          <mat-form-field fxFlex="50">
+              <input  matInput placeholder="Apellido*">
+              <mat-error>Apellido requerido.</mat-error>
+          </mat-form-field>
+  
+        </div>
+  
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+  
+            <mat-form-field fxFlex="50%">
+              <input  matInput placeholder="Cedula*">
+              <mat-error>Apellido requerido.</mat-error>
+            </mat-form-field>
+    
+            <mat-form-field fxFlex="50%">
+                <input  matInput placeholder="Correo*">
+                <mat-error>Correo requerido.</mat-error>
+            </mat-form-field>
+    
           </div>
-        </mat-grid-tile>
-      </mat-grid-list>
+  
+          <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+  
+              <mat-form-field fxFlex="50%">
+                <input  matInput placeholder="Telefono*">
+                <mat-error>Apellido requerido.</mat-error>
+              </mat-form-field>
       
-      <div align="end">
-        <button  mat-raised-button color="primary" matStepperNext>Siguiente</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Paso 2</ng-template>
-      <mat-grid-list cols="2" rowHeight="200px">
-          <mat-grid-tile>
-              <div class="controles-container">
-                  <mat-form-field>
-                      <input  matInput placeholder="Nombre*">
-                      <mat-error>Nombre requerido.</mat-error>
-                    </mat-form-field>
-                   
-                    <mat-form-field>
-                        <input matInput placeholder="Cedula*">
-                        <mat-error>Cedula requerida.</mat-error>
-                    </mat-form-field>
-                    
-                    <mat-form-field>
-                        <input  matInput placeholder="Telefono*">
-                    </mat-form-field>
-                <!--<mat-form-field>
-                  <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-                </mat-form-field-->
-              </div>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <div class="controles-container">
-                <mat-form-field>
-                    <input  matInput placeholder="Apellido*">
-                    <mat-error>Apellido requerido.</mat-error>
-                  </mat-form-field>
-                  
-                  <mat-form-field>
-                      <input  matInput placeholder="Correo*">
-                      <mat-error>Apellido requerido.</mat-error>
-                  </mat-form-field>
-                 
+              
+              <div class="add-bottom-padding" fxFlex="50%">
                   <span>Estado civil*</span>
-                    <div class="add-bottom-padding">
-                        <mat-radio-group >
-                            <mat-radio-button value="Casado">Casado</mat-radio-button>
-                            <mat-radio-button value="Soltero">Soltero</mat-radio-button>
-                        </mat-radio-group>
-                    </div>
+                  <br>
+                  <mat-radio-group >
+                      <mat-radio-button value="Casado">Casado</mat-radio-button>
+                      <mat-radio-button value="Soltero">Soltero</mat-radio-button>
+                  </mat-radio-group>
+              </div>
+      
             </div>
-          </mat-grid-tile>
-        </mat-grid-list>
-      <div align="end">
-        <button mat-button matStepperPrevious>Atras</button>
-        <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+  
+        <div align="end">
+          <button  mat-raised-button color="primary" matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!--Segundo paso del formulado-->
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Paso 2</ng-template>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+          
+            <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
+                <mat-select placeholder="Genero">
+                    <mat-option value="Femenino">Femenino</mat-option>
+                    <mat-option value="Masculino">Masculino</mat-option>
+                    
+                </mat-select>
+              </mat-form-field>
+      
+          <mat-form-field fxFlex="50%">
+              <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+
+          <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
+            <mat-select placeholder="Estudia?">
+                <mat-option value="Si">Si</mat-option>
+                <mat-option value="No">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
+              <mat-select placeholder="Asite?">
+                  <mat-option value="Si">Si</mat-option>
+                  <mat-option value="No">No</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+        </div>
+
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+          <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
+            <mat-select placeholder="Trabaja?">
+              <mat-option value="Si">Si</mat-option>
+              <mat-option value="No">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="50%">
+            <input  matInput placeholder="Numero de seguro social">
+          </mat-form-field>
+    
+        </div>
+        <div align="end">
+          <button mat-button matStepperPrevious>Atras</button>
+          <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <!--mat-step>
+      <ng-template matStepLabel>Paso 3</ng-template>
+      You are now done.
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
       </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Paso 3</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
-</mat-horizontal-stepper>
+      </mat-step-->
+  </mat-horizontal-stepper>
