@@ -1,63 +1,22 @@
-<!--<form [formGroup]="patientService.form" class="normal-form" (submit)="addUser()">
-  <mat-grid-list cols="2" rowHeight="300px">
-      <mat-grid-tile>
-          <div class="controles-container">
-              <input type="hidden" formControlName="$key">
-              Nombre
-              <mat-form-field>
-                <input formControlName="name" matInput placeholder="Nombre*">
-                <mat-error>Nombre requerido.</mat-error>
-              </mat-form-field>
-              Cedula
-              <mat-form-field>
-                  <input formControlName="idCard" matInput placeholder="Cedula*">
-                  <mat-error>Cedula requerida.</mat-error>
-              </mat-form-field>
-              cellPhone Telefono
-              <mat-form-field>
-                  <input formControlName="cellPhone" matInput placeholder="Telefono*">
-              </mat-form-field>
-          </div>
-      </mat-grid-tile>
-      <mat-grid-tile>
-          <div class="controles-container">
-            Apellido
-              <mat-form-field>
-                <input formControlName="surname" matInput placeholder="Apellido*">
-                <mat-error>Apellido requerido.</mat-error>
-              </mat-form-field>
-              email Correo
-              <mat-form-field>
-                  <input formControlName="email" matInput placeholder="Correo*">
-                  <mat-error>Apellido requerido.</mat-error>
-              </mat-form-field>
-              civilStatus Estado civiñ-
-              <span>Estado civil*</span>
-                <div class="add-bottom-padding">
-                    <mat-radio-group formControlName="userType">
-                        <mat-radio-button value="Casado">Casado</mat-radio-button>
-                        <mat-radio-button value="Soltero">Soltero</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-          </div>
-      </mat-grid-tile>
-  </mat-grid-list>
-</form>-->
-
+<mat-toolbar>
+  <span>Registrar Usuario</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="closeDialog()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
 <mat-horizontal-stepper [linear]="isLinear" #stepper>
   <!--Primer paso del formulario-->
     <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
+      <form [formGroup]="form">
         <ng-template matStepLabel>Paso1</ng-template>
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
   
           <mat-form-field fxFlex="50">
-            <input  matInput placeholder="Nombre*">
+            <input formControlName="name"  matInput placeholder="Nombre*">
             <mat-error>Nombre requerido.</mat-error>
           </mat-form-field>
   
           <mat-form-field fxFlex="50">
-              <input  matInput placeholder="Apellido*">
+              <input formControlName="surname" matInput placeholder="Apellido*">
               <mat-error>Apellido requerido.</mat-error>
           </mat-form-field>
   
@@ -66,12 +25,11 @@
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
   
             <mat-form-field fxFlex="50%">
-              <input  matInput placeholder="Cedula*">
+              <input formControlName="idCard"  matInput placeholder="Cedula*">
               <mat-error>Apellido requerido.</mat-error>
             </mat-form-field>
-    
             <mat-form-field fxFlex="50%">
-                <input  matInput placeholder="Correo*">
+                <input formControlName="email" matInput placeholder="Correo*">
                 <mat-error>Correo requerido.</mat-error>
             </mat-form-field>
     
@@ -80,7 +38,7 @@
           <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
   
               <mat-form-field fxFlex="50%">
-                <input  matInput placeholder="Telefono*">
+                <input formControlName="cellPhone"  matInput placeholder="Telefono*">
                 <mat-error>Apellido requerido.</mat-error>
               </mat-form-field>
       
@@ -88,7 +46,7 @@
               <div class="add-bottom-padding" fxFlex="50%">
                   <span>Estado civil*</span>
                   <br>
-                  <mat-radio-group >
+                  <mat-radio-group formControlName="civilStatus">
                       <mat-radio-button value="Casado">Casado</mat-radio-button>
                       <mat-radio-button value="Soltero">Soltero</mat-radio-button>
                   </mat-radio-group>
@@ -104,12 +62,12 @@
 
     <!--Segundo paso del formulado-->
     <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
+      <form [formGroup]="form">
         <ng-template matStepLabel>Paso 2</ng-template>
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
           
             <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-                <mat-select placeholder="Genero">
+                <mat-select placeholder="Genero"  formControlName="gender">
                     <mat-option value="Femenino">Femenino</mat-option>
                     <mat-option value="Masculino">Masculino</mat-option>
                     
@@ -117,7 +75,7 @@
               </mat-form-field>
       
           <mat-form-field fxFlex="50%">
-              <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento">
+              <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" formControlName="birthdate" >
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -126,14 +84,14 @@
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
 
           <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-            <mat-select placeholder="Estudia?">
+            <mat-select placeholder="Estudia?" formControlName="scholarship" >
                 <mat-option value="Si">Si</mat-option>
                 <mat-option value="No">No</mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-              <mat-select placeholder="Asite?">
+              <mat-select placeholder="Asite?" formControlName="attend">
                   <mat-option value="Si">Si</mat-option>
                   <mat-option value="No">No</mat-option>
               </mat-select>
@@ -143,20 +101,20 @@
 
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
           <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-            <mat-select placeholder="Trabaja?">
+            <mat-select placeholder="Trabaja?" formControlName="work">
               <mat-option value="Si">Si</mat-option>
               <mat-option value="No">No</mat-option>
             </mat-select>
           </mat-form-field>
 
           <mat-form-field fxFlex="50%">
-            <input  matInput placeholder="Numero de seguro social">
+            <input formControlName="socialSecurityNumber" matInput placeholder="Numero de seguro social">
           </mat-form-field>
     
         </div>
         <div align="end">
           <button mat-button matStepperPrevious>Atras</button>
-          <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+          <button mat-raised-button color="primary" (click)="onClick()" type="submit">Guardar</button>
         </div>
       </form>
     </mat-step>
