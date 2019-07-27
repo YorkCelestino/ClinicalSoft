@@ -12,13 +12,14 @@ import {  Subject } from 'rxjs';
 })
 export class LoginComponent implements OnInit {
   wrong: boolean = false;
-  loginForm: FormGroup;
+  form: FormGroup;
   private subject: Subject<any> = new Subject<any>();
   constructor(
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private router: Router,
     private loginService: LoginService,
   ) { }
+
   model: any = {
     usermane: '',
     password: ''
@@ -28,8 +29,8 @@ export class LoginComponent implements OnInit {
   serverErrorMessages: string;
 
   ngOnInit(): void {
-    this.loginForm = this.formBuilder.group({
-      'email': ['', Validators.required],
+    this.form = this.fb.group({
+      'username': ['', Validators.required],
       'password': ['', Validators.required]
     });
 
@@ -45,7 +46,7 @@ export class LoginComponent implements OnInit {
       res => {
 
        // console.log(this.loginService.login(form.value));
-       this.wrong = false;
+        this.wrong = false;
         this.loginService.setToken(res['token']);
         this.router.navigateByUrl('/dashboards/home');
       },

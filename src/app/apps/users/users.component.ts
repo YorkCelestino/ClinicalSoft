@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig, MatSort } from '@angular/material';
 import { UserService } from './user.service';
-import { IUsers } from '../../models/user';
+import { IUser } from '../../models/user';
 import { UsersDataComponent } from './users-data/users-data.component';
 
 @Component({
@@ -18,20 +18,25 @@ export class UsersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: string;
 
-  constructor(private userservices: UserService, public dialog: MatDialog) { }
+  constructor(
+    private userservices: UserService,
+     public dialog: MatDialog
+     ) { }
 
   // material dialog
-  openDialog(): void {
-    this.userservices.initializeFormGroup();
+  openDialog(data: any = {}): void {
+
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '60%';
+
+    dialogConfig.data = data ? data : undefined;
+
     const dialogRef = this.dialog.open(UsersDataComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // this.animal = result;
+     // console.log('The dialog was closed');
       this.getUsers();
     });
   }
@@ -45,25 +50,9 @@ export class UsersComponent implements OnInit {
     this.userservices.getUsers().subscribe(
       res => {
         this.users = res;
-       // console.log(this.users);
-        this.dataSource = new MatTableDataSource<IUsers>(this.users);
+        console.log(res);
+        this.dataSource = new MatTableDataSource<IUser>(this.users);
         this.dataSource.paginator = this.paginator;
-
-          const array = res.map(item => {
-            return {
-              $key: item.key,
-              ...item.payload
-            };
-          });
-          this.listData = new MatTableDataSource(array);
-          this.listData.sort = this.sort;
-          this.listData.paginator = this.paginator;
-          this.listData.filterPredicate = (data, filter) => {
-            return this.displayedColumns.some(ele => {
-              // tslint:disable-next-line:triple-equals
-              return ele != 'actions' && data[ele].toLowerCase().indexOf(filter) != -1;
-            });
-          };
       },
       err =>  {
         console.error(err);
@@ -71,28 +60,16 @@ export class UsersComponent implements OnInit {
       );
     }
 
-    onSearchClear(): any {
-      this.searchKey = '';
-      this.applyFilter();
-    }
-    applyFilter(): any {
-      this.listData.filter = this.searchKey.trim().toLowerCase();
+    changeStatus(isActive: boolean, id: string): void {
+        this.userservices.changeStatus(isActive, id).subscribe(
+          res => {
+            this.getUsers();
+            console.log(res);
+          },
+          err => {console.error(err);
+          }
+        );
     }
 
-    updatetUser(row: any): void {
-      console.log(row);
 
-        // this.userservices.populateForm(row);
-        // const dialogConfig = new MatDialogConfig();
-        // dialogConfig.disableClose = true;
-        // dialogConfig.autoFocus = true;
-        // dialogConfig.width = '40%';
-        // const dialogRef = this.dialog.open(UsersDataComponent, dialogConfig);
-
-      // dialogRef.afterClosed().subscribe(result => {
-      //  // console.log('The dialog was closed');
-      //   // this.animal = result;
-      //   this.getUsers();
-      // });
-    }
 }

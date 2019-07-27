@@ -1,4 +1,5 @@
-export interface IUsers {
+export interface IUser {
+    id?: string;
     fullName?: string;
     idCard?: string;
     username?: string;
@@ -6,5 +7,11 @@ export interface IUsers {
     email?: string;
     cellPhone?: number;
     speciality?: string;
-    userType?: number;
+    role?:
+      {
+        name?: string,
+         slug?: string,
+      };
+    isActive?: boolean;
+
   }

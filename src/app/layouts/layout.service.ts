@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router, RouterEvent, NavigationStart, NavigationEnd, ActivatedRoute } from '@angular/router';
-
+// tslint:disable-next-line:rxjs-no-wholesale
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { filter, mergeMap, startWith, map, switchMap } from 'rxjs/operators';
 

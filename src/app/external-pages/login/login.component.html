@@ -21,20 +21,23 @@
                 <img class="portal-login-card__logo" src="assets/images/imagenes_general/inciarsesion.png" />
                 <h1><strong>Iniciar sesión</strong></h1>
             </mat-card-title>
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+                <div *ngIf="wrong">
+                    <mat-error>Usuario o contraseña incorrectos</mat-error>
+                </div>
 
                 <mat-form-field>
-                    <input matInput type="text" formControlName="email" placeholder="Usuario" (keyup.enter)="onSubmit(loginForm)">
+                    <input matInput type="text" formControlName="username" placeholder="Usuario" (keyup.enter)="onSubmit(form)">
 
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput type="password" formControlName="password" placeholder="Contraseña" (keyup.enter)="onSubmit(loginForm)">
+                    <input matInput type="password" formControlName="password" placeholder="Contraseña" (keyup.enter)="onSubmit(form)">
 
                 </mat-form-field>
             </form>
             <div fxLayout="column" fxLayoutGap="16px">
                 <div fxLayout="row" fxLayoutGap="16px" fxLayout.lt-md="column">
-                    <button mat-raised-button i18n type="submit" fxFlex="50%" fxFlex.lt-md="none" color="primary" (click)="onSubmit(loginForm)" [disabled]="!loginForm.valid">
+                    <button mat-raised-button i18n type="submit" fxFlex="50%" fxFlex.lt-md="none" color="primary" (click)="onSubmit(form)" [disabled]="!form.valid">
                         Entrar
                     </button>
                     <a mat-button i18n fxFlex="60%" fxFlex.lt-md="none" (click)="forgotPassword()">

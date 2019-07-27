@@ -1,13 +1,16 @@
 <mat-toolbar>
-    <span>{{userService.form.controls['$key'].value?"actualizar Usuario":"Registrar Usuario"}}</span>
+    <span>  <span *ngIf="data.id">Actualizar</span> <span *ngIf="!data.id">Registrar</span> Usuario</span>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="closeDialog()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
-<form [formGroup]="userService.form" class="normal-form" (submit)="addUser()">
+<form [formGroup]="form" class="normal-form" (submit)="addUser()">
     <mat-grid-list cols="2" rowHeight="300px">
         <mat-grid-tile>
             <div class="controles-container">
-                <input type="hidden" formControlName="$key">
+
+
+                <input type="hidden" formControlName="_id">
+
                 <mat-form-field>
                     <input formControlName="fullName" matInput placeholder="Nombre Completo*">
                     <mat-error>Nombre Completo es requerido.</mat-error>
@@ -22,8 +25,8 @@
                 </mat-form-field>
                 <mat-form-field>
                     <input formControlName="cellPhone" matInput placeholder="Número de teléfono*">
-                    <mat-error *ngIf="userService.form.controls['cellPhone'].errors?.required">Número de teléfono es requerido.</mat-error>
-                    <mat-error *ngIf="userService.form.controls['cellPhone'].errors?.minlength">Se nececitan minimo 8 caracteres</mat-error>
+                    <mat-error *ngIf="form.controls['cellPhone'].errors?.required">Número de teléfono es requerido.</mat-error>
+                    <mat-error *ngIf="form.controls['cellPhone'].errors?.minlength">Se nececitan minimo 8 caracteres</mat-error>
                 </mat-form-field>
 
             </div>
@@ -38,34 +41,33 @@
                     <input formControlName="userType" matInput placeholder="Tipo de usuario*">
                     <mat-error>Tipo de usuario es requerido.</mat-error>
                 </mat-form-field-->
-                <span>Tipo de usuario*</span>
-                <div class="add-bottom-padding">
+                <!-- <span>Tipo de usuario*</span> -->
+                <!-- <div class="add-bottom-padding">
 
-                    <mat-radio-group formControlName="userType">
-                        <mat-radio-button value="2">Doct@r</mat-radio-button>
-                        <mat-radio-button value="3">Secretari@</mat-radio-button>
-                        <mat-radio-button value="1">Administrador</mat-radio-button>
+                    <mat-radio-group formControlName="role" *ngFor="let role of roles">
+                        <mat-radio-button [value]="role.id">{{ role.name }}</mat-radio-button>
                     </mat-radio-group>
-                </div>
+                </div> -->
+                <mat-form-field>
+                    <mat-select formControlName="role" placeholder="Tipo de usuario">
+                        <!-- <mat-option>None</mat-option> -->
+                        <ng-container *ngFor="let role of roles">
+                            <mat-option value="{{role.id}}">{{role.name}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
 
                 <mat-form-field>
                     <input formControlName="email" matInput placeholder="Email*">
                     <mat-error>Email incorrecto.</mat-error>
                 </mat-form-field>
-                <mat-form-field>
+                <mat-form-field *ngIf="!data.id">
                     <input formControlName="password" matInput placeholder="Contraseña*">
                     <mat-error>contraseña es requerida.</mat-error>
                 </mat-form-field>
 
+
                 <!--mat-form-field>
-                    <mat-select formControlName="department" placeholder="Department">
-                        <mat-option>None</mat-option>
-                        <ng-container *ngFor="let department of departmentService.array">
-                            <mat-option value="{{department.$key}}">{{department.code}}-{{department.name}}</mat-option>
-                        </ng-container>
-                    </mat-select>
-                </mat-form-field>
-                <mat-form-field>
                     <input formControlName="hireDate" matInput [matDatepicker]="picker" placeholder="Hire Date">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
@@ -73,14 +75,14 @@
                 <div class="add-bottom-padding">
                     <mat-checkbox formControlName="isPermanent">Permanent Employee</mat-checkbox>
                 </div-->
-               
+
             </div>
         </mat-grid-tile>
     </mat-grid-list>
     <mat-dialog-actions align="end">
         <div class="button-row">
             <button mat-raised-button color="warn" (click)="closeDialog()" (click)="onClear()">Cancelar</button>
-                <button mat-raised-button color="primary" type="submit" [disabled]="userService.form.invalid">Submit</button>
-            </div>
+            <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid"> <span *ngIf="data.id">Actualizar</span> <span *ngIf="!data.id">Registrar</span> </button>
+        </div>
     </mat-dialog-actions>
 </form>

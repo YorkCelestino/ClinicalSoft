@@ -11,7 +11,7 @@ import { IPatient } from '../../models/patient';
 })
 export class PatientComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'surname', 'email', 'cellPhone', 'idCard', 
+  displayedColumns: string[] = ['name', 'surname', 'email', 'cellPhone', 'idCard',
   'civilStatus', 'actions'];
   dataSource: any;
   patient: any = [];
@@ -19,7 +19,7 @@ export class PatientComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
-    private patientservices: PatientService, 
+    private patientservices: PatientService,
     public dialog: MatDialog
     ) { }
 
@@ -38,15 +38,17 @@ export class PatientComponent implements OnInit {
     });
   }
 
-  getPatient(): void{
+  getPatient(): void {
     this.patientservices.getPatient().subscribe(
       res => {
-        this.patient = res; 
+        this.patient = res;
          console.log(this.patient);
         this.dataSource = new MatTableDataSource<IPatient>(this.patient);
         this.dataSource.paginator = this.paginator;
+      },
+      err => {
+        console.error(err);
       }
-      
     );
   }
 

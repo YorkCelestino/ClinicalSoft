@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { IUsers } from '../models/user';
+import { IUser } from '../models/user';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+// tslint:disable-next-line:rxjs-no-wholesale
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  selectedUser: IUsers = {
+  selectedUser: IUser = {
     fullName: '',
     username: '',
     password: ''
@@ -19,9 +21,11 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   // httpMethods
-
+  getUserProfile(): Observable<IUser> {
+    return this.http.get(environment.apiBaseUrl + '/user/get-user-profile');
+  }
   // tslint:disable-next-line:typedef
-  postUser(User: IUsers) {
+  postUser(User: IUser) {
     return this.http.post(environment.apiBaseUrl + '/user/add-user', this.noAuthHeader);
   }
 

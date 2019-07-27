@@ -13,6 +13,8 @@ import 'hammerjs';
 
 // servicios
 import { UserService } from './apps/users/user.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,12 @@ import { UserService } from './apps/users/user.service';
     AppRoutingModule,
   ],
   providers: [
-    UserService
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [
     AppComponent

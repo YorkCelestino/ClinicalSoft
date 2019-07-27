@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginService } from '../../auth/login.service';
+import { IUser } from '../../models/user';
 
 @Component({
   selector: 'app-profile',
@@ -11,16 +13,8 @@ export class ProfileComponent {
   profileForm: FormGroup;
   passwordForm: FormGroup;
   notificationsForm: FormGroup;
-
-  constructor(private fb: FormBuilder, private snackBar: MatSnackBar) {
-    this.profileForm = this.fb.group({
-      firstname: ['Christos', Validators.required],
-      lastname: ['Pantazis', Validators.required],
-      email: ['info@oxygenna.com', Validators.required],
-      location: 'Sitia, Crete, Greece',
-      website: 'http://www.oxygenna.com',
-      describe: 'We are a small creative web design agency who are passionate with our pixels.'
-    });
+  userProfile: any = [];
+  constructor(private fb: FormBuilder, private snackBar: MatSnackBar, private loginService: LoginService) {
 
     this.passwordForm = this.fb.group({
       oldPassword: ['', Validators.required],
@@ -28,19 +22,40 @@ export class ProfileComponent {
       passwordConfirm: ['', Validators.required]
     });
 
-    this.notificationsForm = this.fb.group({
-      showLocation: ['', Validators.required],
-      showAvatar: ['true', Validators.required],
-      sendNotifications: ['', Validators.required],
-      showUsername: ['true', Validators.required],
-      showProfile: ['true', Validators.required],
-      showBackups: ['', Validators.required],
-    });
+
+
   }
+
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnInit(): void {
+    this.getProfile();
+    this.profileForm = this.fb.group({
+      _id: this.userProfile.id,
+      fullName: this.userProfile.fullName,
+      email: this.userProfile.email,
+     // role: this.userProfile.role.id
+
+    });
+
+   }
+
+  setForm(): void {}
 
   showSnackbar(): void {
     this.snackBar.open('Settings Updated', '', {
       duration: 3000,
     });
+
+  }
+
+  getProfile(): void {
+    this.loginService.getUserProfile().subscribe(
+      res => {
+
+        this.userProfile = res;
+      },
+      err => {console.error(err);
+      }
+    );
   }
 }
