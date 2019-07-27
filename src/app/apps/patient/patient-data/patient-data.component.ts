@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PatientService } from '../patient.service';
+import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-patient-data',
@@ -10,24 +11,50 @@ import { PatientService } from '../patient.service';
 export class PatientDataComponent implements OnInit {
 
   public form: FormGroup;
-  isLinear = false;
+  isLinear = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  
-  constructor(
-    private fb: FormBuilder,
-    private patientService: PatientService,
-    private _formBuilder: FormBuilder
 
-  ) { }
+  constructor(
+
+    private patientService: PatientService,
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<PatientDataComponent>
+  ) { 
+    this.setForm();
+  }
 
   ngOnInit(): void {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+    
+  }
+  setForm(): void{
+    this.form = this.fb.group({
+      name: ['',Validators.required],
+      surname: ['', Validators.required],
+      email: ['', Validators.required],
+      cellPhone:['', Validators.required],
+      idCard:['', Validators.required],
+      civilStatus: ['Soltero', Validators.required],
+      gender:['', Validators.required],
+      birthdate:['', Validators.required],
+      scholarship: ['', Validators.required],
+      attend:['', Validators.required],
+      work:['', Validators.required], 
+      socialSecurityNumber: ['']//, 
+      //riskFactorsDiseases: [''],
+      //admissionDate: [''],
+     // egressDate: ['']
     });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    })
+}
+
+  onClick(): void{
+    console.log(this.form.value);
+    
+  }
+
+  closeDialog(): void{
+    this.form.reset();
+    this.dialogRef.close();
   }
 
 }

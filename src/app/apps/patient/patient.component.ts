@@ -28,7 +28,7 @@ export class PatientComponent implements OnInit {
   }
   openDialog(): void {
     const dialogConfig = new MatDialogConfig();
-   // dialogConfig.disableClose = true;
+    dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '65%';
     const dialogRef = this.dialog.open(PatientDataComponent, dialogConfig);
