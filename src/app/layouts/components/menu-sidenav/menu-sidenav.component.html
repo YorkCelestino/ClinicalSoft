@@ -58,10 +58,7 @@
                             <mat-icon matListIcon>today</mat-icon>
                             <h3 matLine>Cita de hoy</h3>
                         </a>
-                        <a mat-list-item routerLink='/apps/agregarcita' routerLinkActive="portal-menu--active">
-                                <mat-icon matListIcon>add_circle_outline</mat-icon>
-                                <h3 matLine>Añadir cita</h3>
-                            </a>
+
                 </mat-nav-list>
             </mat-expansion-panel>
             <mat-nav-list>
@@ -86,7 +83,7 @@
 
         </mat-nav-list>
         <mat-nav-list>
-                <a mat-list-item (click)="openDialog()">
+                <a mat-list-item (click)="showModal()">
                     <mat-icon matListIcon>exit_to_app</mat-icon>
                     <h3 matLine>Salir</h3>
                 </a>

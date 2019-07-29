@@ -22,7 +22,7 @@ export class AppointmentComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
    // dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = '65%';
+    dialogConfig.width = '32%';
     const dialogRef = this.dialog.open(AppointmentDataComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {

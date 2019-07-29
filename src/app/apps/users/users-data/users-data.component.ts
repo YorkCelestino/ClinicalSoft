@@ -47,7 +47,7 @@ export class UsersDataComponent implements OnInit {
      //  console.log (this.data);
         this.form = this.fb.group({
 
-        _id: [this.data.id, Validators.required],
+        id: [this.data.id, Validators.required],
         fullName: [this.data.fullName, Validators.required],
         idCard: [this.data.idCard, Validators.required],
         username: [this.data.username, Validators.required],
@@ -61,7 +61,7 @@ export class UsersDataComponent implements OnInit {
         });
     } else {
       this.form = this.fb.group({
-        _id: null,
+        id: null,
         fullName: ['', Validators.required],
         idCard: ['', Validators.required],
         username: ['', Validators.required],
