@@ -1,5 +1,5 @@
 <mat-toolbar>
-    <span>Registrar Usuario</span>
+    <span>Registrar paciente</span>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="closeDialog()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
@@ -7,7 +7,7 @@
     <!--Primer paso del formulario-->
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="form">
-            <ng-template matStepLabel>Paso1</ng-template>
+            <ng-template matStepLabel>Paso 1</ng-template>
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
 
                 <mat-form-field fxFlex="50">
@@ -28,30 +28,39 @@
                     <input formControlName="idCard" matInput placeholder="Cedula*">
                     <mat-error>Apellido requerido.</mat-error>
                 </mat-form-field>
+                
                 <mat-form-field fxFlex="50%">
-                    <input formControlName="email" matInput placeholder="Correo*">
-                    <mat-error>Correo requerido.</mat-error>
+                    <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" formControlName="birthdate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
 
             </div>
 
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
 
-                <mat-form-field fxFlex="50%">
+                <!--form-field fxFlex="50%">
                     <input formControlName="cellPhone" matInput placeholder="Telefono*">
                     <mat-error>Apellido requerido.</mat-error>
+                </mat-form-field-->
+                <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
+                    <mat-select placeholder="Genero" formControlName="gender">
+                        <mat-option value="Femenino">Femenino</mat-option>
+                        <mat-option value="Masculino">Masculino</mat-option>
+
+                    </mat-select>
                 </mat-form-field>
 
 
-                <div class="add-bottom-padding" fxFlex="50%">
-                    <span>Estado civil*</span>
-                    <br>
-                    <mat-radio-group formControlName="civilStatus">
-                        <mat-radio-button value="Casado">Casado</mat-radio-button>
-                        <mat-radio-button value="Soltero">Soltero</mat-radio-button>
-                    </mat-radio-group>
-                </div>
-
+                <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
+                        <mat-select placeholder="Estado civil" formControlName="civilStatus">
+                            <mat-option value="Casado">Casado</mat-option>
+                            <mat-option value="Union libre">Union libre</mat-option>
+                            <mat-option value="Soltero">Soltero</mat-option>
+                            <mat-option value="Viudo">Viudo</mat-option>
+                            <mat-option value="Menor de edad">Menor de edad</mat-option>
+                        </mat-select>
+                    </mat-form-field>
             </div>
 
             <div align="end">
@@ -65,28 +74,95 @@
         <form [formGroup]="form">
             <ng-template matStepLabel>Paso 2</ng-template>
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+                <label  id = "example-radio-group-label" > Tiene acta de nacimiento? </label> 
+                <mat-radio-group ria-labelledby="example-radio-group-label" class = "example-radio-group" 
+                [(ngModel)]="acta" [ngModelOptions]="{standalone: true}"> 
+                <mat-radio-button color="primary" class ="example-radio-button"  [value]="yesWork" >
+                    Si
+                </mat-radio-button > 
+                <mat-radio-button color="primary" class ="example-radio-button"  [value]="NoWork" >
+                    No
+                </mat-radio-button > 
+            </mat-radio-group > 
+        </div>
+         <div *ngIf="acta">
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" >
 
-                <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-                    <mat-select placeholder="Genero" formControlName="gender">
-                        <mat-option value="Femenino">Femenino</mat-option>
-                        <mat-option value="Masculino">Masculino</mat-option>
+                <mat-form-field fxFlex="50%">
+                    <input formControlName="districtMunicipality" matInput placeholder="Municipio distrito">
+                </mat-form-field>
+    
+                <mat-form-field fxFlex="50%">
+                    <input formControlName="numberOfOfficial" matInput placeholder="Numero de oficiali">
+  
+                </mat-form-field>
+    
+            </div>
 
-                    </mat-select>
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" >
+
+                <mat-form-field fxFlex="50%">
+                    <input formControlName="bookNumber" matInput placeholder="Número de libro">
+                </mat-form-field>
+        
+                <mat-form-field fxFlex="50%">
+                    <input formControlName="folioNumber" matInput placeholder="Número de folio">
+                   
+                </mat-form-field>
+        
+            </div>
+
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" >
+
+                <mat-form-field fxFlex="50%">
+                    <input formControlName="actNumber" matInput placeholder="Número de acta">
+                </mat-form-field>
+            
+                <mat-form-field fxFlex="50%">
+                    <input formControlName="yearBook" matInput placeholder="Año libro">
+                </mat-form-field>
+            
+            </div>
+            
+
+            </div>
+            <div align="end">
+                <button mat-button matStepperPrevious>Atras</button>
+                <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+
+
+    <!--Tercer paso del formulario-->
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="form">
+            <ng-template matStepLabel>Paso 3</ng-template>
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+
+                <mat-form-field fxFlex="50%">
+                    <input formControlName="email" matInput placeholder="Correo*">
+                    <mat-error>Correo requerido.</mat-error>
                 </mat-form-field>
 
                 <mat-form-field fxFlex="50%">
-                    <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" formControlName="birthdate">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
+                    <input formControlName="cellPhone" matInput placeholder="Telefono*">
+                    <mat-error>Apellido requerido.</mat-error>
                 </mat-form-field>
+
             </div>
 
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
 
                 <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-                    <mat-select placeholder="Estudia?" formControlName="scholarship">
-                        <mat-option value="Si">Si</mat-option>
-                        <mat-option value="No">No</mat-option>
+                    <mat-select placeholder="Escolaridad (Último curso):" formControlName="scholarship">
+                        <mat-option value="No sabe leer ni escribir">No sabe leer ni escribir</mat-option>
+                        <mat-option value="Primaria incompleta">Primaria incompleta</mat-option>
+                        <mat-option value="Intermedia Basica">Intermedia Basica"</mat-option>
+                        <mat-option value="Bachillerato">Bachillerato</mat-option>
+                        <mat-option value="Técnico">Técnico</mat-option>
+                        <mat-option value="Universitario">Universitario</mat-option>
+                        <mat-option value="Profesional">Profesional</mat-option>
                     </mat-select>
                 </mat-form-field>
 
@@ -98,33 +174,116 @@
                 </mat-form-field>
 
             </div>
-
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+                <label  id = "example-radio-group-label" > trabaja </label> 
+                <mat-radio-group 
+                    aria-labelledby="example-radio-group-label" 
+                    class = "example-radio-group" 
+                    [(ngModel)]="work" [ngModelOptions]="{standalone: true}"> 
+                    <mat-radio-button color="primary" class ="example-radio-button"  [value]="yesWork" >
+                        Si
+                    </mat-radio-button > 
+                    <mat-radio-button color="primary" class ="example-radio-button"  [value]="NoWork" >
+                        No
+                    </mat-radio-button > 
+                </mat-radio-group > 
+            </div>
+
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" *ngIf="work">
                 <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
                     <mat-select placeholder="Trabaja?" formControlName="work">
-                        <mat-option value="Si">Si</mat-option>
-                        <mat-option value="No">No</mat-option>
+                        <mat-option value="Fijo">Fijo</mat-option>
+                        <mat-option value="Temporar">Temporar</mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field fxFlex="50%">
-                    <input formControlName="socialSecurityNumber" matInput placeholder="Numero de seguro social">
+                    <input formControlName="whereWork"  matInput placeholder="Dónde trabaja (Nombre de la Empresa o Negocio)">
                 </mat-form-field>
 
             </div>
             <div align="end">
                 <button mat-button matStepperPrevious>Atras</button>
-                <button mat-raised-button color="primary" (click)="onClick()" type="submit">Guardar</button>
+                <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
+                
             </div>
         </form>
     </mat-step>
+    <!--Tercer paso del formulario-->
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="form">
+            <ng-template matStepLabel>Paso 4</ng-template> 
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+                    <label  id = "example-radio-group-label" >Esta afilaido a SDSS</label> 
+                    <mat-radio-group 
+                        aria-labelledby="example-radio-group-label" 
+                        class = "example-radio-group" 
+                        [(ngModel)]="afiliado" [ngModelOptions]="{standalone: true}"> 
+                        <mat-radio-button color="primary" class ="example-radio-button"  [value]="yesWork" >
+                            Si
+                        </mat-radio-button > 
+                        <mat-radio-button color="primary" class ="example-radio-button"  [value]="NoWork" >
+                            No
+                        </mat-radio-button > 
+                    </mat-radio-group > 
+            </div>
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" *ngIf="afiliado">
 
-    <!--mat-step>
-      <ng-template matStepLabel>Paso 3</ng-template>
+                    <mat-form-field fxFlex="50%">
+                        <input  formControlName="sdss"  matInput placeholder="ARS">
+                    </mat-form-field>
+                
+                    <mat-form-field fxFlex="50%">
+                        <input  formControlName="ars"  matInput placeholder="Regimen">
+                    </mat-form-field>
+                
+            </div>
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+                <mat-form-field class="example-full-width" fxFlex="100">
+                    <input type="text"  placeholder="Factores de riesgo(Enfermedades Discacidad)*" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>          
+            </div>
+
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+                
+                <div fxFlex="50">
+                    <label >Ingreso:</label>
+                    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+                        <mat-checkbox color="primary" fxFlex="50">Nació</mat-checkbox>
+                        <mat-checkbox color="primary" fxFlex="50">Llegó</mat-checkbox>
+                    </div>
+                </div>
+
+                <div fxFlex="50">
+                    <label>Engreso:</label>
+                    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+                        <mat-checkbox color="primary" fxFlex="50">Salió</mat-checkbox>
+                        <mat-checkbox color="primary" fxFlex="50">Murió</mat-checkbox>
+                    </div>
+                 </div>
+                
+            </div>
+            <div align="end">
+                <button mat-button matStepperPrevious>Atras</button>
+                <button mat-raised-button color="primary" (click)="onClick()" type="submit">Guardar</button>
+            </div>
+        </form>    
+    </mat-step>
+</mat-horizontal-stepper>
+
+
+
+
+<!--mat-step>
+    <ng-template matStepLabel>Paso 3</ng-template>
       You are now done.
-      <div>
+    <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
-      </mat-step-->
-</mat-horizontal-stepper>
+    </div>
+</mat-step-->

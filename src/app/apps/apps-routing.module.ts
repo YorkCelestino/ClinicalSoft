@@ -18,7 +18,7 @@ import { SpotifyAuthService } from './spotify/guards/spotify-auth.service';
 import { UsersComponent } from './users/users.component';
 import { PatientComponent } from './patient/patient.component';
 import { AppointmentComponent } from './appointment/appointment.component';
-import { AppointmentDataComponent } from './appointment/appointment-data/appointment-data.component';
+
 
 const routes: Routes = [{
   path: 'email',
@@ -106,14 +106,6 @@ const routes: Routes = [{
   data:{
     title:'Cita'
   }
-},
-{
-  path: 'agregarcita',
-  component: AppointmentDataComponent,
-  data:{
-    title: 'Agregar cita'
-  }
-
 }
  
 ];
