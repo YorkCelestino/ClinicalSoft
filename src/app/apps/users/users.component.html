@@ -4,8 +4,8 @@
         <mat-icon>add</mat-icon>Agregar
       </button>
         <mat-form-field class="search-form-field" floatLabel="never">
-            <input matInput [(ngModel)]="searchKey" placeholder="Buscar Usuario" autocomplete="off">
-            <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey">
+            <input matInput [(ngModel)]="searchKey" placeholder="Buscar Usuario" autocomplete="off" (keyup)="applyFilter($event.target.value)">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
               <mat-icon>close</mat-icon>
             </button>
         </mat-form-field>

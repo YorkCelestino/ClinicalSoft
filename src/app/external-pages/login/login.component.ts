@@ -5,13 +5,16 @@ import { LoginService } from '../../auth/login.service';
 // tslint:disable-next-line:rxjs-no-wholesale
 import {  Subject } from 'rxjs';
 
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+
 @Component({
   selector: 'portal-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  wrong: boolean = false;
+  wrongUser: boolean = false;
+  wrongPassword: boolean = false;
   form: FormGroup;
   private subject: Subject<any> = new Subject<any>();
   constructor(
@@ -46,13 +49,17 @@ export class LoginComponent implements OnInit {
       res => {
 
        // console.log(this.loginService.login(form.value));
-        this.wrong = false;
+       // this.wrong = false;
         this.loginService.setToken(res['token']);
         this.router.navigateByUrl('/dashboards/home');
       },
       err => {
         this.serverErrorMessages = err.error.message;
-        this.wrong = true;
+        this.wrongUser = this.serverErrorMessages = err.error.wrongUser;
+        this.wrongPassword = this.serverErrorMessages = err.error.wrongPassword;
+
+       console.log( this.serverErrorMessages = err.error.wrongUser);
+       console.log( this.serverErrorMessages = err.error.wrongPassword);
 
       }
     );

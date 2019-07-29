@@ -60,6 +60,16 @@ export class UsersComponent implements OnInit {
       );
     }
 
+    applyFilter(filterValue: string): void {
+      filterValue = filterValue.trim(); // Remove whitespace
+      filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+      this.dataSource.filter = filterValue;
+    }
+    onSearchClear(): void  {
+      this.searchKey = '';
+      this.applyFilter('');
+    }
+
     changeStatus(isActive: boolean, id: string): void {
         this.userservices.changeStatus(isActive, id).subscribe(
           res => {

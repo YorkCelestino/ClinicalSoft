@@ -14,8 +14,10 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       if (!this.loginService.isloggedIn()) {
         this.router.navigateByUrl('/external/login');
+        this.loginService.deleteToken();
+        return false;
       }
-      
+
     return true;
   }
 }
