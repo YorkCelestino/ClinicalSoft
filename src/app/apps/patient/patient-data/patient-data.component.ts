@@ -30,6 +30,7 @@ export class PatientDataComponent {
   secondFormGroup: FormGroup;
 
 
+
   constructor(
 
     private patientService: PatientService,
