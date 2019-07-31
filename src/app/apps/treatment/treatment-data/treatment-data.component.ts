@@ -9,7 +9,7 @@ export class TreatmentDataComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }
