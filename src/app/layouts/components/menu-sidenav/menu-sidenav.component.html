@@ -9,12 +9,12 @@
 
         <!-- home & dashboard menu -->
         <mat-nav-list>
-                <a mat-list-item routerLink="/dashboards/home" routerLinkActive="portal-menu--active">
-                    <mat-icon matListIcon>home</mat-icon>
-                    <h3 matLine>Inicio</h3>
-                </a>
+            <a mat-list-item routerLink="/dashboards/home" routerLinkActive="portal-menu--active">
+                <mat-icon matListIcon>home</mat-icon>
+                <h3 matLine>Inicio</h3>
+            </a>
 
-        </mat-nav-list> 
+        </mat-nav-list>
         <mat-expansion-panel>
 
             <mat-expansion-panel-header>
@@ -37,56 +37,63 @@
                     <mat-icon matListIcon>date_range</mat-icon>
                     <h3 matLine>Calendar</h3>
                 </a>
-               
+
             </mat-nav-list>
         </mat-expansion-panel>
         <mat-expansion-panel>
 
-                <mat-expansion-panel-header>
-                    <mat-panel-title>
-                        <mat-icon>event</mat-icon>
-                        <h3>Cita <span class="dashicons dashicons-buddicons-topics"></span></h3>
-                    </mat-panel-title>
-                </mat-expansion-panel-header>
-                <mat-nav-list>
-                    <a mat-list-item routerLink='/apps/cita' routerLinkActive="portal-menu--active">
-                        <mat-icon matListIcon>list_alt</mat-icon>
-                        <h3 matLine>Lista de cita</h3>
-                    </a>
-                   
-                    <a mat-list-item routerLink='**' routerLinkActive="portal-menu--active">
-                            <mat-icon matListIcon>today</mat-icon>
-                            <h3 matLine>Cita de hoy</h3>
-                        </a>
-
-                </mat-nav-list>
-            </mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <mat-icon>event</mat-icon>
+                    <h3>Cita <span class="dashicons dashicons-buddicons-topics"></span></h3>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
             <mat-nav-list>
-                    <a mat-list-item routerLink="**" routerLinkActive="portal-menu--active">
-                        <mat-icon matListIcon>receipt</mat-icon>
-                        <h3 matLine>Record</h3>
-                    </a>
-    
-            </mat-nav-list>
-            <mat-nav-list>
-                    <a mat-list-item routerLink="**" routerLinkActive="portal-menu--active">
-                        <mat-icon matListIcon>settings</mat-icon>
-                        <h3 matLine>Ajuste</h3>
-                    </a>
-    
-            </mat-nav-list>
-        <mat-nav-list>
-                <a mat-list-item routerLink="**" routerLinkActive="portal-menu--active">
-                    <mat-icon matListIcon>help</mat-icon>
-                    <h3 matLine>Ayuda</h3>
+                <a mat-list-item routerLink='/apps/cita' routerLinkActive="portal-menu--active">
+                    <mat-icon matListIcon>list_alt</mat-icon>
+                    <h3 matLine>Lista de cita</h3>
                 </a>
+
+                <a mat-list-item routerLink='**' routerLinkActive="portal-menu--active">
+                    <mat-icon matListIcon>today</mat-icon>
+                    <h3 matLine>Cita de hoy</h3>
+                </a>
+
+            </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-nav-list>
+            <a mat-list-item routerLink="**" routerLinkActive="portal-menu--active">
+                <mat-icon matListIcon>receipt</mat-icon>
+                <h3 matLine>Record</h3>
+            </a>
 
         </mat-nav-list>
         <mat-nav-list>
-                <a mat-list-item (click)="showModal()">
-                    <mat-icon matListIcon>exit_to_app</mat-icon>
-                    <h3 matLine>Salir</h3>
-                </a>
+            <a mat-list-item routerLink="/apps/treatment" routerLinkActive="portal-menu--active">
+                <mat-icon matListIcon>receipt</mat-icon>
+                <h3 matLine>Tratamiento</h3>
+            </a>
+
+        </mat-nav-list>
+        <mat-nav-list>
+            <a mat-list-item routerLink="**" routerLinkActive="portal-menu--active">
+                <mat-icon matListIcon>settings</mat-icon>
+                <h3 matLine>Ajuste</h3>
+            </a>
+
+        </mat-nav-list>
+        <mat-nav-list>
+            <a mat-list-item routerLink="**" routerLinkActive="portal-menu--active">
+                <mat-icon matListIcon>help</mat-icon>
+                <h3 matLine>Ayuda</h3>
+            </a>
+
+        </mat-nav-list>
+        <mat-nav-list>
+            <a mat-list-item (click)="showModal()">
+                <mat-icon matListIcon>exit_to_app</mat-icon>
+                <h3 matLine>Salir</h3>
+            </a>
 
         </mat-nav-list>
 

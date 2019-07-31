@@ -1,0 +1,13 @@
+<div class="portal-ecommerce-page-wrapper">
+    <div class="search-div">
+        <button title="Agregar nuevo usuario" mat-raised-button color="primary" (click)="openDialog()">
+        <mat-icon>add</mat-icon>Agregar
+      </button>
+        <mat-form-field class="search-form-field" floatLabel="never">
+            <input matInput [(ngModel)]="searchKey" placeholder="Buscar Tratamiento" autocomplete="off" (keyup)="applyFilter($event.target.value)">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+              <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+</div>
