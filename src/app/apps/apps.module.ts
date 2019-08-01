@@ -37,6 +37,11 @@ import { PatientComponent } from './patient/patient.component';
 import { PatientDataComponent } from './patient/patient-data/patient-data.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { AppointmentDataComponent } from './appointment/appointment-data/appointment-data.component';
+import { TreatmentComponent } from './treatment/treatment.component';
+import { TreatmentDataComponent } from './treatment/treatment-data/treatment-data.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PaymentComponent } from './payment/payment.component';
+
 
 
 
@@ -53,7 +58,9 @@ import { AppointmentDataComponent } from './appointment/appointment-data/appoint
     NotesModule,
     SpotifyModule,
     MatDialogModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
   ],
   declarations: [
     UsersComponent,
@@ -61,12 +68,16 @@ import { AppointmentDataComponent } from './appointment/appointment-data/appoint
     PatientComponent,
     PatientDataComponent,
     AppointmentComponent,
-    AppointmentDataComponent
+    AppointmentDataComponent,
+    TreatmentComponent,
+    TreatmentDataComponent,
+    PaymentComponent,
   ],
   entryComponents: [
     UsersDataComponent,
     PatientDataComponent,
-    AppointmentDataComponent
+    AppointmentDataComponent,
+    TreatmentDataComponent
   ]
 })
 export class AppsModule { }

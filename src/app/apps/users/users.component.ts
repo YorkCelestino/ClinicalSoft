@@ -50,7 +50,7 @@ export class UsersComponent implements OnInit {
     this.userservices.getUsers().subscribe(
       res => {
         this.users = res;
-        console.log(res);
+      // console.log(res);
         this.dataSource = new MatTableDataSource<IUser>(this.users);
         this.dataSource.paginator = this.paginator;
       },
@@ -58,6 +58,16 @@ export class UsersComponent implements OnInit {
         console.error(err);
       }
       );
+    }
+
+    applyFilter(filterValue: string): void {
+      filterValue = filterValue.trim(); // Remove whitespace
+      filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+      this.dataSource.filter = filterValue;
+    }
+    onSearchClear(): void  {
+      this.searchKey = '';
+      this.applyFilter('');
     }
 
     changeStatus(isActive: boolean, id: string): void {

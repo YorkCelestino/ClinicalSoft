@@ -9,7 +9,7 @@
         <form [formGroup]="form">
             <ng-template matStepLabel>Paso 1</ng-template>
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-
+                <input type="hidden" formControlName="id">
                 <mat-form-field fxFlex="50">
                     <input formControlName="name" matInput placeholder="Nombre*">
                     <mat-error>Nombre requerido.</mat-error>
@@ -28,7 +28,7 @@
                     <input formControlName="idCard" matInput placeholder="Cedula*">
                     <mat-error>Apellido requerido.</mat-error>
                 </mat-form-field>
-                
+
                 <mat-form-field fxFlex="50%">
                     <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" formControlName="birthdate">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -53,14 +53,14 @@
 
 
                 <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-                        <mat-select placeholder="Estado civil" formControlName="civilStatus">
-                            <mat-option value="Casado">Casado</mat-option>
-                            <mat-option value="Union libre">Union libre</mat-option>
-                            <mat-option value="Soltero">Soltero</mat-option>
-                            <mat-option value="Viudo">Viudo</mat-option>
-                            <mat-option value="Menor de edad">Menor de edad</mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                    <mat-select placeholder="Estado civil" formControlName="civilStatus">
+                        <mat-option value="Casado">Casado</mat-option>
+                        <mat-option value="Union libre">Union libre</mat-option>
+                        <mat-option value="Soltero">Soltero</mat-option>
+                        <mat-option value="Viudo">Viudo</mat-option>
+                        <mat-option value="Menor de edad">Menor de edad</mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
 
             <div align="end">
@@ -74,56 +74,55 @@
         <form [formGroup]="form">
             <ng-template matStepLabel>Paso 2</ng-template>
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-                <label  id = "example-radio-group-label" > Tiene acta de nacimiento? </label> 
-                <mat-radio-group ria-labelledby="example-radio-group-label" class = "example-radio-group" 
-                [(ngModel)]="acta" [ngModelOptions]="{standalone: true}"> 
-                <mat-radio-button color="primary" class ="example-radio-button"  [value]="yesWork" >
-                    Si
-                </mat-radio-button > 
-                <mat-radio-button color="primary" class ="example-radio-button"  [value]="NoWork" >
-                    No
-                </mat-radio-button > 
-            </mat-radio-group > 
-        </div>
-         <div *ngIf="acta">
-            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" >
-
-                <mat-form-field fxFlex="50%">
-                    <input formControlName="districtMunicipality" matInput placeholder="Municipio distrito">
-                </mat-form-field>
-    
-                <mat-form-field fxFlex="50%">
-                    <input formControlName="numberOfOfficial" matInput placeholder="Numero de oficiali">
-  
-                </mat-form-field>
-    
+                <label id="example-radio-group-label"> Tiene acta de nacimiento? </label>
+                <mat-radio-group ria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="actCondition" formControlName="actData">
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="yesWork">
+                        Si
+                    </mat-radio-button>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="NoWork">
+                        No
+                    </mat-radio-button>
+                </mat-radio-group>
             </div>
+            <div *ngIf="actCondition">
+                <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
 
-            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" >
+                    <mat-form-field fxFlex="50%">
+                        <input formControlName="districtMunicipality" matInput placeholder="Municipio distrito">
+                    </mat-form-field>
 
-                <mat-form-field fxFlex="50%">
-                    <input formControlName="bookNumber" matInput placeholder="Número de libro">
-                </mat-form-field>
-        
-                <mat-form-field fxFlex="50%">
-                    <input formControlName="folioNumber" matInput placeholder="Número de folio">
-                   
-                </mat-form-field>
-        
-            </div>
+                    <mat-form-field fxFlex="50%">
+                        <input formControlName="numberOfOfficial" matInput placeholder="Numero de oficiali">
 
-            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" >
+                    </mat-form-field>
 
-                <mat-form-field fxFlex="50%">
-                    <input formControlName="actNumber" matInput placeholder="Número de acta">
-                </mat-form-field>
-            
-                <mat-form-field fxFlex="50%">
-                    <input formControlName="yearBook" matInput placeholder="Año libro">
-                </mat-form-field>
-            
-            </div>
-            
+                </div>
+
+                <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+
+                    <mat-form-field fxFlex="50%">
+                        <input formControlName="bookNumber" matInput placeholder="Número de libro">
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="50%">
+                        <input formControlName="folioNumber" matInput placeholder="Número de folio">
+
+                    </mat-form-field>
+
+                </div>
+
+                <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+
+                    <mat-form-field fxFlex="50%">
+                        <input formControlName="actNumber" matInput placeholder="Número de acta">
+                    </mat-form-field>
+
+                    <mat-form-field fxFlex="50%">
+                        <input formControlName="yearBook" matInput placeholder="Año libro">
+                    </mat-form-field>
+
+                </div>
+
 
             </div>
             <div align="end">
@@ -166,113 +165,143 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
+                <!--mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
                     <mat-select placeholder="Asite?" formControlName="attend">
                         <mat-option value="Si">Si</mat-option>
                         <mat-option value="No">No</mat-option>
                     </mat-select>
-                </mat-form-field>
+                </mat-form-field-->
 
             </div>
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-                <label  id = "example-radio-group-label" > trabaja </label> 
-                <mat-radio-group 
-                    aria-labelledby="example-radio-group-label" 
-                    class = "example-radio-group" 
-                    [(ngModel)]="work" [ngModelOptions]="{standalone: true}"> 
-                    <mat-radio-button color="primary" class ="example-radio-button"  [value]="yesWork" >
+                <label id="example-radio-group-label"> trabaja </label>
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="workCondition" formControlName="work">
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="yesWork">
                         Si
-                    </mat-radio-button > 
-                    <mat-radio-button color="primary" class ="example-radio-button"  [value]="NoWork" >
+                    </mat-radio-button>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="NoWork">
                         No
-                    </mat-radio-button > 
-                </mat-radio-group > 
+                    </mat-radio-button>
+                </mat-radio-group>
             </div>
 
-            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" *ngIf="work">
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" *ngIf="workCondition">
                 <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-                    <mat-select placeholder="Trabaja?" formControlName="work">
+                    <mat-select placeholder="Trabaja?" formControlName="workType">
                         <mat-option value="Fijo">Fijo</mat-option>
                         <mat-option value="Temporar">Temporar</mat-option>
                     </mat-select>
                 </mat-form-field>
 
                 <mat-form-field fxFlex="50%">
-                    <input formControlName="whereWork"  matInput placeholder="Dónde trabaja (Nombre de la Empresa o Negocio)">
+                    <input formControlName="whereWork" matInput placeholder="Dónde trabaja (Nombre de la Empresa o Negocio)">
                 </mat-form-field>
 
             </div>
             <div align="end">
                 <button mat-button matStepperPrevious>Atras</button>
                 <button mat-raised-button color="primary" matStepperNext>Siguiente</button>
-                
+
             </div>
         </form>
     </mat-step>
     <!--Tercer paso del formulario-->
     <mat-step [stepControl]="secondFormGroup">
         <form [formGroup]="form">
-            <ng-template matStepLabel>Paso 4</ng-template> 
+            <ng-template matStepLabel>Paso 4</ng-template>
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-                    <label  id = "example-radio-group-label" >Esta afilaido a SDSS</label> 
-                    <mat-radio-group 
-                        aria-labelledby="example-radio-group-label" 
-                        class = "example-radio-group" 
-                        [(ngModel)]="afiliado" [ngModelOptions]="{standalone: true}"> 
-                        <mat-radio-button color="primary" class ="example-radio-button"  [value]="yesWork" >
-                            Si
-                        </mat-radio-button > 
-                        <mat-radio-button color="primary" class ="example-radio-button"  [value]="NoWork" >
-                            No
-                        </mat-radio-button > 
-                    </mat-radio-group > 
+                <label id="example-radio-group-label">Esta afiliado a SDSS</label>
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="afiliadoCondition" formControlName="sdss">
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="yesWork">
+                        Si
+                    </mat-radio-button>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="NoWork">
+                        No
+                    </mat-radio-button>
+                </mat-radio-group>
             </div>
-            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" *ngIf="afiliado">
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" *ngIf="afiliadoCondition">
 
-                    <mat-form-field fxFlex="50%">
-                        <input  formControlName="sdss"  matInput placeholder="ARS">
-                    </mat-form-field>
-                
-                    <mat-form-field fxFlex="50%">
-                        <input  formControlName="ars"  matInput placeholder="Regimen">
-                    </mat-form-field>
-                
+                <mat-form-field fxFlex="50%">
+                    <input formControlName="ars" matInput placeholder="ARS">
+                </mat-form-field>
+
+                <mat-form-field fxFlex="50%">
+                    <input formControlName="regime" matInput placeholder="Regimen">
+                </mat-form-field>
+
+                <mat-form-field fxFlex="50%">
+                    <input formControlName="socialSecurityNumber" matInput placeholder="Número de seguridad Social">
+                </mat-form-field>
+
             </div>
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
                 <mat-form-field class="example-full-width" fxFlex="100">
-                    <input type="text"  placeholder="Factores de riesgo(Enfermedades Discacidad)*" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                    <input type="text" placeholder="Factores de riesgo(Enfermedades Discacidad)*" aria-label="Number" matInput formControlName="riskFactorsDiseases" [matAutocomplete]="auto">
                     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                        {{option}}
+                            {{option}}
                         </mat-option>
                     </mat-autocomplete>
-                </mat-form-field>          
+                </mat-form-field>
+
             </div>
 
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-                
-                <div fxFlex="50">
-                    <label >Ingreso:</label>
-                    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-                        <mat-checkbox color="primary" fxFlex="50">Nació</mat-checkbox>
-                        <mat-checkbox color="primary" fxFlex="50">Llegó</mat-checkbox>
-                    </div>
-                </div>
 
-                <div fxFlex="50">
-                    <label>Engreso:</label>
-                    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-                        <mat-checkbox color="primary" fxFlex="50">Salió</mat-checkbox>
-                        <mat-checkbox color="primary" fxFlex="50">Murió</mat-checkbox>
-                    </div>
-                 </div>
-                
+                <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
+                    <mat-select placeholder="Ingreso" formControlName="admissionDate">
+                        <mat-option value="Nació">Nació</mat-option>
+                        <mat-option value="Llegó">Llegó</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
+                    <mat-select placeholder="Engreso" formControlName="egressDate">
+                        <mat-option value="Salió">Salió</mat-option>
+                        <mat-option value="Murió">Murió</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLaoutWrap fxLayoutGap="3%">
+
+                <label id="example-radio-group-label">Es jefe de familia?</label>
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="isTheBossValue" formControlName="isTheBoss" fxFlex="50">
+
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="yesWork">
+                        Si
+                    </mat-radio-button>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="NoWork">
+                        No
+                    </mat-radio-button>
+                </mat-radio-group>
+
+                <mat-form-field class="example-full-width" *ngIf="!isTheBossValue" fxFlex="50%">
+                    <input type="text" placeholder="Dijite la cedula del jefe de familia" aria-label="Number" matInput [matAutocomplete]="auto" formControlName="familyBossId">
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                        <mat-option *ngFor="let options of filteredOptionsJefe | async" [value]="options">
+                            {{options}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+
+                <!--mat-form-field class="portal-select-preview-example-field" fxFlex="50%" *ngIf="!isTheBossValue">
+                    <mat-select placeholder="Dijite la cedula del jefe de" formControlName="familyBossId">
+                        <mat-option value="Salió">40228255002</mat-option>
+                        <mat-option value="Murió">282232783</mat-option>
+                    </mat-select>
+                </mat-form-field-->
+
+
+
             </div>
             <div align="end">
                 <button mat-button matStepperPrevious>Atras</button>
-                <button mat-raised-button color="primary" (click)="onClick()" type="submit">Guardar</button>
+                <button mat-raised-button color="primary" (click)="onClick(form.value)" type="button">Guardar</button>
             </div>
-        </form>    
+        </form>
     </mat-step>
 </mat-horizontal-stepper>
 

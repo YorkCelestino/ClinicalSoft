@@ -83,6 +83,7 @@
         <div class="button-row">
             <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
             <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid"> <span *ngIf="data.id">Actualizar</span> <span *ngIf="!data.id">Registrar</span> </button>
+
         </div>
     </mat-dialog-actions>
 </form>

@@ -24,10 +24,7 @@ export class LoginService {
   getUserProfile(): Observable<IUser> {
     return this.http.get(environment.apiBaseUrl + '/user/get-user-profile');
   }
-  // tslint:disable-next-line:typedef
-  postUser(User: IUser) {
-    return this.http.post(environment.apiBaseUrl + '/user/add-user', this.noAuthHeader);
-  }
+
 
   // tslint:disable-next-line:typedef
   login(authCredentials) {

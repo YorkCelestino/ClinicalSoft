@@ -8,11 +8,11 @@
 //     actNumber?: any;
 //     yearBook?: any;
 // }
-export interface ISdss{
-   ars?:any;
-   summary?:any;
+export interface ISdss {
+   ars?: any;
+   summary?: any;
 }
-export interface  IPatient{
+export interface  IPatient {
     name?: string;
     surname?: string;
     email?: string;
@@ -22,7 +22,6 @@ export interface  IPatient{
     civilStatus?: string;
     gender?: string;
     birthdate?: any;
-    
     districtMunicipality?: string;
     numberOfOfficial?: any;
     bookNumber?: any;
@@ -31,18 +30,19 @@ export interface  IPatient{
     yearBook?: any;
 
     scholarship?: string;
-    //attend?: boolean;
+    // attend?: boolean;
     work?: string;
     worType?: string;
     whereWork?: string;
     sdss?: ISdss;
-    socialSecurityNumber?:any;
+    socialSecurityNumber?: any;
     riskFactorsDiseases?: string;
     // remember complete this last attributes with following data
-    admissionDate?: any;// nacio, llego
-    egressDate?: any// Salio, murio
+    admissionDate?: any; // nacio, llego
+    egressDate?: any; // Salio, murio
     isActive?: boolean;
     isTheBoss?: any;
+    familyBossId?: string;
 }
 /*export interface IPatient {
     name??: string;

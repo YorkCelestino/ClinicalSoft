@@ -16,6 +16,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { UserService } from './apps/users/user.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { LoginService } from './auth/login.service';
+import { AuthGuard } from './auth/auth.guard';
 
 @NgModule({
   declarations: [
@@ -35,14 +37,21 @@ import { AuthInterceptor } from './auth/auth.interceptor';
   })
  
   ],
-  providers: [
+ /* providers: [
     UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
     },
-  ],
+    AuthGuard ,
+    LoginService
+  ],*/
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }, AuthGuard, LoginService],
   bootstrap: [
     AppComponent
   ]

@@ -22,8 +22,11 @@
                 <h1><strong>Iniciar sesión</strong></h1>
             </mat-card-title>
             <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
-                <div *ngIf="wrong">
-                    <mat-error>Usuario o contraseña incorrectos</mat-error>
+                <div *ngIf="wrongUser">
+                    <mat-error>Usuario incorrecto</mat-error>
+                </div>
+                <div *ngIf="wrongPassword">
+                    <mat-error>Contraseña incorrecta</mat-error>
                 </div>
 
                 <mat-form-field>

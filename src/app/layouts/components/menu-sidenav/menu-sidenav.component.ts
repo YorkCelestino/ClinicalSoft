@@ -1,10 +1,16 @@
+// tslint:disable-next-line:rxjs-no-wholesale
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Router, RouterEvent, NavigationStart } from '@angular/router';
 import { Component, OnDestroy, Input, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { LoginService } from '../../../auth/login.service';
+<<<<<<< HEAD
 import { SwalPartialTargets, SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+=======
+import Swal from 'sweetalert2';
+
+>>>>>>> 14c0b8896c80d28ab96ffaa38c21da12a12b7ac8
 @Component({
   selector: 'portal-menu-sidenav',
   templateUrl: './menu-sidenav.component.html',
@@ -17,11 +23,11 @@ export class MenuSidenavComponent implements OnDestroy {
   @ViewChild('deleteSwal') private deleteSwal: SwalComponent;
   @Input() sidenav: MatSidenav;
   routerSubscription: Subscription;
-  
+
   constructor(
     private router: Router,
     private loginService: LoginService,
-    
+
 
     ) {
     this.routerSubscription = this.router.events
@@ -45,7 +51,7 @@ export class MenuSidenavComponent implements OnDestroy {
   /*showModal(): void {
     Swal.fire({
       title: 'ClinicalSoft',
-      text: "Esta seguro que desea salir?",
+      text: 'Esta seguro que desea salir?',
       type: 'warning',
       confirmButtonColor: '#3085d6',
       confirmButtonText: 'Cerrar session!',
