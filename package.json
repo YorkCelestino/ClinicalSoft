@@ -25,6 +25,7 @@
         "@angular/platform-browser": "6.0.5",
         "@angular/platform-browser-dynamic": "6.0.5",
         "@angular/router": "6.0.5",
+        "@sweetalert2/ngx-sweetalert2": "^5.1.0",
         "@swimlane/ngx-charts": "^8.0.0",
         "angular2-moment": "^1.9.0",
         "ap-angular-fullcalendar": "^1.6.4",

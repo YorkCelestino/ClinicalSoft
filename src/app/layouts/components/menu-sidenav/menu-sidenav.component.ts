@@ -1,11 +1,10 @@
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Router, RouterEvent, NavigationStart } from '@angular/router';
-import { Component, OnDestroy, Input } from '@angular/core';
+import { Component, OnDestroy, Input, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { LoginService } from '../../../auth/login.service';
-import   Swal   from 'sweetalert2';
-
+import { SwalPartialTargets, SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 @Component({
   selector: 'portal-menu-sidenav',
   templateUrl: './menu-sidenav.component.html',
@@ -15,6 +14,7 @@ export class MenuSidenavComponent implements OnDestroy {
   /**
    * Import material sidenav so we can access open close functions.
    */
+  @ViewChild('deleteSwal') private deleteSwal: SwalComponent;
   @Input() sidenav: MatSidenav;
   routerSubscription: Subscription;
   
@@ -42,7 +42,7 @@ export class MenuSidenavComponent implements OnDestroy {
     this.loginService.deleteToken();
     this.router.navigateByUrl('/external/login');
   }
-  showModal(): void {
+  /*showModal(): void {
     Swal.fire({
       title: 'ClinicalSoft',
       text: "Esta seguro que desea salir?",
@@ -53,6 +53,6 @@ export class MenuSidenavComponent implements OnDestroy {
       showCancelButton: true,
       reverseButtons: true
     });
-  }
+  }*/
 
 }

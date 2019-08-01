@@ -9,6 +9,7 @@ import { LayoutsModule } from './layouts/layouts.module';
 import { AppComponent } from './app.component';
 
 import 'hammerjs';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 // servicios
@@ -25,6 +26,14 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     BrowserAnimationsModule,
     LayoutsModule,
     AppRoutingModule,
+   
+    SweetAlert2Module.forRoot({
+      buttonsStyling: false,
+      customClass: 'modal-content',
+      confirmButtonClass: 'btn btn-primary',
+      cancelButtonClass: 'btn'
+  })
+ 
   ],
   providers: [
     UserService,
