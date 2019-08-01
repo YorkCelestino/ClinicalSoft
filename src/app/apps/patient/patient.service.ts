@@ -22,4 +22,7 @@ export class PatientService {
   getPatient(): Observable<any> {
     return this.http.get(environment.apiBaseUrl + '/patient/patients');
  }
+  addPatient(patient: any): Observable<any> {
+    return this.http.post(environment.apiBaseUrl + '/patient/add-patient', patient);
+ }
 }

@@ -19,6 +19,7 @@ import { UsersComponent } from './users/users.component';
 import { PatientComponent } from './patient/patient.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { TreatmentComponent } from './treatment/treatment.component';
+import { PaymentComponent } from './payment/payment.component';
 
 
 const routes: Routes = [{
@@ -104,8 +105,8 @@ const routes: Routes = [{
 {
   path: 'cita',
   component: AppointmentComponent,
-  data:{
-    title:'Cita'
+  data: {
+    title: 'Cita'
   }
 },
 {
@@ -114,8 +115,15 @@ const routes: Routes = [{
   data: {
     title: 'Tratamientos'
   }
+},
+{
+  path: 'payment',
+  component: PaymentComponent,
+  data: {
+    title: 'Pagos'
+  }
 }
- 
+
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);

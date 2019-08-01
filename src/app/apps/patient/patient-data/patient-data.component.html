@@ -9,7 +9,7 @@
         <form [formGroup]="form">
             <ng-template matStepLabel>Paso 1</ng-template>
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-
+                <input type="hidden" formControlName="id">
                 <mat-form-field fxFlex="50">
                     <input formControlName="name" matInput placeholder="Nombre*">
                     <mat-error>Nombre requerido.</mat-error>
@@ -75,7 +75,7 @@
             <ng-template matStepLabel>Paso 2</ng-template>
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
                 <label id="example-radio-group-label"> Tiene acta de nacimiento? </label>
-                <mat-radio-group ria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="acta" [ngModelOptions]="{standalone: true}">
+                <mat-radio-group ria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="actCondition" formControlName="actData">
                     <mat-radio-button color="primary" class="example-radio-button" [value]="yesWork">
                         Si
                     </mat-radio-button>
@@ -84,7 +84,7 @@
                     </mat-radio-button>
                 </mat-radio-group>
             </div>
-            <div *ngIf="acta">
+            <div *ngIf="actCondition">
                 <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
 
                     <mat-form-field fxFlex="50%">
@@ -165,17 +165,17 @@
                     </mat-select>
                 </mat-form-field>
 
-                <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
+                <!--mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
                     <mat-select placeholder="Asite?" formControlName="attend">
                         <mat-option value="Si">Si</mat-option>
                         <mat-option value="No">No</mat-option>
                     </mat-select>
-                </mat-form-field>
+                </mat-form-field-->
 
             </div>
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
                 <label id="example-radio-group-label"> trabaja </label>
-                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="workp" [ngModelOptions]="{standalone: true}">
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="workCondition" formControlName="work">
                     <mat-radio-button color="primary" class="example-radio-button" [value]="yesWork">
                         Si
                     </mat-radio-button>
@@ -185,9 +185,9 @@
                 </mat-radio-group>
             </div>
 
-            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" *ngIf="workp">
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" *ngIf="workCondition">
                 <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-                    <mat-select placeholder="Trabaja?">
+                    <mat-select placeholder="Trabaja?" formControlName="workType">
                         <mat-option value="Fijo">Fijo</mat-option>
                         <mat-option value="Temporar">Temporar</mat-option>
                     </mat-select>
@@ -210,8 +210,8 @@
         <form [formGroup]="form">
             <ng-template matStepLabel>Paso 4</ng-template>
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-                <label id="example-radio-group-label">Esta afilaido a SDSS</label>
-                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="afiliado" [ngModelOptions]="{standalone: true}">
+                <label id="example-radio-group-label">Esta afiliado a SDSS</label>
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="afiliadoCondition" formControlName="sdss">
                     <mat-radio-button color="primary" class="example-radio-button" [value]="yesWork">
                         Si
                     </mat-radio-button>
@@ -220,26 +220,31 @@
                     </mat-radio-button>
                 </mat-radio-group>
             </div>
-            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" *ngIf="afiliado">
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%" *ngIf="afiliadoCondition">
 
                 <mat-form-field fxFlex="50%">
                     <input formControlName="ars" matInput placeholder="ARS">
                 </mat-form-field>
 
                 <mat-form-field fxFlex="50%">
-                    <input formControlName="summary" matInput placeholder="Regimen">
+                    <input formControlName="regime" matInput placeholder="Regimen">
+                </mat-form-field>
+
+                <mat-form-field fxFlex="50%">
+                    <input formControlName="socialSecurityNumber" matInput placeholder="Número de seguridad Social">
                 </mat-form-field>
 
             </div>
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
                 <mat-form-field class="example-full-width" fxFlex="100">
-                    <input type="text" placeholder="Factores de riesgo(Enfermedades Discacidad)*" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                    <input type="text" placeholder="Factores de riesgo(Enfermedades Discacidad)*" aria-label="Number" matInput formControlName="riskFactorsDiseases" [matAutocomplete]="auto">
                     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                             {{option}}
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field>
+
             </div>
 
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
@@ -258,9 +263,43 @@
                     </mat-select>
                 </mat-form-field>
             </div>
+
+
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLaoutWrap fxLayoutGap="3%">
+
+                <label id="example-radio-group-label">Es jefe de familia?</label>
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="isTheBossValue" formControlName="isTheBoss" fxFlex="50">
+
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="yesWork">
+                        Si
+                    </mat-radio-button>
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="NoWork">
+                        No
+                    </mat-radio-button>
+                </mat-radio-group>
+
+                <mat-form-field class="example-full-width" *ngIf="!isTheBossValue" fxFlex="50%">
+                    <input type="text" placeholder="Dijite la cedula del jefe de familia" aria-label="Number" matInput [matAutocomplete]="auto" formControlName="familyBossId">
+                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                        <mat-option *ngFor="let options of filteredOptionsJefe | async" [value]="options">
+                            {{options}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+
+                <!--mat-form-field class="portal-select-preview-example-field" fxFlex="50%" *ngIf="!isTheBossValue">
+                    <mat-select placeholder="Dijite la cedula del jefe de" formControlName="familyBossId">
+                        <mat-option value="Salió">40228255002</mat-option>
+                        <mat-option value="Murió">282232783</mat-option>
+                    </mat-select>
+                </mat-form-field-->
+
+
+
+            </div>
             <div align="end">
                 <button mat-button matStepperPrevious>Atras</button>
-                <button mat-raised-button color="primary" (click)="onClick()" type="submit">Guardar</button>
+                <button mat-raised-button color="primary" (click)="onClick(form.value)" type="button">Guardar</button>
             </div>
         </form>
     </mat-step>

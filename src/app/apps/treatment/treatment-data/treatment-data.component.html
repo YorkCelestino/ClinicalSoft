@@ -1,3 +1,45 @@
-<p>
-  treatment-data works!
-</p>
+<mat-toolbar>
+    <span>Registrar tratamientos</span>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="closeDialog()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+
+    <mat-form-field fxFlex="100">
+        <input matInput placeholder="Codigo*">
+
+    </mat-form-field>
+
+</div>
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+    <mat-form-field fxFlex="100">
+        <input matInput placeholder="Nombre tratamiento*">
+
+    </mat-form-field>
+</div>
+
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+    <mat-form-field fxFlex="100">
+        <input matInput placeholder="Precio*">
+
+    </mat-form-field>
+</div>
+
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+    <mat-form-field fxFlex="100">
+        <input matInput placeholder="Comision de doctor*">
+
+    </mat-form-field>
+</div>
+
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+    <mat-form-field class="example-full-width" fxFlex="100">
+        <textarea matInput placeholder="Desc. del tramiento" rows="6" cols="4" style="background: #eeeeee"></textarea>
+    </mat-form-field>
+</div>
+
+<div class="button-row" align="end">
+    <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
+    <button mat-raised-button color="primary" type="submit">Registrar</button>
+</div>

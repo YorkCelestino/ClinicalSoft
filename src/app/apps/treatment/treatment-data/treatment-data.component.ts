@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-treatment-data',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TreatmentDataComponent implements OnInit {
 
-  constructor() { }
+  public form: FormGroup;
+
+  constructor(
+    public dialogRef: MatDialogRef<TreatmentDataComponent>
+  ) { }
 
   ngOnInit(): void {
+  }
+
+  closeDialog(): void {
+    // this.form.reset();
+    this.dialogRef.close();
   }
 
 }

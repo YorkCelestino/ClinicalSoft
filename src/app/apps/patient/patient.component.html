@@ -1,71 +1,71 @@
 <div class="portal-ecommerce-page-wrapper">
-    
-        <div class="search-div">
-            <button title="Agregar nuevo paciente" mat-raised-button color="primary" (click)="openDialog()">
+
+    <div class="search-div">
+        <button title="Agregar nuevo paciente" mat-raised-button color="primary" (click)="openDialog()">
             <mat-icon>add</mat-icon>Agregar
             </button>
-            <mat-form-field class="search-form-field" floatLabel="never">
-                <input matInput [(ngModel)]="searchKey" placeholder="Buscar paciente" autocomplete="off" (keyup)="applyFilter()">
-                <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+        <mat-form-field class="search-form-field" floatLabel="never">
+            <input matInput [(ngModel)]="searchKey" placeholder="Buscar paciente" autocomplete="off" (keyup)="applyFilter($event.target.value)">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
                     <mat-icon>close</mat-icon>
                 </button>
-            </mat-form-field>
-    
+        </mat-form-field>
+
     </div>
-  <div class="portal-ecommerce-page-wrapper">
-      <div class="mat-elevation-z8">
-          <table mat-table [dataSource]="dataSource">
-              <!-- Position Column -->
-              <ng-container matColumnDef="name">
-                  <th mat-header-cell *matHeaderCellDef>Nombre</th>
-                  <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-              </ng-container>
-  
-              <ng-container matColumnDef="surname">
-                  <th mat-header-cell *matHeaderCellDef> Apellido </th>
-                  <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
-              </ng-container>
-  
-              <!-- 'name', 'surname', 'email', 'cellPhone', 'idCard', 
+    <div class="portal-ecommerce-page-wrapper">
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource">
+                <!-- Position Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="surname">
+                    <th mat-header-cell *matHeaderCellDef> Apellido </th>
+                    <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
+                </ng-container>
+
+                <!-- 'name', 'surname', 'email', 'cellPhone', 'idCard', 
   'civilStatus' -->
-              <ng-container matColumnDef="idCard">
-                  <th mat-header-cell *matHeaderCellDef> Cedula </th>
-                  <td mat-cell *matCellDef="let element"> {{element.idCard}} </td>
-              </ng-container>
-  
-              <!-- Weight Column -->
-              <ng-container matColumnDef="email">
-                  <th mat-header-cell *matHeaderCellDef>Correo </th>
-                  <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-              </ng-container>
-  
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="cellPhone">
-                  <th mat-header-cell *matHeaderCellDef> Telefono </th>
-                  <td mat-cell *matCellDef="let element"> {{element.cellPhone}} </td>
-              </ng-container>
-  
-              <ng-container matColumnDef="civilStatus">
-                  <th mat-header-cell *matHeaderCellDef>Estado civil </th>
-                  <td mat-cell *matCellDef="let element"> {{element.civilStatus}} </td>
-              </ng-container>
-  
-           
-  
-              <ng-container matColumnDef="actions">
-                  <th mat-header-cell *matHeaderCellDef>Accion </th>
-                  <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                  <mat-cell mat-header-cell *matCellDef="let row">
-                      <button title="Editar" mat-icon-button (click)="updatetUser(row)"><mat-icon>launch</mat-icon></button>
-                      <button title="Eliminar" mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
-                  </mat-cell>
-              </ng-container>
-  
-  
-              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table> 
-      </div>
-      <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
-  </div>
+                <ng-container matColumnDef="idCard">
+                    <th mat-header-cell *matHeaderCellDef> Cedula </th>
+                    <td mat-cell *matCellDef="let element"> {{element.idCard}} </td>
+                </ng-container>
+
+                <!-- Weight Column -->
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef>Correo </th>
+                    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="cellPhone">
+                    <th mat-header-cell *matHeaderCellDef> Telefono </th>
+                    <td mat-cell *matCellDef="let element"> {{element.cellPhone}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="civilStatus">
+                    <th mat-header-cell *matHeaderCellDef>Estado civil </th>
+                    <td mat-cell *matCellDef="let element"> {{element.civilStatus}} </td>
+                </ng-container>
+
+
+
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>Accion </th>
+                    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                    <mat-cell mat-header-cell *matCellDef="let row">
+                        <button title="Editar" mat-icon-button (click)="openDialog(row)"><mat-icon>launch</mat-icon></button>
+                        <button title="Deshabilitar" mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+                    </mat-cell>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
+    </div>
 </div>

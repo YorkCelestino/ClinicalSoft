@@ -17,6 +17,7 @@ export class PatientComponent implements OnInit {
   patient: any = [];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  searchKey: any;
 
   constructor(
     private patientservices: PatientService,
@@ -26,15 +27,19 @@ export class PatientComponent implements OnInit {
   ngOnInit(): void {
     this.getPatient();
   }
-  openDialog(): void {
+  openDialog(data: any = {}): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '65%';
+
+    dialogConfig.data = data ? data : undefined;
+
     const dialogRef = this.dialog.open(PatientDataComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    //  console.log('The dialog was closed');
+      this.getPatient();
     });
   }
 
@@ -42,7 +47,7 @@ export class PatientComponent implements OnInit {
     this.patientservices.getPatient().subscribe(
       res => {
         this.patient = res;
-         console.log(this.patient);
+        // console.log(this.patient);
         this.dataSource = new MatTableDataSource<IPatient>(this.patient);
         this.dataSource.paginator = this.paginator;
       },
@@ -50,6 +55,17 @@ export class PatientComponent implements OnInit {
         console.error(err);
       }
     );
+  }
+
+
+  applyFilter(filterValue: string): void {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+  onSearchClear(): void  {
+    this.searchKey = '';
+    this.applyFilter('');
   }
 
 }

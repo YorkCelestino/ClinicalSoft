@@ -57,7 +57,7 @@
                 <mat-header-cell *matHeaderCellDef></mat-header-cell>
                 <mat-cell mat-header-cell *matCellDef="let row">
                     <button title="Editar" mat-icon-button (click)="openDialog(row)"><mat-icon>launch</mat-icon></button>
-                    <button title="Eliminar" mat-icon-button color="warn" (click)="changeStatus(row.isActive,row.id)"><mat-icon>delete_outline</mat-icon></button>
+                    <button title="Deshabilitar" mat-icon-button color="warn" (click)="changeStatus(row.isActive,row.id)"><mat-icon>delete_outline</mat-icon></button>
                 </mat-cell>
             </ng-container>
 
