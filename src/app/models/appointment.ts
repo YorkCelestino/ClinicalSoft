@@ -1,8 +1,14 @@
 export interface IAppoinment {
     id?: string;
-    idUser?: string;
-    idPatient?: string;
-    date?: Date;
+    idUser?: {
+        id?: string
+        fullName?: string;
+    };
+    idPatient?: {
+        id?: string
+        name?: string
+    };
+    appointmentDate?: any;
     observations?: string;
     cellPhoneSend?: string;
     emailSend?: string;
