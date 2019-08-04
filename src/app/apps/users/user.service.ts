@@ -20,23 +20,29 @@ export class UserService {
 
    getUsers(): Observable<any> {
     return this.http.get(environment.apiBaseUrl + '/user/users');
- }
-   getRoles(): Observable<any> {
+  }
+  getRoles(): Observable<any> {
     return this.http.get(environment.apiBaseUrl + '/role/all');
   }
 
-   addUser(user: IUser): Observable<IUser> {
-     return this.http.post(environment.apiBaseUrl + '/user/add-user', user);
-   }
+  addUser(user: IUser): Observable<IUser> {
+    return this.http.post(environment.apiBaseUrl + '/user/add-user', user);
+  }
 
-   updateUser(user: IUser): Observable<IUser> {
-     return this.http.put(environment.apiBaseUrl + '/user/update-user', user);
-   }
+  updateUser(user: IUser): Observable<IUser> {
+    return this.http.put(environment.apiBaseUrl + '/user/update-user', user);
+  }
 
-    changeStatus(isActive: boolean, id: string): Observable<any> {
+  changeStatus(isActive: boolean, id: string): Observable<any> {
 
-        return this.http.put(environment.apiBaseUrl + '/user/change-status',
-        { id: id, isActive: !isActive });
+    return this.http.put(environment.apiBaseUrl + '/user/change-status',
+    { id: id, isActive: !isActive });
+
+  }
+
+  getDoctors(): Observable<IUser> {
+
+    return this.http.get(environment.apiBaseUrl + '/user/get-doctors');
 
   }
 

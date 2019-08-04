@@ -5,7 +5,6 @@ import { Router, RouterEvent, NavigationStart } from '@angular/router';
 import { Component, OnDestroy, Input, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { LoginService } from '../../../auth/login.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'portal-menu-sidenav',
@@ -44,6 +43,7 @@ export class MenuSidenavComponent implements OnDestroy {
     this.loginService.deleteToken();
     this.router.navigateByUrl('/external/login');
   }
+<<<<<<< HEAD
   /*showModal(): void {
     Swal.fire({
       title: 'ClinicalSoft',
@@ -56,5 +56,10 @@ export class MenuSidenavComponent implements OnDestroy {
       reverseButtons: true
     });
   }*/
+=======
+
+
+
+>>>>>>> cae9288a485af18c32a156bdcd553d1357bd7cc1
 
 }

@@ -41,6 +41,8 @@ import { TreatmentComponent } from './treatment/treatment.component';
 import { TreatmentDataComponent } from './treatment/treatment-data/treatment-data.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
+import { NgxMaskModule } from 'ngx-mask';
+
 
 
 

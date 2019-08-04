@@ -39,6 +39,7 @@
         "highlight.js": "^9.10.0",
         "lodash": "^4.17.11",
         "ng2-charts": "^1.6.0",
+        "ngx-mask": "^8.0.2",
         "ngx-moment": "^3.0.1",
         "ngx-quill-editor": "git+https://github.com/oxygenna/ngx-quill-editor.git",
         "rxjs": "^6.1.0",

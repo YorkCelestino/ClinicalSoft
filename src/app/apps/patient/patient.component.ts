@@ -57,6 +57,19 @@ export class PatientComponent implements OnInit {
     );
   }
 
+  // Change Status
+  changeStatus(isActive: boolean, id: string): void {
+
+    this.patientservices.changeStatus(isActive, id).subscribe(
+
+      res => {
+
+        this.getPatient();
+      },
+      err => console.error(err)
+    );
+  }
+
 
   applyFilter(filterValue: string): void {
     filterValue = filterValue.trim(); // Remove whitespace

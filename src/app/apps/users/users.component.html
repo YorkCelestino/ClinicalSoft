@@ -11,6 +11,7 @@
         </mat-form-field>
     </div>
     <br>
+
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource">
             <!-- Position Column -->
@@ -56,8 +57,13 @@
                 <th mat-header-cell *matHeaderCellDef>Accion </th>
                 <mat-header-cell *matHeaderCellDef></mat-header-cell>
                 <mat-cell mat-header-cell *matCellDef="let row">
+
+                    <!--alerta para deshabilitar-->
+                    <swal #deleteSwal title="ClinicalSoft" text="¿está seguro que desea deshabilitar el Usuario {{row.fullName}}?" type="question" [showCancelButton]="true" [reverseButtons]="true" [focusCancel]="true" (confirm)="changeStatus(row.isActive,row.id)">
+                    </swal>
+
                     <button title="Editar" mat-icon-button (click)="openDialog(row)"><mat-icon>launch</mat-icon></button>
-                    <button title="Deshabilitar" mat-icon-button color="warn" (click)="changeStatus(row.isActive,row.id)"><mat-icon>delete_outline</mat-icon></button>
+                    <button title="Deshabilitar" mat-icon-button color="warn" [swal]="deleteSwal"><mat-icon>delete_outline</mat-icon></button>
                 </mat-cell>
             </ng-container>
 
@@ -66,6 +72,6 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
+        <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" [length]="100" [pageSize]="10" showFirstLastButtons></mat-paginator>
     </div>
 </div>

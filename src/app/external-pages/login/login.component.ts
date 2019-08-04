@@ -5,7 +5,7 @@ import { LoginService } from '../../auth/login.service';
 // tslint:disable-next-line:rxjs-no-wholesale
 import {  Subject } from 'rxjs';
 
-import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'portal-login',
@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private loginService: LoginService,
+    private matSnackBar: MatSnackBar
   ) { }
 
   model: any = {
@@ -49,8 +50,9 @@ export class LoginComponent implements OnInit {
     this.loginService.login(form.value).subscribe(
       res => {
 
-       // console.log(this.loginService.login(form.value));
-       // this.wrong = false;
+       this.matSnackBar.open('Bienvenido ' + form.value.username, '', {
+          duration: 3000
+       });
         this.loginService.setToken(res['token']);
         this.router.navigateByUrl('/dashboards/home');
       },
@@ -59,6 +61,9 @@ export class LoginComponent implements OnInit {
         this.wrongUser = this.serverErrorMessages = err.error.wrongUser;
         this.wrongPassword = this.serverErrorMessages = err.error.wrongPassword;
 
+        this.matSnackBar.open('Error al iniciar sesión', '', {
+          duration: 3000
+       });
        console.log( this.serverErrorMessages = err.error.wrongUser);
        console.log( this.serverErrorMessages = err.error.wrongPassword);
 

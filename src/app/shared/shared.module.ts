@@ -10,6 +10,15 @@ import { SharedMaterialModule } from './shared-material.module';
 
 // Components.
 import { ExampleWithCodeComponent } from './example-with-code/example-with-code.component';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+
+// SweetAlert2
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
+// Mask
+import { NgxMaskModule } from 'ngx-mask';
+
+
 
 declare var hljs: any;
 
@@ -22,10 +31,19 @@ declare var hljs: any;
     ReactiveFormsModule,
     FlexLayoutModule,
     SharedMaterialModule,
-    MomentModule
+    MomentModule,
+    SweetAlert2Module.forRoot({
+      buttonsStyling: false,
+      customClass: 'modal-content',
+      confirmButtonClass: 'btn btn-primary',
+      cancelButtonClass: 'btn'
+  }),
+  SweetAlert2Module.forRoot(),
+  NgxMaskModule.forRoot(),
   ],
   declarations: [
-    ExampleWithCodeComponent
+    ExampleWithCodeComponent,
+    AutocompleteComponent
   ],
   exports: [
     CommonModule,
@@ -36,7 +54,10 @@ declare var hljs: any;
     FlexLayoutModule,
     SharedMaterialModule,
     ExampleWithCodeComponent,
-    MomentModule
+    MomentModule,
+    AutocompleteComponent,
+    SweetAlert2Module,
+    NgxMaskModule
   ]
 })
 export class SharedModule {

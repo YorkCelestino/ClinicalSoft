@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+// tslint:disable-next-line:rxjs-no-wholesale
 import { Subscription, timer, BehaviorSubject } from 'rxjs';
 
 import { LayoutService } from '../../layouts/layout.service';
+import { UserService } from '../../apps/users/user.service';
 
 @Component({
   selector: 'app-home',
@@ -10,9 +12,22 @@ import { LayoutService } from '../../layouts/layout.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public layoutService: LayoutService) { }
+  doctors: any = [];
+  available: number;
+  constructor(public layoutService: LayoutService, private uerService: UserService) { }
 
-  ngOnInit() {
+  ngOnInit(): void  {
+    this.getUsers();
+  }
+
+  getUsers(): any {
+    this.uerService.getDoctors().subscribe(
+      res => {
+        this.doctors = res;
+        this.available = this.doctors.length;
+      },
+      err => console.error(err)
+    );
   }
 
 }

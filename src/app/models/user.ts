@@ -9,6 +9,7 @@ export interface IUser {
     speciality?: string;
     role?:
       {
+        id?: string
         name?: string,
          slug?: string,
       };

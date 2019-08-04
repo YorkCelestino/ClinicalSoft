@@ -3,7 +3,7 @@
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="closeDialog()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
-<form [formGroup]="form" class="normal-form" (submit)="addUser()">
+<form [formGroup]="form" class="normal-form">
     <mat-grid-list cols="2" rowHeight="300px">
         <mat-grid-tile>
             <div class="controles-container">
@@ -78,11 +78,22 @@
 
             </div>
         </mat-grid-tile>
+
+        <!--alerta editar-->
+        <swal #editSwal title="ClinicalSoft" text="¿está seguro que desea Actualizar el Usuario {{form.value.name}}?" type="question" [showCancelButton]="true" [reverseButtons]="true" [focusCancel]="true" (confirm)="addUser()">
+        </swal>
+
     </mat-grid-list>
     <mat-dialog-actions align="end">
         <div class="button-row">
             <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
-            <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid"> <span *ngIf="data.id">Actualizar</span> <span *ngIf="!data.id">Registrar</span> </button>
+            <div *ngIf="!data.id">
+                <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" (click)="addUser()">Registrar</button>
+            </div>
+
+            <div *ngIf="data.id">
+                <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" [swal]="editSwal">Actualizar</button>
+            </div>
 
         </div>
     </mat-dialog-actions>
