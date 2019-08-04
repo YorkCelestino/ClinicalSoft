@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  hide = true;
+  hide: boolean = true;
   wrongUser: boolean = false;
   wrongPassword: boolean = false;
   form: FormGroup;
