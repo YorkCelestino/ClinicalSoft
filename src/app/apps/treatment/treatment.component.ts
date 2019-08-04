@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialogConfig, MatDialog, MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 import { TreatmentDataComponent } from './treatment-data/treatment-data.component';
 import { ITreatment } from '../../models/treatment';
-import { TreatmentSService } from './treatment-s.service';
+import { TreatmentService } from './treatment.service';
 
 @Component({
   selector: 'app-treatment',
@@ -25,7 +25,7 @@ export class TreatmentComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private treatmentdervice: TreatmentSService
+    private treatmentdervice: TreatmentService
   ) { }
   openDialog(data: any = {}): void {
     const dialogConfig = new MatDialogConfig();
@@ -36,12 +36,22 @@ export class TreatmentComponent implements OnInit {
     dialogConfig.data = data ? data : undefined;
 
     const dialogRef = this.dialog.open(TreatmentDataComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('The dialog was closed');
+       this.getTreatment();
+     });
+  }
+  applyFilter(filterValue: string): void {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
   onSearchClear(): void  {
     this.searchKey = '';
     // this.applyFilter('');
   }
   ngOnInit(): void {
+    this.getTreatment();
   }
 
   getTreatment(): void {
@@ -49,6 +59,7 @@ export class TreatmentComponent implements OnInit {
       res => {
         this.treatment = res;
         this.dataSource = new MatTableDataSource<ITreatment>(this.treatment);
+        this.dataSource.paginator = this.paginator;
 
       },
       err => {
@@ -56,4 +67,15 @@ export class TreatmentComponent implements OnInit {
       }
     );
   }
+
+  changeStatus(isActive: boolean, id: string): void {
+    this.treatmentdervice.changeStatus(isActive, id).subscribe(
+      res => {
+        this.getTreatment();
+        console.log(res);
+      },
+      err => {console.error(err);
+      }
+    );
+}
 }
