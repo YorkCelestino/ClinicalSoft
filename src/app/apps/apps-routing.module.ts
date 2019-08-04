@@ -20,6 +20,9 @@ import { PatientComponent } from './patient/patient.component';
 import { AppointmentComponent } from './appointment/appointment.component';
 import { TreatmentComponent } from './treatment/treatment.component';
 import { PaymentComponent } from './payment/payment.component';
+import { QueryComponent } from './query/query.component';
+import { RecordComponent } from './record/record.component';
+
 
 
 const routes: Routes = [{
@@ -122,8 +125,21 @@ const routes: Routes = [{
   data: {
     title: 'Pagos'
   }
+},
+{
+  path: 'query',
+  component: QueryComponent,
+  data:{
+    title: 'Consultas'
+  }
+},
+{
+  path: 'record',
+  component: RecordComponent,
+  data:{
+    title: 'Record'
+  }
 }
-
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);

@@ -42,6 +42,9 @@ import { TreatmentDataComponent } from './treatment/treatment-data/treatment-dat
 import { ReactiveFormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { QueryComponent } from './query/query.component';
+import { RecordComponent } from './record/record.component';
+
 
 
 
@@ -74,6 +77,9 @@ import { NgxMaskModule } from 'ngx-mask';
     TreatmentComponent,
     TreatmentDataComponent,
     PaymentComponent,
+    QueryComponent,
+    RecordComponent,
+  
   ],
   entryComponents: [
     UsersDataComponent,

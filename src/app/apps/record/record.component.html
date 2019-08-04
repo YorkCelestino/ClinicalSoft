@@ -1,0 +1,55 @@
+<div class="portal-ecommerce-page-wrapper">
+    <div class="search-div">
+        <button title="Agregar nuevo paciente" mat-raised-button color="primary" (click)="openDialog()">
+            <mat-icon>add</mat-icon>Agregar
+            </button>
+        <mat-form-field class="search-form-field" appearance="fill">
+            <input matInput [(ngModel)]="searchKey" placeholder="Buscar paciente" autocomplete="off" (keyup)="applyFilter($event.target.value)">
+            <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+                    <mat-icon>close</mat-icon>
+                </button>
+        </mat-form-field>
+
+    </div>
+
+  <div class="flex-p ng-star-inserted" fxflex="100" fxflex.gt-md="33.3" fxflex.md="50" style="flex: 1 1 100%; box-sizing: border-box; max-width: 100%;" fxLayoutGap="2%">
+      <mat-card class="p-0 mat-card" fxFlex="33%" *ngFor="let item of patient; ">
+        <div class="bg-primary" fxlayout="row" fxlayoutalign="space-between center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center space-between; align-items: center;     background: linear-gradient(125deg, #1976d2, #e3f2fd);">
+          <h1 class="user-name ng-star-inserted" style="margin: auto;">ClinicalSoft</h1>
+          <button aria-haspopup="true" mat-icon-button="" class="mat-icon-button" title="Ver datos del paciente">
+            <span class="mat-button-wrapper"><mat-icon class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true" (click)="onLogut()">visibility</mat-icon>
+            </span>
+            <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+            <div class="mat-button-focus-overlay"></div>
+          </button>
+        </div>
+        <mat-menu overlaptrigger="true" xposition="before" class="ng-tns-c18-16 ng-star-inserted">
+        </mat-menu>
+        <div class="user-content" fxlayout="row" fxlayoutalign="space-around center" style="flex-direction: row; box-sizing: border-box; max-height: 100%; place-content: center space-around; align-items: center;">
+          <div class="user-details transition-2" fxflex="70" fxlayout="column" style="flex-direction: column; box-sizing: border-box; display: flex; flex: 1 1 100%; max-width: 70%;">
+            <p fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+              <strong><label  matColumnDef="name">Nombre: </label></strong>
+              <span style="margin-left: 3px;">{{item.name}}</span>
+            </p>
+            <p fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+                <strong><label matColumnDef="surname">Apellido: </label></strong>
+                <span style="margin-left: 3px;"> {{item.surname}} </span>
+            </p>
+            <p fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+              <strong><label matColumnDef="idCard">Cedula: </label></strong>
+              <span style="margin-left: 3px;">{{item.idCard}}</span>
+            </p>
+            <p fxlayout="row" fxlayoutalign="start center" style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: center flex-start; align-items: center;">
+                <strong><label matColumnDef="cellPhone">Telefono: </label></strong>
+                <span style="margin-left: 3px;">{{item.cellPhone}}</span>
+            </p>
+          </div>
+      </div>
+    </mat-card>
+  </div>
+  <mat-card>
+      <mat-paginator [pageSizeOptions]="[1, 9, 12, 15]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+  
+</div>
+
