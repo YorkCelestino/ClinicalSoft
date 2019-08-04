@@ -43,23 +43,8 @@ export class MenuSidenavComponent implements OnDestroy {
     this.loginService.deleteToken();
     this.router.navigateByUrl('/external/login');
   }
-<<<<<<< HEAD
-  /*showModal(): void {
-    Swal.fire({
-      title: 'ClinicalSoft',
-      text: 'Esta seguro que desea salir?',
-      type: 'warning',
-      confirmButtonColor: '#3085d6',
-      confirmButtonText: 'Cerrar session!',
-      cancelButtonColor: '#d33',
-      showCancelButton: true,
-      reverseButtons: true
-    });
-  }*/
-=======
 
 
 
->>>>>>> cae9288a485af18c32a156bdcd553d1357bd7cc1
 
 }

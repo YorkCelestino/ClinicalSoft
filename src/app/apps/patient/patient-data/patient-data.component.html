@@ -278,7 +278,7 @@
                     </mat-radio-button>
                 </mat-radio-group>
 
-                <div *ngIf="!isTheBossCondition">
+                <div *ngIf="!isTheBossCondition" fxFlex="50">
                     <label id="example-radio-group-label">Ingrese la cédula del jefe de familia</label>
                     <app-autocomplete [options]="patientsFilterOptions" (valueChange)="onValueChange($event)"></app-autocomplete>
                 </div>
@@ -298,16 +298,18 @@
 
 
             </div>
-            <div align="end">
-                <button mat-button matStepperPrevious>Atras</button>
-                <div *ngIf="!data.id">
+            <mat-dialog-actions align="end">
+                <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+                    <button mat-button matStepperPrevious>Atras</button >
+                    <div *ngIf="!data.id">
 
-                    <button mat-raised-button color="primary" (click)="addPatient(form.value)" type="button">Guardar</button>
+                        <button mat-raised-button color="primary" (click)="addPatient(form.value)" type="button">Guardar</button>
+                    </div>
+                    <div *ngIf="data.id" >
+                        <button mat-raised-button color="primary" type="button" [swal]="editSwal">Actualizar</button>
+                    </div>
                 </div>
-                <div *ngIf="data.id">
-                    <button mat-raised-button color="primary" type="button" [swal]="editSwal">Actualizar</button>
-                </div>
-            </div>
+            </mat-dialog-actions>
         </form>
     </mat-step>
 </mat-horizontal-stepper>

@@ -85,8 +85,11 @@
 
     </mat-grid-list>
     <mat-dialog-actions align="end">
-        <div class="button-row">
+        
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+            
             <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
+
             <div *ngIf="!data.id">
                 <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" (click)="addUser()">Registrar</button>
             </div>
