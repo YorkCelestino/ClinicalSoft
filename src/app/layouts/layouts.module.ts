@@ -34,10 +34,18 @@ import { FooterComponent } from './components/footer/footer.component';
 // Directives.
 import { PortalScrollTopDirective } from './directives/portal-scroll-top.directive';
 
+
+
+// modulo de mascaras
+import { NgxMaskModule } from 'ngx-mask';
+
+
 @NgModule({
   imports: [
     SharedModule,
     RouterModule,
+    NgxMaskModule.forRoot()
+
   ],
   declarations: [
     LayoutClassicComponent,

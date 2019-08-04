@@ -13,6 +13,7 @@ export interface ISdss {
    summary?: any;
 }
 export interface  IPatient {
+    id?: any;
     name?: string;
     surname?: string;
     email?: string;
@@ -20,6 +21,7 @@ export interface  IPatient {
     address?: string;
     idCard?: string;
     civilStatus?: string;
+    actData?: Boolean;
     gender?: string;
     birthdate?: any;
     districtMunicipality?: string;
@@ -30,18 +32,20 @@ export interface  IPatient {
     yearBook?: any;
 
     scholarship?: string;
-    // attend?: boolean;
-    work?: string;
+    // attend?: Boolean;
+    work?: Boolean;
     worType?: string;
     whereWork?: string;
-    sdss?: ISdss;
+    sdss?: Boolean;
+    ars?: String;
+    regime?: string;
     socialSecurityNumber?: any;
     riskFactorsDiseases?: string;
     // remember complete this last attributes with following data
     admissionDate?: any; // nacio, llego
     egressDate?: any; // Salio, murio
-    isActive?: boolean;
-    isTheBoss?: any;
+    isActive?: Boolean;
+    isTheBoss?: Boolean;
     familyBossId?: string;
 }
 /*export interface IPatient {

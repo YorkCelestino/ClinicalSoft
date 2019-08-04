@@ -5,7 +5,6 @@ import { Router, RouterEvent, NavigationStart } from '@angular/router';
 import { Component, OnDestroy, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 import { LoginService } from '../../../auth/login.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'portal-menu-sidenav',
@@ -43,17 +42,8 @@ export class MenuSidenavComponent implements OnDestroy {
     this.loginService.deleteToken();
     this.router.navigateByUrl('/external/login');
   }
-  showModal(): void {
-    Swal.fire({
-      title: 'ClinicalSoft',
-      text: 'Esta seguro que desea salir?',
-      type: 'warning',
-      confirmButtonColor: '#3085d6',
-      confirmButtonText: 'Cerrar session!',
-      cancelButtonColor: '#d33',
-      showCancelButton: true,
-      reverseButtons: true
-    });
-  }
+
+
+
 
 }

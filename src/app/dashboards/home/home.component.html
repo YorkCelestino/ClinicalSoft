@@ -1,9 +1,8 @@
 <div class="portal-ecommerce-page-wrapper">
-    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.8%" 
-    fxLayoutAlign="center">
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.8%" fxLayoutAlign="center">
         <div fxFlex="35%">
             <mat-card fxLayout="row" fxLayoutAlign="space-between stretch">
-                <div class="portal-area-chart"  fxflex="auto">
+                <div class="portal-area-chart" fxflex="auto">
                     <img class="images_home" src="../../../assets/images/imagenes_general/doctor.png" />
                 </div>
                 <div class="portal-widget__padding" fxflex="auto">
@@ -13,25 +12,30 @@
                             <mat-icon class="portal-trend-up">trending_up</mat-icon>
                             <span class="mat-display-1 portal-font-weight-light portal-commerce-count portal-widget__no-margin"></span>
                         </div>
-                    </div>
-                </div>
-            </mat-card>       
-        </div>
-        <div fxFlex="35%">
-                <mat-card fxLayout="row" fxLayoutAlign="space-between stretch">
-                    <div class="portal-area-chart"  fxflex="auto">
-                        <img class="images_home" src="../../../assets/images/imagenes_general/cita.jpg" />
-                    </div>
-                    <div class="portal-widget__padding" fxflex="auto">
-                        <div fxLayout="column" fxLayoutAlign="start end">
-                            <h4 class="mat-caption portal-mini-caption portal-widget__no-margin" il8n>Total de cita</h4>
-                            <div>
-                                <mat-icon class="portal-trend-up">trending_up</mat-icon>
-                                <span class="mat-display-1 portal-font-weight-light portal-commerce-count portal-widget__no-margin"></span>
-                            </div>
+                        <div>
+                            <span>
+                                {{available}}
+                            </span>
                         </div>
                     </div>
-                </mat-card>       
+                </div>
+            </mat-card>
+        </div>
+        <div fxFlex="35%">
+            <mat-card fxLayout="row" fxLayoutAlign="space-between stretch">
+                <div class="portal-area-chart" fxflex="auto">
+                    <img class="images_home" src="../../../assets/images/imagenes_general/cita.jpg" />
+                </div>
+                <div class="portal-widget__padding" fxflex="auto">
+                    <div fxLayout="column" fxLayoutAlign="start end">
+                        <h4 class="mat-caption portal-mini-caption portal-widget__no-margin" il8n>Total de cita</h4>
+                        <div>
+                            <mat-icon class="portal-trend-up">trending_up</mat-icon>
+                            <span class="mat-display-1 portal-font-weight-light portal-commerce-count portal-widget__no-margin"></span>
+                        </div>
+                    </div>
+                </div>
+            </mat-card>
         </div>
         <div fxFlex="35%">
             <mat-card fxLayout="row" fxLayoutAlign="space-between stretch">
@@ -47,10 +51,10 @@
                         </div>
                     </div>
                 </div>
-            </mat-card>       
+            </mat-card>
         </div>
-        
-        
+
+
     </div>
-    
+
 </div>

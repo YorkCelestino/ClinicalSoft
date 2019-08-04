@@ -1,9 +1,9 @@
 <mat-toolbar>
-    <span>Registrar paciente</span>
+    <span> <span *ngIf="!data.id">Registrar</span><span *ngIf="data.id">Editar</span> paciente</span>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="closeDialog()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
-<mat-horizontal-stepper [linear]="isLinear" #stepper>
+<mat-horizontal-stepper [linear]="true" #stepper>
     <!--Primer paso del formulario-->
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="form">
@@ -25,8 +25,8 @@
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
 
                 <mat-form-field fxFlex="50%">
-                    <input formControlName="idCard" matInput placeholder="Cedula*">
-                    <mat-error>Apellido requerido.</mat-error>
+                    <input formControlName="idCard" matInput placeholder="Cedula" mask="000-0000000-0">
+
                 </mat-form-field>
 
                 <mat-form-field fxFlex="50%">
@@ -76,10 +76,10 @@
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
                 <label id="example-radio-group-label"> Tiene acta de nacimiento? </label>
                 <mat-radio-group ria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="actCondition" formControlName="actData">
-                    <mat-radio-button color="primary" class="example-radio-button" [value]="yesWork">
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="true">
                         Si
                     </mat-radio-button>
-                    <mat-radio-button color="primary" class="example-radio-button" [value]="NoWork">
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="false">
                         No
                     </mat-radio-button>
                 </mat-radio-group>
@@ -140,12 +140,12 @@
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
 
                 <mat-form-field fxFlex="50%">
-                    <input formControlName="email" matInput placeholder="Correo*">
+                    <input formControlName="email" matInput placeholder="Correo*" mask="A*@A*.SSS">
                     <mat-error>Correo requerido.</mat-error>
                 </mat-form-field>
 
                 <mat-form-field fxFlex="50%">
-                    <input formControlName="cellPhone" matInput placeholder="Telefono*">
+                    <input formControlName="cellPhone" mask="000-000-0000" matInput placeholder="Telefono*">
                     <mat-error>Apellido requerido.</mat-error>
                 </mat-form-field>
 
@@ -176,10 +176,10 @@
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
                 <label id="example-radio-group-label"> trabaja </label>
                 <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="workCondition" formControlName="work">
-                    <mat-radio-button color="primary" class="example-radio-button" [value]="yesWork">
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="true">
                         Si
                     </mat-radio-button>
-                    <mat-radio-button color="primary" class="example-radio-button" [value]="NoWork">
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="false">
                         No
                     </mat-radio-button>
                 </mat-radio-group>
@@ -212,10 +212,10 @@
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
                 <label id="example-radio-group-label">Esta afiliado a SDSS</label>
                 <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="afiliadoCondition" formControlName="sdss">
-                    <mat-radio-button color="primary" class="example-radio-button" [value]="yesWork">
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="true">
                         Si
                     </mat-radio-button>
-                    <mat-radio-button color="primary" class="example-radio-button" [value]="NoWork">
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="false">
                         No
                     </mat-radio-button>
                 </mat-radio-group>
@@ -237,7 +237,7 @@
             </div>
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
                 <mat-form-field class="example-full-width" fxFlex="100">
-                    <input type="text" placeholder="Factores de riesgo(Enfermedades Discacidad)*" aria-label="Number" matInput formControlName="riskFactorsDiseases" [matAutocomplete]="auto">
+                    <input type="text" placeholder="Factores de riesgo(Enfermedades Discacidad)*" aria-label="Number" matInput [matAutocomplete]="auto">
                     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
                             {{option}}
@@ -268,24 +268,21 @@
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLaoutWrap fxLayoutGap="3%">
 
                 <label id="example-radio-group-label">Es jefe de familia?</label>
-                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="isTheBossValue" formControlName="isTheBoss" fxFlex="50">
+                <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="isTheBossCondition" formControlName="isTheBoss" fxFlex="50">
 
-                    <mat-radio-button color="primary" class="example-radio-button" [value]="yesWork">
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="true">
                         Si
                     </mat-radio-button>
-                    <mat-radio-button color="primary" class="example-radio-button" [value]="NoWork">
+                    <mat-radio-button color="primary" class="example-radio-button" [value]="false" [checked]>
                         No
                     </mat-radio-button>
                 </mat-radio-group>
 
-                <mat-form-field class="example-full-width" *ngIf="!isTheBossValue" fxFlex="50%">
-                    <input type="text" placeholder="Dijite la cedula del jefe de familia" aria-label="Number" matInput [matAutocomplete]="auto" formControlName="familyBossId">
-                    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                        <mat-option *ngFor="let options of filteredOptionsJefe | async" [value]="options">
-                            {{options}}
-                        </mat-option>
-                    </mat-autocomplete>
-                </mat-form-field>
+                <div *ngIf="!isTheBossCondition">
+                    <label id="example-radio-group-label">Ingrese la cédula del jefe de familia</label>
+                    <app-autocomplete [options]="patientsFilterOptions" (valueChange)="onValueChange($event)"></app-autocomplete>
+                </div>
+
 
                 <!--mat-form-field class="portal-select-preview-example-field" fxFlex="50%" *ngIf="!isTheBossValue">
                     <mat-select placeholder="Dijite la cedula del jefe de" formControlName="familyBossId">
@@ -294,12 +291,22 @@
                     </mat-select>
                 </mat-form-field-->
 
+                <!--alerta editar-->
+                <swal #editSwal title="ClinicalSoft" text="¿está seguro que desea Actualizar el Usuario {{form.value.name}}?" type="question" [showCancelButton]="true" [reverseButtons]="true" [focusCancel]="true" (confirm)="addPatient(form.value)">
+                </swal>
+
 
 
             </div>
             <div align="end">
                 <button mat-button matStepperPrevious>Atras</button>
-                <button mat-raised-button color="primary" (click)="onClick(form.value)" type="button">Guardar</button>
+                <div *ngIf="!data.id">
+
+                    <button mat-raised-button color="primary" (click)="addPatient(form.value)" type="button">Guardar</button>
+                </div>
+                <div *ngIf="data.id">
+                    <button mat-raised-button color="primary" type="button" [swal]="editSwal">Actualizar</button>
+                </div>
             </div>
         </form>
     </mat-step>

@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, Validator } from '@angular/forms';
 import { UserService } from '../user.service';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { UsersComponent } from '../users.component';
 import { IRole } from '../roles.inferface';
+import { IUser } from '../../../models/user';
 
 @Component({
   selector: 'app-users-data',
@@ -19,7 +20,8 @@ export class UsersDataComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     public dialogRef: MatDialogRef<UsersDataComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: IUser,
+    private matSnackBar: MatSnackBar
     ) {
 
     this.getRoles();
@@ -56,7 +58,7 @@ export class UsersDataComponent implements OnInit {
         cellPhone: [this.data.cellPhone, Validators.required],
         speciality: [this.data.speciality, Validators.required],
         role: this.data.role.id,
-        isDelete: false
+        isActive:  this.data.isActive
 
         });
     } else {
@@ -70,7 +72,7 @@ export class UsersDataComponent implements OnInit {
         cellPhone: ['', Validators.required],
         speciality: ['', Validators.required],
         role: '5d366597d964920f1c00659d',
-        isDelete: false
+        isActive: true
       });
     }
 
@@ -87,8 +89,17 @@ export class UsersDataComponent implements OnInit {
          console.log(this.form.value);
 
          this.userService.updateUser(this.form.value).subscribe(
-          res => console.log(res),
-          err => console.error(err)
+          res => {
+            this.matSnackBar.open('Usuario actualizado con exito ', '', {
+              duration: 3000,
+            });
+          },
+          err => {
+            this.matSnackBar.open('Error al actualizar Usuario', '', {
+              duration: 3000,
+            });
+            console.error(err);
+          }
         );
 
       } else {
@@ -97,8 +108,17 @@ export class UsersDataComponent implements OnInit {
          console.log(this.form.value);
 
          this.userService.addUser(this.form.value).subscribe(
-          res => console.log(res),
-          err => console.error(err)
+          res => {
+            this.matSnackBar.open('Usuario registrado con exito ', '', {
+              duration: 3000,
+            });
+          },
+          err => {
+            this.matSnackBar.open('Error al registrar Paciente ', '', {
+              duration: 3000,
+            });
+            console.error(err);
+          }
         );
 
       }

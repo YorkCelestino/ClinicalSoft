@@ -1,0 +1,11 @@
+<mat-form-field class="w-100" *ngIf="editable">
+    <input type="text" [placeholder]="placeholder" aria-label="Number" matInput [formControl]="filteredControl" [matAutocomplete]="auto">
+    <mat-autocomplete class="h-100" #auto="matAutocomplete" (optionSelected)="onSelect($event)" [displayWith]="getDisplayFn()">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (onSelectionChange)="selected($event)">
+            {{ option.title }}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>
+<mat-form-field class="w-100" *ngIf="!editable">
+    <input type="text" [placeholder]="placeholder" [readonly]="true" matInput [formControl]="title">
+</mat-form-field>

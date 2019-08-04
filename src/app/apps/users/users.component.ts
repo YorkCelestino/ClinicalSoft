@@ -11,7 +11,7 @@ import { UsersDataComponent } from './users-data/users-data.component';
 })
 export class UsersComponent implements OnInit {
   listData: MatTableDataSource<any>;
-  users: any = [];
+  users: IUser[] = [];
   displayedColumns: string[] = ['fullName', 'idCard', 'username', 'email', 'cellPhone', 'speciality', 'userType', 'actions'];
   dataSource: any;
   @ViewChild(MatSort) sort: MatSort;

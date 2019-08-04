@@ -56,8 +56,13 @@
                     <th mat-header-cell *matHeaderCellDef>Accion </th>
                     <mat-header-cell *matHeaderCellDef></mat-header-cell>
                     <mat-cell mat-header-cell *matCellDef="let row">
+
+                        <!--alerta para deshabilitar-->
+                        <swal #deleteSwal title="ClinicalSoft" text="¿está seguro que desea deshabilitar el paciente {{row.name}}?" type="question" [showCancelButton]="true" [reverseButtons]="true" [focusCancel]="true" (confirm)="changeStatus(row.isActive,row.id)">
+                        </swal>
+
                         <button title="Editar" mat-icon-button (click)="openDialog(row)"><mat-icon>launch</mat-icon></button>
-                        <button title="Deshabilitar" mat-icon-button color="warn"><mat-icon>delete_outline</mat-icon></button>
+                        <button title="Deshabilitar" mat-icon-button color="warn" [swal]="deleteSwal"><mat-icon>delete_outline</mat-icon></button>
                     </mat-cell>
                 </ng-container>
 
