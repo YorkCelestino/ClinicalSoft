@@ -1,22 +1,14 @@
 <mat-toolbar>
-    <span> <span >Registrar </span><span>Actualizar</span> Cita</span>
+    <span> <span *ngIf="!data.id">Registrar </span><span *ngIf="data.id">Actualizar</span> Cita</span>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="closeDialog()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
 <form [formGroup]="form">
 
-    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-        <input type="hidden" formControlName="id">
-        <mat-form-field fxFlex="100">
-            <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="appointmentDate">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-    </div>
     <!--filtro de todos los pacientes-->
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
         <label for="">Paciente</label>
-        <app-autocomplete [options]="patientsFilterOptions" (valueChange1)="onValueChangePatient($event)"></app-autocomplete>
+        <app-autocomplete [options]="patientsFilterOptions" (valueChange)="onValueChangePatient($event)"></app-autocomplete>
         <!--mat-form-field class="example-full-width" fxFlex="100">
             <input type="text" placeholder="Paciente*" aria-label="Number" matInput [matAutocomplete]="auto">
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -42,6 +34,15 @@
             </mat-autocomplete>
         </mat-form-field-->
     </div>
+
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+        <input type="hidden" formControlName="id">
+        <mat-form-field fxFlex="100">
+            <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="appointmentDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
         <mat-form-field class="example-full-width" fxFlex="100">
             <textarea matInput placeholder="Observaciones" rows="6" cols="4" style="background: #eeeeee" formControlName="observations"></textarea>
@@ -53,16 +54,16 @@
     </div>
 
     <!--alerta editar-->
-    <swal #editSwal title="ClinicalSoft" text="¿está seguro que desea Actualizar el Usuario {{form.value.name}}?" type="question" [showCancelButton]="true" [reverseButtons]="true" [focusCancel]="true" (confirm)="addAppointments(form.value)">
+    <swal #editSwal title="ClinicalSoft" text="¿Está seguro que desea Actualizar el Usuario?" type="question" [showCancelButton]="true" [reverseButtons]="true" [focusCancel]="true" (confirm)="addAppointments(form.value)">
     </swal>
 
     <div class="button-row" align="end">
         <button mat-raised-button color="warn">Cancelar</button>
-        <div>
+        <div *ngIf="!data.id">
 
             <button mat-raised-button color="primary" type="button" (click)="addAppointments()">Registrar</button>
         </div>
-        <div>
+        <div *ngIf="data.id">
 
             <button mat-raised-button color="primary" type="button" [swal]="editSwal">Actualizar</button>
         </div>

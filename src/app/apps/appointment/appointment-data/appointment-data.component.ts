@@ -31,9 +31,13 @@ export class AppointmentDataComponent implements OnInit {
   patients: IPatient[] = [];
 
 
-  dataSource: any;
-
+  dataSource: any; // filtro de la tabla de datos
+  searchKey: string; // para el filtro dela tabla de datos
   form: FormGroup;
+
+  // variables para guardar los Id de Doctor y Pacientes filtrados
+  docId: string;
+  patId: string;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
@@ -56,33 +60,64 @@ export class AppointmentDataComponent implements OnInit {
 
   }
 
+  applyFilter(filterValue: string): void {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+  onSearchClear(): void  {
+    this.searchKey = '';
+    this.applyFilter('');
+  }
+
   onValueChangeDoctors($event: IUser): void {
 
-    this.form.value.idUser = $event.id;
-    console.log($event.id);
-    console.log(this.form.value);
+    // this.form.value.idUser = $event.id;
+    // console.log($event.id);
+    // console.log(this.form.value);
+    this.docId = $event.id;
+
+    this.setForm();
+
 
   }
 
-  onValueChangePatient($event: IUser): void {
+  onValueChangePatient($event: IPatient): void {
 
-    this.form.value.idPatient = $event.id;
-    console.log($event.id);
-    console.log(this.form.value);
+    // this.form.value.idPatient = $event.id;
+    // console.log($event.id);
+    // console.log(this.form.value);
+    this.patId = $event.id;
+    this.setForm();
 
   }
 
   setForm(): void {
+    if (!this.data.id) {
+
     this.form = this.fb.group({
       id: '',
-      idUser: '',
-      idPatient: '',
+      idUser: this.docId,
+      idPatient: this.patId,
       appointmentDate: '',
       observations: '',
       cellPhoneSend: false,
       emailSend: false,
       isActive: true
     });
+  } else if (this.data.id) {
+
+    this.form = this.fb.group({
+      id: this.data.id,
+      idUser: this.data.idUser.id,
+      idPatient: this.data.idPatient.id,
+      appointmentDate: this.data.appointmentDate,
+      observations: this.data.observations,
+      cellPhoneSend: false,
+      emailSend: false,
+      isActive: this.data.isActive
+    });
+  }
   }
 
 
@@ -126,39 +161,39 @@ getPatients(): void {
 // adding new  Appointment
 
 addAppointments(): void {
- // if (!this.data.id) {
+  if (!this.data.id) {
+    this.appointmentService.addAppointments(this.form.value).subscribe(
+      res => {
+        this.matSnackBar.open('Cita registrada con exito', '', {
+            duration: 3000
+        });
 
-  this.appointmentService.addAppointments(this.form.value).subscribe(
-    res => {
-      this.matSnackBar.open('Cita Registrada con exito', '', {
-        duration : 3000
-      });
-      this.closeDialog();
-    },
-    err => {
-      this.matSnackBar.open('Error al registrar la cita', '', {
+      },
+       err => {
+      this.matSnackBar.open('Error al deshabilitar Cita', '', {
         duration: 3000
       });
       console.error(err);
-    }
-  );
-// } else if (this.data.id) {
-//   this.appointmentService.updateAppoinments(this.form.value).subscribe(
-//     res => {
-//       this.matSnackBar.open('Cita actualizada con exito', '' , {
-//           duration: 3000
-//       });
-//       this.closeDialog();
-//     },
-//     err => {
-//       this.matSnackBar.open('Error al  actualizadar cita', '' , {
-//         duration: 3000
-//     });
-//       console.error(err);
 
-//     }
-//   );
-// }
+      });
+  } else if (this.data.id) {
+    this.appointmentService.updateAppoinments(this.form.value).subscribe(
+      res => {
+        this.matSnackBar.open('Cita actualizada con exito', '', {
+          duration: 3000
+        });
+      },
+      err => {
+        this.matSnackBar.open('Error al Actualizar Cita', '', {
+          duration: 300
+        });
+        console.error(err);
+
+
+      }
+    );
+  }
+  this.closeDialog();
 }
 
 

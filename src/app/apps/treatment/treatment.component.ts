@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialogConfig, MatDialog, MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatDialogConfig, MatDialog, MatSort, MatPaginator, MatTableDataSource, MatSnackBar } from '@angular/material';
 import { TreatmentDataComponent } from './treatment-data/treatment-data.component';
 import { ITreatment } from '../../models/treatment';
 import { TreatmentService } from './treatment.service';
@@ -25,7 +25,8 @@ export class TreatmentComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private treatmentdervice: TreatmentService
+    private treatmentdervice: TreatmentService,
+    private matSnackBar: MatSnackBar,
   ) { }
   openDialog(data: any = {}): void {
     const dialogConfig = new MatDialogConfig();
@@ -48,7 +49,7 @@ export class TreatmentComponent implements OnInit {
   }
   onSearchClear(): void  {
     this.searchKey = '';
-    // this.applyFilter('');
+    this.applyFilter('');
   }
   ngOnInit(): void {
     this.getTreatment();
@@ -72,9 +73,15 @@ export class TreatmentComponent implements OnInit {
     this.treatmentdervice.changeStatus(isActive, id).subscribe(
       res => {
         this.getTreatment();
-        console.log(res);
+        this.matSnackBar.open('Tratamiento deshabilitado con exito', '', {
+          duration: 3000
+        });
       },
-      err => {console.error(err);
+      err => {
+        this.matSnackBar.open('Error deshabilitar al deshabilitar Tratamiento', '', {
+          duration: 3000
+        });
+        console.error(err);
       }
     );
 }
