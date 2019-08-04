@@ -13,47 +13,57 @@ import { IAppoinment } from '../../models/appointment';
 export class AppointmentComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
-  
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['user', 'patient', 'date', 'observations','actions'];
+  displayedColumns: string[] = ['user', 'patient', 'date', 'observations', 'actions'];
   listData: MatTableDataSource<any>;
   dataSource: any;
-  appoinment : any = [];
+  appoinment: IAppoinment[] = [];
   searchKey: string;
-  ;
+
+
   constructor(
     private appoinmentservices: AppointmentService,
     public dialog: MatDialog
     ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.getAppoinment();
   }
-  openDialog(): void {
+  openDialog(data: any = {}): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '32%';
     const dialogRef = this.dialog.open(AppointmentDataComponent, dialogConfig);
-    
+
+    dialogConfig.data = data ? data : undefined;
+
+    console.log(data);
+
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.getAppoinment();
     });
   }
 
   onSearchClear(): void  {
     this.searchKey = '';
-    //this.applyFilter('');
+    // this.applyFilter('');
   }
 
-  getAppoinment(): void{
-    this.appoinmentservices.getAppointment().subscribe(
+  getAppoinment(): void {
+    this.appoinmentservices.getAppointments().subscribe(
       res => {
         this.appoinment = res;
         this.dataSource = new MatTableDataSource<IAppoinment>(this.appoinment);
 
+      },
+      err => {
+        console.error(err);
       }
-    )
+    );
   }
+
 
 }

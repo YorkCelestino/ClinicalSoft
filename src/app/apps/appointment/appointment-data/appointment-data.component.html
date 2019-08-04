@@ -1,47 +1,71 @@
 <mat-toolbar>
-    <span>Registrar Cita</span>
+    <span> <span >Registrar </span><span>Actualizar</span> Cita</span>
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="closeDialog()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
-<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-    <mat-form-field class="example-full-width" fxFlex="100">
-        <input type="text" placeholder="Paciente*" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-                {{option}}
-            </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
-</div>
+<form [formGroup]="form">
 
-<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-    <mat-form-field class="example-full-width" fxFlex="100">
-        <input type="text" placeholder="Doctor*" aria-label="Number" matInput [formControl]="myControlD" [matAutocomplete]="auto">
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option *ngFor="let optionD of filteredOptionsD | async" [value]="optionD">
-                {{optionD}}
-            </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
-</div>
-<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-    <mat-form-field fxFlex="100">
-        <input matInput [matDatepicker]="picker" placeholder="Fecha">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-</div>
-<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-    <mat-form-field class="example-full-width" fxFlex="100">
-        <textarea matInput placeholder="Observaciones" rows="6" cols="4" style="background: #eeeeee"></textarea>
-    </mat-form-field>
-</div>
-<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="-9%">
-    <mat-checkbox color="primary" class="px-2" fxFlex="50">Enviar SMS</mat-checkbox>
-    <mat-checkbox color="primary" class="mx-4 px-2" fxFlex="50">Enviar Email</mat-checkbox>
-</div>
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+        <input type="hidden" formControlName="id">
+        <mat-form-field fxFlex="100">
+            <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName="appointmentDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <!--filtro de todos los pacientes-->
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+        <label for="">Paciente</label>
+        <app-autocomplete [options]="patientsFilterOptions" (valueChange1)="onValueChangePatient($event)"></app-autocomplete>
+        <!--mat-form-field class="example-full-width" fxFlex="100">
+            <input type="text" placeholder="Paciente*" aria-label="Number" matInput [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                    {{option}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field-->
+    </div>
 
-<div class="button-row" align="end">
-    <button mat-raised-button color="warn">Cancelar</button>
-    <button mat-raised-button color="primary" type="submit">Registrar</button>
-</div>
+
+    <!--filtro de todos los doctores-->
+
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+        <label for="">Doctor</label>
+        <app-autocomplete [options]="doctorsFilterOptions" (valueChange)="onValueChangeDoctors($event)"></app-autocomplete>
+        <!--mat-form-field class="example-full-width" fxFlex="100">
+            <input type="text" placeholder="Doctor*" aria-label="Number" matInput [formControl]="myControlD" [matAutocomplete]="auto">
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                <mat-option *ngFor="let optionD of filteredOptionsD | async" [value]="optionD">
+                    {{optionD}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field-->
+    </div>
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+        <mat-form-field class="example-full-width" fxFlex="100">
+            <textarea matInput placeholder="Observaciones" rows="6" cols="4" style="background: #eeeeee" formControlName="observations"></textarea>
+        </mat-form-field>
+    </div>
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="-9%">
+        <mat-checkbox color="primary" class="px-2" fxFlex="50">Enviar SMS</mat-checkbox>
+        <mat-checkbox color="primary" class="mx-4 px-2" fxFlex="50">Enviar Email</mat-checkbox>
+    </div>
+
+    <!--alerta editar-->
+    <swal #editSwal title="ClinicalSoft" text="¿está seguro que desea Actualizar el Usuario {{form.value.name}}?" type="question" [showCancelButton]="true" [reverseButtons]="true" [focusCancel]="true" (confirm)="addAppointments(form.value)">
+    </swal>
+
+    <div class="button-row" align="end">
+        <button mat-raised-button color="warn">Cancelar</button>
+        <div>
+
+            <button mat-raised-button color="primary" type="button" (click)="addAppointments()">Registrar</button>
+        </div>
+        <div>
+
+            <button mat-raised-button color="primary" type="button" [swal]="editSwal">Actualizar</button>
+        </div>
+    </div>
+
+</form>

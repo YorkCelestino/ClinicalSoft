@@ -22,8 +22,8 @@ export class PatientDataComponent {
   patientsFilterOptions: AutoCompleteOption<IPatient>[] = [];
   patients: IPatient[] = [];
 
-  yes: boolean = true; // variables para mostrar  o ocultar campos en el formulario
-  no: boolean = false;
+ // yes: boolean = true; // variables para mostrar  o ocultar campos en el formulario
+ // no: boolean = false;
 
   actCondition: boolean = false;
   workCondition: boolean = false;
@@ -98,7 +98,7 @@ export class PatientDataComponent {
       isActive: true
     });
    } else if (this.data.id) {
-     console.log('complete data' , this.data);
+
     this.form = this.fb.group({
       id: this.data.id,
       name: [this.data.name, Validators.required],

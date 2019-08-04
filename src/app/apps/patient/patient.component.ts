@@ -14,7 +14,7 @@ export class PatientComponent implements OnInit {
   displayedColumns: string[] = ['name', 'surname', 'email', 'cellPhone', 'idCard',
   'civilStatus', 'actions'];
   dataSource: any;
-  patient: any = [];
+  patient: IPatient[] = [];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: any;

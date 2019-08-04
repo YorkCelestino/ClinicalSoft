@@ -14,13 +14,13 @@ export class TreatmentComponent implements OnInit {
 
   @ViewChild(MatSort) sort: MatSort;
 
-  
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['code', 'name', 'price', 'doctorCommission','description','actions'];
+  displayedColumns: string[] = ['code', 'name', 'price', 'doctorCommission', 'description', 'actions'];
   listData: MatTableDataSource<any>;
   dataSource: any;
-  treatment : any = [];
+  treatment: any = [];
   searchKey: string;
 
   constructor(
@@ -39,18 +39,21 @@ export class TreatmentComponent implements OnInit {
   }
   onSearchClear(): void  {
     this.searchKey = '';
-    //this.applyFilter('');
+    // this.applyFilter('');
   }
   ngOnInit(): void {
   }
 
-  getAppoinment(): void{
+  getTreatment(): void {
     this. treatmentdervice.getTreatment().subscribe(
       res => {
         this.treatment = res;
         this.dataSource = new MatTableDataSource<ITreatment>(this.treatment);
 
+      },
+      err => {
+        console.error(err);
       }
-    )
+    );
   }
 }
