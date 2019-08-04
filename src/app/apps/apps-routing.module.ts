@@ -22,6 +22,7 @@ import { TreatmentComponent } from './treatment/treatment.component';
 import { PaymentComponent } from './payment/payment.component';
 import { QueryComponent } from './query/query.component';
 import { RecordComponent } from './record/record.component';
+import { TodaysdateComponent } from './todaysdate/todaysdate.component';
 
 
 
@@ -138,6 +139,13 @@ const routes: Routes = [{
   component: RecordComponent,
   data:{
     title: 'Record'
+  }
+},
+{
+  path:'todaysdate',
+  component: TodaysdateComponent,
+  data:{
+    title: 'Cita de hoy'
   }
 }
 ];

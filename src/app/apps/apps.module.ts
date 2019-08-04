@@ -44,6 +44,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { QueryComponent } from './query/query.component';
 import { RecordComponent } from './record/record.component';
+import { TodaysdateComponent } from './todaysdate/todaysdate.component';
 
 
 
@@ -79,6 +80,7 @@ import { RecordComponent } from './record/record.component';
     PaymentComponent,
     QueryComponent,
     RecordComponent,
+    TodaysdateComponent,
   
   ],
   entryComponents: [
