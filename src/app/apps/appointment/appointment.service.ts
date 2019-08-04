@@ -15,22 +15,22 @@ export class AppointmentService {
 
   // getting all Apoiment
   getAppointments(): Observable<IAppoinment[]> {
-    return this.http.get<IAppoinment[]>(environment.apiBaseUrl + '/appoinment/all');
+    return this.http.get<IAppoinment[]>(environment.apiBaseUrl + '/appointment/all');
   }
 
   // adding appointment
-  addAppointments(appoinment: IAppoinment): Observable<IAppoinment[]> {
-    return this.http.post<IAppoinment[]>(environment.apiBaseUrl + '/appoinment/add', appoinment  );
+  addAppointments(appointment: IAppoinment): Observable<IAppoinment[]> {
+    return this.http.post<IAppoinment[]>(environment.apiBaseUrl + '/appointment/add', appointment  );
   }
 
   // updatting Appointment
-  updateAppoinments(appoinment: IAppoinment): Observable<IAppoinment[]> {
-    return this.http.post<IAppoinment[]>(environment.apiBaseUrl + '/appoinment/' , appoinment );
+  updateAppoinments(appointment: IAppoinment): Observable<IAppoinment[]> {
+    return this.http.put<IAppoinment[]>(environment.apiBaseUrl + '/appointment/edit' , appointment );
   }
 
   // Change Status Appointment
   changeStatus(isActive: boolean, id: string): Observable<any> {
-    return this.http.put(environment.apiBaseUrl + '/appoinment/change-status',
+    return this.http.put(environment.apiBaseUrl + '/appointment/change-status',
     { id: id, isActive: !isActive });
   }
 

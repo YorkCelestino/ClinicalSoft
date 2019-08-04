@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LayoutService } from '../../layouts/layout.service';
-import { MatPaginator, MatSort, MatDialog, MatDialogConfig, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatDialog, MatDialogConfig, MatTableDataSource, MatSnackBar } from '@angular/material';
 import { AppointmentDataComponent } from './appointment-data/appointment-data.component';
 import { AppointmentService } from './appointment.service';
 import { IAppoinment } from '../../models/appointment';
@@ -16,7 +16,7 @@ export class AppointmentComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['user', 'patient', 'date', 'observations', 'actions'];
+  displayedColumns: string[] = ['user', 'patient', 'appointmentDate', 'observations', 'actions'];
   listData: MatTableDataSource<any>;
   dataSource: any;
   appoinment: IAppoinment[] = [];
@@ -25,7 +25,8 @@ export class AppointmentComponent implements OnInit {
 
   constructor(
     private appoinmentservices: AppointmentService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public matSnackBar: MatSnackBar
     ) { }
 
   ngOnInit(): void {
@@ -36,15 +37,15 @@ export class AppointmentComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = '32%';
-    const dialogRef = this.dialog.open(AppointmentDataComponent, dialogConfig);
 
     dialogConfig.data = data ? data : undefined;
 
-    console.log(data);
+    const dialogRef = this.dialog.open(AppointmentDataComponent, dialogConfig);
+
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getAppoinment();
-    });
+       this.getAppoinment();
+     });
   }
 
   onSearchClear(): void  {
@@ -65,5 +66,22 @@ export class AppointmentComponent implements OnInit {
     );
   }
 
+  changeStatus(isActive: boolean, id: string): void {
+    this.appoinmentservices.changeStatus(isActive, id).subscribe(
+      res => {
+        this.getAppoinment();
+        this.matSnackBar.open('Cita deshabilitado con exito', '', {
+          duration: 3000
+        });
+      },
+      err => {
+        this.matSnackBar.open('Error deshabilitar al deshabilitar Cita', '', {
+          duration: 3000
+        });
+        console.error(err);
+      }
+    );
 
+
+  }
 }

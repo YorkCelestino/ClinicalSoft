@@ -8,9 +8,9 @@ export interface IAppoinment {
         id?: string
         name?: string
     };
-    appointmentDate?: any;
+    appointmentDate?: Date;
     observations?: string;
     cellPhoneSend?: string;
-    emailSend?: string;
+    emailSend?: Boolean;
     isActive?: Boolean;
 }
