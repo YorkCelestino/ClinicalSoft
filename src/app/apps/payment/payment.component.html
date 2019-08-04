@@ -1,49 +1,124 @@
 <div class="portal-ecommerce-page-wrapper">
+    <mat-toolbar style="height: 4%">
+        <span>Realizar pago</span>
+        <span class="fill-remaining-space"></span>
+    </mat-toolbar>
     <mat-card>
-        <mat-toolbar>
-            <span>Registrar Pago</span>
-            <span class="fill-remaining-space"></span>
-        </mat-toolbar>
-
-        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-            <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-                <mat-select placeholder="Paciente">
-                    <mat-option value="Casado">Francisco contreras</mat-option>
-                    <mat-option value="Union libre">York Celestino</mat-option>
-                </mat-select>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="38%">
+            <mat-form-field  fxFlex="31%">
+                <input type="datetime-local" matInput placeholder="Fecha de la factura" disabled>
+            </mat-form-field>
+            <mat-form-field  fxFlex="31%">
+                    <input type="number" matInput placeholder="Numero de  factura" disabled>
             </mat-form-field>
         </div>
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-            <mat-divider fxFlex="50"></mat-divider>
+            <mat-divider fxFlex="100"></mat-divider>
         </div>
 
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-            <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
+            <mat-form-field  fxFlex="35%">
+                <input type="disabled" matInput placeholder="Cedula del paciente">
+            </mat-form-field>
+            <mat-form-field  fxFlex="35%">
+                <input matInput placeholder="Nombre del paciente">
+            </mat-form-field>
+            <mat-form-field class="portal-select-preview-example-field" fxFlex="35%">
                 <mat-select placeholder="Recibido por el medico">
                     <mat-option value="Casado">Jhon Will Celestino</mat-option>
                     <mat-option value="Union libre">Esmeraily Acosta</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
-
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-            <mat-divider fxFlex="50"></mat-divider>
+            <mat-divider fxFlex="100"></mat-divider>
         </div>
 
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-            <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-                <mat-select placeholder="Selecionar">
-                    <mat-option value="Casado">Embarazo</mat-option>
-                    <mat-option value="Union libre">Neobulizador</mat-option>
+            <mat-form-field class="portal-select-preview-example-field" fxFlex="31%">
+                <mat-select placeholder="Seleccionar">
+                    <mat-option value="Casado">Gp-Gripe</mat-option>
+                    <mat-option value="Union libre">EM-Embarazo</mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-                <mat-select placeholder="Selecionar">
-                    <mat-option value="Casado">Embarazo</mat-option>
-                    <mat-option value="Union libre">Neobulizador</mat-option>
-                </mat-select>
-            </mat-form-field>
+            <button title="Agregar tratamiento a la factura" mat-raised-button color="primary" style="height: 36px; margin-top: 10px">
+                Agregar
+            </button>
         </div>
+
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+            <mat-divider fxFlex="100"></mat-divider>
+        </div> 
     </mat-card>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <!-- Position Column -->
+            <ng-container matColumnDef="position">
+              <th mat-header-cell *matHeaderCellDef> Codigo </th>
+              <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Tratamiento </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="weight">
+              <th mat-header-cell *matHeaderCellDef> Precio </th>
+              <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="symbol">
+              <th mat-header-cell *matHeaderCellDef> Accion </th>
+              <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-card style="height: 50px">
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+                <mat-form-field appearance="outline" fxFlex="33">
+                    <mat-label>Total parcial</mat-label>
+                    <input type="number" matInput placeholder="Placeholder" disabled value="0">
+                    <mat-icon matSuffix>attach_money</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="33">
+                    <mat-label>Descuento</mat-label>
+                    <input type="number" matInput placeholder="Placeholder" value="0">
+                    <mat-icon matSuffix>attach_money</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline" fxFlex="33">
+                    <mat-label>Bruto total</mat-label>
+                    <input type="number" matInput placeholder="Placeholder" disabled value="0">
+                    <mat-icon matSuffix>attach_money</mat-icon>
+                </mat-form-field> 
+            </div>
+          </mat-card>
+          <mat-card style="height: 13px">
+            <div align="end" style="margin-top: -17px">
+                <div class="button-row">
+                    <button title="Cancelar pago" mat-raised-button color="warn">
+                        Cancelar
+                    </button>
+                
+                    <button title="Guardar pago" mat-raised-button color="primary" >
+                        Guardar
+                    </button>
+                    <button title="Imprimir pago" mat-raised-button color="basic">
+                        Imprimir
+                    </button>
+                </div>
+            </div>
+        </mat-card>
+            
+                
+            
 </div>

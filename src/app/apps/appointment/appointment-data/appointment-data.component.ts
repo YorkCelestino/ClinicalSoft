@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {Observable} from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { MatPaginator, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-appointment-data',
@@ -16,7 +17,12 @@ export class AppointmentDataComponent implements OnInit {
   optionsD: string[] = ['One1', 'Two1'];
   filteredOptions: Observable<string[]>;
   filteredOptionsD: Observable<string[]>;
-  constructor() { }
+  
+  dataSource: any;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  constructor(
+    public dialogRef: MatDialogRef<AppointmentDataComponent>
+  ) { }
 
   ngOnInit() {
     //Paciente
@@ -44,4 +50,10 @@ export class AppointmentDataComponent implements OnInit {
     return this.optionsD.filter(optionD => optionD.toLowerCase().indexOf(filterValueD) === 0);
  }
 
+ closeDialog(): void {
+  // this.form.reset();
+  this.dialogRef.close();
+}
+
+ 
 }

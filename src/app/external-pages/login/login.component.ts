@@ -13,6 +13,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  hide = true;
   wrongUser: boolean = false;
   wrongPassword: boolean = false;
   form: FormGroup;

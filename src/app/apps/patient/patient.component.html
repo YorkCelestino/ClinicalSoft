@@ -4,7 +4,7 @@
         <button title="Agregar nuevo paciente" mat-raised-button color="primary" (click)="openDialog()">
             <mat-icon>add</mat-icon>Agregar
             </button>
-        <mat-form-field class="search-form-field" floatLabel="never">
+        <mat-form-field class="search-form-field" appearance="fill">
             <input matInput [(ngModel)]="searchKey" placeholder="Buscar paciente" autocomplete="off" (keyup)="applyFilter($event.target.value)">
             <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
                     <mat-icon>close</mat-icon>
@@ -12,7 +12,6 @@
         </mat-form-field>
 
     </div>
-    <div class="portal-ecommerce-page-wrapper">
         <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSource">
                 <!-- Position Column -->
@@ -65,7 +64,7 @@
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
+            <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
         </div>
-        <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
-    </div>
+        
 </div>
