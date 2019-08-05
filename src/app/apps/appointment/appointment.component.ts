@@ -11,16 +11,16 @@ import { IAppoinment } from '../../models/appointment';
   styleUrls: ['./appointment.component.scss']
 })
 export class AppointmentComponent implements OnInit {
+
   @ViewChild(MatSort) sort: MatSort;
-
-
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  searchKey: string;
+  dataSource: any;
 
   displayedColumns: string[] = ['user', 'patient', 'appointmentDate', 'observations', 'actions'];
   listData: MatTableDataSource<any>;
-  dataSource: any;
+
   appoinment: IAppoinment[] = [];
-  searchKey: string;
 
 
   constructor(
@@ -32,6 +32,8 @@ export class AppointmentComponent implements OnInit {
   ngOnInit(): void {
     this.getAppoinment();
   }
+
+
   openDialog(data: any = {}): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
@@ -48,16 +50,12 @@ export class AppointmentComponent implements OnInit {
      });
   }
 
-  onSearchClear(): void  {
-    this.searchKey = '';
-    // this.applyFilter('');
-  }
-
   getAppoinment(): void {
     this.appoinmentservices.getAppointments().subscribe(
       res => {
         this.appoinment = res;
         this.dataSource = new MatTableDataSource<IAppoinment>(this.appoinment);
+        this.dataSource.paginator = this.paginator;
 
       },
       err => {
@@ -65,6 +63,17 @@ export class AppointmentComponent implements OnInit {
       }
     );
   }
+
+  applyFilter(filterValue: string): void {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+  onSearchClear(): void  {
+    this.searchKey = '';
+    this.applyFilter('');
+  }
+
 
   changeStatus(isActive: boolean, id: string): void {
     this.appoinmentservices.changeStatus(isActive, id).subscribe(

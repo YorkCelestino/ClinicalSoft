@@ -20,6 +20,10 @@ export class AppointmentService {
 
   // adding appointment
   addAppointments(appointment: IAppoinment): Observable<IAppoinment[]> {
+    // tslint:disable-next-line:prefer-const
+    let fecha = appointment.appointmentDate.toLocaleDateString();
+    console.log(fecha);
+    appointment.appointmentDate = fecha;
     return this.http.post<IAppoinment[]>(environment.apiBaseUrl + '/appointment/add', appointment  );
   }
 
