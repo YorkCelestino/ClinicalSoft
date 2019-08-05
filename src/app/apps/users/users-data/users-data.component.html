@@ -16,7 +16,7 @@
                     <mat-error>Nombre Completo es requerido.</mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input formControlName="idCard" matInput placeholder="Cedula*">
+                    <input formControlName="idCard"  mask="000-0000000-0" matInput placeholder="Cedula*">
                     <mat-error>Cedula es requerido.</mat-error>
                 </mat-form-field>
                 <mat-form-field>
@@ -24,7 +24,7 @@
                     <mat-error>Nombre de suario es Requerido </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input formControlName="cellPhone" matInput placeholder="Número de teléfono*">
+                    <input formControlName="cellPhone"  mask="000-000-0000" matInput placeholder="Número de teléfono*">
                     <mat-error *ngIf="form.controls['cellPhone'].errors?.required">Número de teléfono es requerido.</mat-error>
                     <mat-error *ngIf="form.controls['cellPhone'].errors?.minlength">Se nececitan minimo 8 caracteres</mat-error>
                 </mat-form-field>
@@ -58,11 +58,11 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input formControlName="email" matInput placeholder="Email*">
+                    <input formControlName="email" matInput placeholder="Email*" mask="A*@A*.SSS">
                     <mat-error>Email incorrecto.</mat-error>
                 </mat-form-field>
                 <mat-form-field *ngIf="!data.id">
-                    <input formControlName="password" matInput placeholder="Contraseña*">
+                    <input type="password" formControlName="password" matInput placeholder="Contraseña*">
                     <mat-error>contraseña es requerida.</mat-error>
                 </mat-form-field>
 

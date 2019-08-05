@@ -9,6 +9,7 @@
         <mat-form-field fxFlex="100">
             <input type="hidden" formControlName="id">
             <input matInput placeholder="code*" formControlName="code">
+            <mat-error>codigo querido.</mat-error>
 
         </mat-form-field>
 
@@ -16,23 +17,26 @@
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
         <mat-form-field fxFlex="100">
             <input matInput placeholder="Nombre tratamiento*" formControlName="name">
+            <mat-error>Nombre de tratamiento requerido.</mat-error>
 
         </mat-form-field>
     </div>
 
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
         <mat-form-field fxFlex="100">
-            <input matInput placeholder="Precio*" formControlName="price">
+            <input matInput type="number" placeholder="Precio*" formControlName="price">
             <span matPrefix>$&nbsp;</span>
             <span matSuffix>.00</span>
+            <mat-error>Precio requerido.</mat-error>
         </mat-form-field>
     </div>
 
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
         <mat-form-field fxFlex="100">
-            <input matInput placeholder="Comision de doctor*" formControlName="doctorCommission">
+            <input matInput type="number" placeholder="Comision de doctor*" formControlName="doctorCommission">
             <span matPrefix>$&nbsp;</span>
             <span matSuffix>.00</span>
+            <mat-error>Comision de doctor requerida.</mat-error>
         </mat-form-field>
     </div>
 
@@ -50,11 +54,11 @@
             <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
             <div *ngIf="data.id">
 
-                <button mat-raised-button color="primary" type="button" [swal]="editSwal">Actualizar</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" [swal]="editSwal">Actualizar</button>
             </div>
 
             <div *ngIf="!data.id">
-                <button mat-raised-button color="primary" type="button" (click)="addTreatment()">Registrar</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" (click)="addTreatment()">Registrar</button>
             </div>
         </div>
     </mat-dialog-actions>

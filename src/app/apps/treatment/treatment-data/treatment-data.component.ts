@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ITreatment } from '../../../models/treatment';
 import { TreatmentService } from '../treatment.service';
 import { duration } from 'moment';
@@ -32,10 +32,10 @@ export class TreatmentDataComponent implements OnInit {
     if (!this.data.id) {
       this.form = this.fb.group({
           id: '',
-          code: '',
-          name: '',
-          price: null,
-          doctorCommission: null,
+          code: ['', Validators.required],
+          name: ['', Validators.required],
+          price: [null, Validators.required],
+          doctorCommission: [null, Validators.required],
           description: '',
           isActive: true
         });
