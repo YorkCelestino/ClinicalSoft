@@ -4,6 +4,7 @@ import { Subscription, timer, BehaviorSubject } from 'rxjs';
 
 import { LayoutService } from '../../layouts/layout.service';
 import { UserService } from '../../apps/users/user.service';
+import { AppointmentService } from '../../apps/appointment/appointment.service';
 
 @Component({
   selector: 'app-home',
@@ -13,21 +14,49 @@ import { UserService } from '../../apps/users/user.service';
 export class HomeComponent implements OnInit {
 
   doctors: any = [];
-  available: number;
-  constructor(public layoutService: LayoutService, private uerService: UserService) { }
+  availableDoctors: number;
+
+  appointment: any = [];
+  availableAppointmentToday: number;
+
+  appointmentAll: any = [];
+  availableAppointment: number;
+  constructor(public layoutService: LayoutService, private uerService: UserService, private appointmentService: AppointmentService) { }
 
   ngOnInit(): void  {
     this.getUsers();
+    this.getTodayAppointment();
+    this.getAppointment();
   }
 
   getUsers(): any {
     this.uerService.getDoctors().subscribe(
       res => {
         this.doctors = res;
-        this.available = this.doctors.length;
+        this.availableDoctors = this.doctors.length;
       },
       err => console.error(err)
     );
+  }
+  getTodayAppointment (): any {
+    this.appointmentService.getTodayAppointment().subscribe(
+      res => {
+        this.appointment = res;
+        this.availableAppointmentToday = this.appointment.length;
+      },
+      err => {
+        console.log(err);
+      });
+  }
+  getAppointment (): any {
+    this.appointmentService.getAppointments().subscribe(
+      res => {
+        this.appointmentAll = res;
+        this.availableAppointment = this.appointmentAll.length;
+      },
+      err => {
+        console.log(err);
+      });
   }
 
 }

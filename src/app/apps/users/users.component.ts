@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig, MatSort } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig, MatSort, MatSnackBar } from '@angular/material';
 import { UserService } from './user.service';
 import { IUser } from '../../models/user';
 import { UsersDataComponent } from './users-data/users-data.component';
@@ -20,7 +20,8 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private userservices: UserService,
-     public dialog: MatDialog
+     public dialog: MatDialog,
+     private matSnackBar: MatSnackBar
      ) { }
 
   // material dialog
@@ -73,10 +74,16 @@ export class UsersComponent implements OnInit {
     changeStatus(isActive: boolean, id: string): void {
         this.userservices.changeStatus(isActive, id).subscribe(
           res => {
+            this.matSnackBar.open('Usuario deshabilitado con exito', '', {
+              duration: 3000
+            });
             this.getUsers();
-            console.log(res);
           },
-          err => {console.error(err);
+          err => {
+            this.matSnackBar.open('Error al deshabilitar Usuario ', '', {
+              duration: 3000
+            });
+            console.error(err);
           }
         );
     }

@@ -50,15 +50,16 @@ const routes: Routes = [
   component: LockComponent,
   data: {
     title: 'Locked'
+  }
 },
 {
   path: 'recorddata',
   component: RecordDataComponent,
-  data:{
+  data: {
     title: 'Record paciene'
   }
 }
 
-}];
+];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);
