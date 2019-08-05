@@ -42,5 +42,9 @@ export class AppointmentService {
     return  this.http.get(environment.apiBaseUrl + '/user/get-doctors');
   }
 
+  getTodayAppointment(): Observable<any> {
+    return this.http.get(environment.apiBaseUrl + '/appointment/today-date');
+  }
+
 
 }
