@@ -46,14 +46,16 @@
     </swal>
 
     <mat-dialog-actions align="end">
-        <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
-        <div *ngIf="data.id">
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+            <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
+            <div *ngIf="data.id">
 
-            <button mat-raised-button color="primary" type="button" [swal]="editSwal">Actualizar</button>
-        </div>
+                <button mat-raised-button color="primary" type="button" [swal]="editSwal">Actualizar</button>
+            </div>
 
-        <div *ngIf="!data.id">
-            <button mat-raised-button color="primary" type="button" (click)="addTreatment()">Registrar</button>
+            <div *ngIf="!data.id">
+                <button mat-raised-button color="primary" type="button" (click)="addTreatment()">Registrar</button>
+            </div>
         </div>
     </mat-dialog-actions>
 

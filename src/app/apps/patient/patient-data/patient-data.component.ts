@@ -220,7 +220,7 @@ export class PatientDataComponent {
   getPatients(): void {
     this.patientService.getPatient().subscribe(
       res => {
-        console.log(res);
+       // console.log(res);
         this.patients = res;
         this.patientsFilterOptions = this.patients.map(val => {
           return {

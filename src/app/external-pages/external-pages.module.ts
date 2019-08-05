@@ -15,6 +15,7 @@ import { AuthInterceptor } from '../auth/auth.interceptor';
 import {  HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from '../auth/auth.guard';
 import { LoginService } from '../auth/login.service';
+import { RecordDataComponent } from './record-data/record-data.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { LoginService } from '../auth/login.service';
     Error404Component,
     Error500Component,
     LockComponent,
+    RecordDataComponent,
   ],
   exports: [
     LoginComponent

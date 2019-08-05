@@ -7,6 +7,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { Error404Component } from './error-404/error-404.component';
 import { Error500Component } from './error-500/error-500.component';
 import { LockComponent } from './lock/lock.component';
+import { RecordDataComponent } from './record-data/record-data.component';
 
 const routes: Routes = [
 {
@@ -49,7 +50,15 @@ const routes: Routes = [
   component: LockComponent,
   data: {
     title: 'Locked'
+},
+{
+  path: 'recorddata',
+  component: RecordDataComponent,
+  data:{
+    title: 'Record paciene'
   }
+}
+
 }];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes);
