@@ -22,13 +22,15 @@ export class AppointmentService {
   addAppointments(appointment: IAppoinment): Observable<IAppoinment[]> {
     // tslint:disable-next-line:prefer-const
     let fecha = appointment.appointmentDate.toLocaleDateString();
-    console.log(fecha);
     appointment.appointmentDate = fecha;
     return this.http.post<IAppoinment[]>(environment.apiBaseUrl + '/appointment/add', appointment  );
   }
 
   // updatting Appointment
   updateAppoinments(appointment: IAppoinment): Observable<IAppoinment[]> {
+    // tslint:disable-next-line:prefer-const
+    let fecha = appointment.appointmentDate.toLocaleDateString();
+    appointment.appointmentDate = fecha;
     return this.http.put<IAppoinment[]>(environment.apiBaseUrl + '/appointment/edit' , appointment );
   }
 
