@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatPaginator, MatTableDataSource, MatDialog, MatDialogConfig } from '@angular/material';
 import { IAppoinment } from '../../models/appointment';
-import { TodaysdateService } from './todaysdate.service';
+
 import { AppointmentDataComponent } from '../appointment/appointment-data/appointment-data.component';
+import { AppointmentService } from '../appointment/appointment.service';
 
 @Component({
   selector: 'app-todaysdate',
@@ -23,12 +24,12 @@ export class TodaysdateComponent implements OnInit {
 
   constructor
   (
-    private todaysdateservice: TodaysdateService,
+    private todaysdateservice: AppointmentService,
     public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
-    this.getAppoinment;
+    this.getAppoinment();
   }
 
   openDialog(data: any = {}): void {
@@ -53,11 +54,12 @@ export class TodaysdateComponent implements OnInit {
   }
 
   getAppoinment(): void {
-    this.todaysdateservice.getAppointments().subscribe(
+    this.todaysdateservice.getTodayAppointment().subscribe(
       res => {
         this.appoinment = res;
         this.dataSource = new MatTableDataSource<IAppoinment>(this.appoinment);
-
+        console.log(this.appoinment);
+        
       },
       err => {
         console.error(err);

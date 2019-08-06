@@ -1,5 +1,5 @@
 <div class="portal-ecommerce-page-wrapper">
-    <mat-toolbar style="height: 4%">
+    <mat-toolbar style="height: 43px;">
         <span>Realizar pago</span>
         <span class="fill-remaining-space"></span>
     </mat-toolbar>
@@ -30,26 +30,6 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-            <mat-divider fxFlex="100"></mat-divider>
-        </div>
-
-        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-            <mat-form-field class="portal-select-preview-example-field" fxFlex="31%">
-                <mat-select placeholder="Seleccionar">
-                    <mat-option value="Casado">Gp-Gripe</mat-option>
-                    <mat-option value="Union libre">EM-Embarazo</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <button title="Agregar tratamiento a la factura" mat-raised-button color="primary" style="height: 36px; margin-top: 10px">
-                Agregar
-            </button>
-        </div>
-
-        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-            <mat-divider fxFlex="100"></mat-divider>
-        </div> 
     </mat-card>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
