@@ -2,7 +2,6 @@ import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, Validator } from '@angular/forms';
 import { UserService } from '../user.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
-import { UsersComponent } from '../users.component';
 import { IRole } from '../roles.inferface';
 import { IUser } from '../../../models/user';
 

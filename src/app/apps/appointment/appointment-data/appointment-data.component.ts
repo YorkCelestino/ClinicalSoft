@@ -1,6 +1,6 @@
 // components
 import { Component, OnInit, ViewChild, Inject, Optional } from '@angular/core';
-import { FormControl, FormBuilder, FormGroup } from '@angular/forms';
+import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
 import { MatPaginator, MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { AutoCompleteOption } from '../../../shared/autocomplete/autocomplete.component';
@@ -97,10 +97,10 @@ export class AppointmentDataComponent implements OnInit {
 
     this.form = this.fb.group({
       id: '',
-      idUser: this.docId,
-      idPatient: this.patId,
-      appointmentDate: '',
-      observations: '',
+      idUser: [this.docId, Validators.required],
+      idPatient: [this.patId, Validators.required],
+      appointmentDate:['', Validators.required],
+      observations: [''],
       cellPhoneSend: false,
       emailSend: false,
       isActive: true
