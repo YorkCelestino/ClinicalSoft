@@ -21,8 +21,11 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   // httpMethods
-  getUserProfile(): Observable<IUser> {
-    return this.http.get(environment.apiBaseUrl + '/user/get-user-profile');
+  getUserProfile(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(environment.apiBaseUrl + '/user/get-user-profile');
+  }
+  getUser(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(environment.apiBaseUrl + '/user/get-user-one');
   }
 
 

@@ -21,10 +21,13 @@ export class UserService {
    getUsers(): Observable<any> {
     return this.http.get(environment.apiBaseUrl + '/user/users');
   }
+
   getRoles(): Observable<any> {
     return this.http.get(environment.apiBaseUrl + '/role/all');
   }
-
+  getRole(): Observable<any> {
+    return this.http.get(environment.apiBaseUrl + '/role/one');
+  }
   addUser(user: IUser): Observable<IUser> {
     return this.http.post(environment.apiBaseUrl + '/user/add-user', user);
   }

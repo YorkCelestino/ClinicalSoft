@@ -104,9 +104,6 @@ export class UsersDataComponent implements OnInit {
 
       } else {
          // adding User
-         console.log('adding User');
-         console.log(this.form.value);
-
          this.userService.addUser(this.form.value).subscribe(
           res => {
             this.matSnackBar.open('Usuario registrado con exito ', '', {

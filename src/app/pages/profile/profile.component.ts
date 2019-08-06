@@ -53,6 +53,7 @@ export class ProfileComponent {
       res => {
 
         this.userProfile = res;
+        console.log(res);
       },
       err => {console.error(err);
       }
