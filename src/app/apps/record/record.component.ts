@@ -11,19 +11,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./record.component.scss']
 })
 export class RecordComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'surname','cellPhone', 'idCard', 'actions'];
+  displayedColumns: string[] = ['name', 'surname', 'cellPhone', 'idCard', 'actions'];
   dataSource: any;
   patient: IPatient[] = [];
+  patients: IPatient[] = [];
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: any;
   constructor(
-    private recordservice : RecordService,
+    private recordservice: RecordService,
     public dialog: MatDialog,
     private router: Router
     ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getPatient();
   }
 
@@ -57,13 +58,29 @@ export class RecordComponent implements OnInit {
     );
   }
 
+  getPatientsData(): void {
+    this.recordservice.getPatient().subscribe(
+      res => {
+        this.patients = res;
+        // console.log(this.patient);
+        this.dataSource = new MatTableDataSource<IPatient>(this.patient);
+        this.dataSource.paginator = this.paginator;
+      },
+      err => {
+        console.error(err);
+      }
+    );
+  }
+
   onSearchClear(): void  {
     this.searchKey = '';
-    //this.applyFilter('');
+    // this.applyFilter('');
   }
 
   onLogut(): void {
-    //this.loginService.deleteToken();
+    // this.loginService.deleteToken();
     this.router.navigateByUrl('/external/recorddata');
 }
+
+
 }

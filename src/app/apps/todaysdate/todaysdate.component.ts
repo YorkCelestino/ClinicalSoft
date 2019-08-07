@@ -28,7 +28,7 @@ export class TodaysdateComponent implements OnInit {
     public dialog: MatDialog,
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getAppoinment();
   }
 
@@ -59,11 +59,21 @@ export class TodaysdateComponent implements OnInit {
         this.appoinment = res;
         this.dataSource = new MatTableDataSource<IAppoinment>(this.appoinment);
         console.log(this.appoinment);
-        
       },
       err => {
         console.error(err);
       }
     );
+  }
+
+  changeStatus(isActive: any, id: any): any {
+   this.todaysdateservice.changeStatus( isActive, id).subscribe(
+     res => {
+      console.log(res);
+     },
+     err => {
+      console.error(err);
+     }
+   );
   }
 }

@@ -1,6 +1,9 @@
 export interface ITpatient {
     id: string;
     idTreatment: string;
-    idPatient: string;
+    idPatient: {
+        name: string,
+        id: string
+    };
     isActive: boolean;
 }

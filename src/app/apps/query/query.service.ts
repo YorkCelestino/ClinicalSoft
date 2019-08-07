@@ -16,8 +16,8 @@ export class QueryService {
 
 
   // getting all Treatment Patient
-  getTreatmentPatient(): Observable<any> {
-    return this.http.get(environment.apiBaseUrl + '/treatmentPatient/all');
+  getTreatmentPatient(patId?: any): Observable<any> {
+    return this.http.get(environment.apiBaseUrl + '/treatmentPatient/all', patId);
   }
 
 

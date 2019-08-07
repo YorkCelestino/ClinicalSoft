@@ -7,7 +7,7 @@
 
     <!--filtro de todos los pacientes-->
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-        <label >Paciente*</label>
+        <label>Paciente*</label>
         <app-autocomplete [options]="patientsFilterOptions" (valueChange)="onValueChangePatient($event)" fxFlex="100"></app-autocomplete>
         <!--mat-form-field class="example-full-width" fxFlex="100">
             <input type="text" placeholder="Paciente*" aria-label="Number" matInput [matAutocomplete]="auto">
@@ -22,10 +22,10 @@
 
 
     <!--filtro de todos los doctores-->
-    
+
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-    
-        <label >Doctor*</label >
+
+        <label>Doctor*</label >
         <app-autocomplete [options]="doctorsFilterOptions" (valueChange)="onValueChangeDoctors($event)" fxFlex="100"></app-autocomplete>
         <!--mat-form-field class="example-full-width" fxFlex="100">
             <input type="text" placeholder="Doctor*" aria-label="Number" matInput [formControl]="myControlD" [matAutocomplete]="auto">
@@ -54,8 +54,8 @@
     </div>
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="-9%">
 
-            <mat-checkbox color="primary" class="px-2" value="SMS" fxFlex="50" formControlName="cellPhoneSend">Enviar SMS</mat-checkbox>
-            <mat-checkbox color="primary" class="mx-4 px-2" value="email" fxFlex="50" formControlName="emailSend">Enviar Email</mat-checkbox>
+            <mat-checkbox color="primary" class="px-2" [value]="cellPhoneSend" fxFlex="50" formControlName="cellPhoneSend">Enviar SMS</mat-checkbox>
+            <mat-checkbox color="primary" class="mx-4 px-2" [value]="cellPhoneSend" fxFlex="50" formControlName="emailSend">Enviar Email</mat-checkbox>
     </div>
 
     <!--alerta editar-->

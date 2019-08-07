@@ -130,21 +130,21 @@ const routes: Routes = [{
 {
   path: 'query',
   component: QueryComponent,
-  data:{
+  data: {
     title: 'Consultas'
   }
 },
 {
   path: 'record',
   component: RecordComponent,
-  data:{
+  data: {
     title: 'Record'
   }
 },
 {
-  path:'todaysdate',
+  path: 'todaysdate',
   component: TodaysdateComponent,
-  data:{
+  data: {
     title: 'Cita de hoy'
   }
 }

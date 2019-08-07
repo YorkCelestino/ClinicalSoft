@@ -75,7 +75,7 @@ export class AppointmentDataComponent implements OnInit {
     // this.form.value.idUser = $event.id;
     // console.log($event.id);
     // console.log(this.form.value);
-    console.log($event);
+    // console.log($event);
     this.docId = $event.id;
 
     this.setForm();
@@ -86,7 +86,7 @@ export class AppointmentDataComponent implements OnInit {
   onValueChangePatient($event: IPatient): void {
 
     // this.form.value.idPatient = $event.id;
-     console.log($event);
+    // console.log($event);
     // console.log(this.form.value);
     this.patId = $event.id;
     this.setForm();
@@ -114,8 +114,8 @@ export class AppointmentDataComponent implements OnInit {
       idPatient: this.data.idPatient.id,
       appointmentDate: this.data.appointmentDate,
       observations: this.data.observations,
-      cellPhoneSend: false,
-      emailSend: false,
+      cellPhoneSend: this.data.cellPhoneSend,
+      emailSend: this.data.emailSend,
       isActive: this.data.isActive
     });
   }

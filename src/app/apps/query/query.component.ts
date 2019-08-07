@@ -6,6 +6,8 @@ import { TreatmentService } from '../treatment/treatment.service';
 import { QueryService } from './query.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 import { ITpatient } from '../../models/treatmentPatient';
+import { AutoCompleteOption } from '../../shared/autocomplete/autocomplete.component';
+
 
 export interface PeriodicElement {
   name: string;
@@ -24,15 +26,19 @@ export class QueryComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   todayAppointment: any = [];
-  treatments: any  = [];
+  treatments: any = [];
 
   treatmentPatient: any = [];
-
+  searchKey: any;
   form: FormGroup;
-  idapp: any;
+
   displayedColumns: string[] = ['codeTreatment', 'idPatient', 'nameTreatment', 'price', 'actions'];
   // tslint:disable-next-line:typedef
   dataSource: any;
+
+  FilterOptions: AutoCompleteOption<ITpatient>[] = [];
+  patient: ITpatient[] = [];
+  patId: any;
 
   constructor(
     private patientService: PatientService,
@@ -45,21 +51,53 @@ export class QueryComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = this.fb.group({
-      id: '',
-      idPatient : ['', Validators.required],
-      idTreatment : [ '', Validators.required]
+      id: this.patId,
+      idPatient : '',
+      idTreatment : ''
     });
 
     this.getAppointments();
     this.getTreatment();
   }
 
+  applyFilter(filterValue: string): void {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
+  }
+  onSearchClear(): void  {
+    this.searchKey = '';
+    this.applyFilter('');
+  }
+
+
+  onValueChange($event: ITpatient): void {
+
+    // this.form.value.idUser = $event.id;
+    // console.log($event.id);
+    // console.log(this.form.value);
+     console.log($event);
+     this.patId = $event;
+
+    // this.setForm();
+
+  }
+
+
   // opteniendo las citas del dia
   getAppointments (): any {
     this.appointmentService.getTodayAppointment().subscribe(
       res => {
         this.todayAppointment = res;
-        console.log(this.todayAppointment);
+        console.log(this.todayAppointment.idPatient);
+
+        this.FilterOptions = this.todayAppointment.map(val => {
+          return {
+            title: val.idPatient.name,
+            data: val
+          };
+        });
+
       },
       err => {
         console.error(err);
@@ -74,18 +112,17 @@ export class QueryComponent implements OnInit {
         this.treatments = res;
      },
      err => {
-       console.log(err);
+      // console.log(err);
      }
    );
  }
   // opteniendo los tratamients con paciente selecsionado
   getTreatmentPatients(): any {
-   this.queryService.getTreatmentPatient().subscribe(
+   this.queryService.getTreatmentPatient(this.patId).subscribe(
      res => {
         this.treatmentPatient = res;
         this.dataSource = new MatTableDataSource<ITpatient>(this.treatmentPatient);
         this.dataSource.paginator = this.paginator;
-        console.log(this.treatmentPatient);
      },
      err => {
        console.log(err);

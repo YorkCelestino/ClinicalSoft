@@ -11,14 +11,16 @@
             <input type="hidden" name="id">
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
 
-                <mat-form-field class="portal-select-preview-example-field" fxFlex="31%">
+                <!--mat-form-field class="portal-select-preview-example-field" fxFlex="31%">
                     <mat-select placeholder="Selecciones el paciente" formControlName="idPatient" name="idPatient" [(ngModel)]="data">
                         <mat-option *ngFor="let todayAppointments of todayAppointment" [value]="todayAppointments.idPatient.id">{{todayAppointments.idPatient.name}}</mat-option>
                     </mat-select>
-                </mat-form-field>
+                </mat-form-field-->
 
-                <button [disabled]="form.invalid" title="Buscar el recorf del paciente seleccionado" mat-raised-button color="primary" style="margin-top: 2px; height: 37px;" (click)="getTreatmentPatients(data)">
-                      Buscar recor del paciente
+                <app-autocomplete [options]="FilterOptions" (valueChange)="onValueChange($event)" fxFlex="100"></app-autocomplete>
+
+                <button [disabled]="form.invalid" title="Buscar el record del paciente seleccionado" mat-raised-button color="primary" style="margin-top: 2px; height: 37px;" (click)="getTreatmentPatients(data)">
+                      Buscar record del paciente
                </button>
             </div>
 
