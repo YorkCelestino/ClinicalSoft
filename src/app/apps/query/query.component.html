@@ -4,36 +4,38 @@
         <span class="fill-remaining-space"></span>
     </mat-toolbar>
     <mat-card>
-        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-            <mat-form-field class="portal-select-preview-example-field" fxFlex="31%">
-                <mat-select placeholder="Selecciones el paciente">
-                    <mat-option value="Casado">Francisco</mat-option>
-                    <mat-option value="Union libre">York</mat-option>
-                </mat-select>
-            </mat-form-field>
 
-            <button title="Buscar el recorf del paciente seleccionado" mat-raised-button color="primary" style="margin-top: 2px;
-            height: 37px;">
-               Buscar recor del paciente
-            </button>
-        </div>
+        <!--para poder buscar el recort del paciente-->
+        <form [formGroup]="form">
+
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+
+                <mat-form-field class="portal-select-preview-example-field" fxFlex="31%">
+                    <mat-select placeholder="Selecciones el paciente" formControlName="idPatient">
+                        <mat-option *ngFor="let todayAppointments of todayAppointment" [value]="todayAppointments.id">{{todayAppointments.idPatient.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <button [disabled]="form.invalid" title="Buscar el recorf del paciente seleccionado" mat-raised-button color="primary" style="margin-top: 2px; height: 37px;" (click)="onClick(form.value)">
+                      Buscar recor del paciente
+               </button>
+            </div>
+
+        </form>
 
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
             <mat-divider fxFlex="100"></mat-divider>
-        </div> 
- 
+        </div>
+
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-            <mat-form-field class="example-full-width" fxFlex="75%">
-                <textarea matInput placeholder="Diagnostico" rows="1" cols="4" style="background: #eeeeee"></textarea>
-            </mat-form-field>
+
             <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-                <mat-select placeholder="Seleccionar tratamiento">
-                    <mat-option value="Casado">001-Gripe</mat-option>
-                    <mat-option value="Union libre">002-Embarazo</mat-option>
+                <mat-select placeholder="Seleccionar tratamiento" [(ngModel)]="treatment">
+                    <mat-option *ngFor="let treatment of treatments" [value]="treatment.id">{{treatment.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
-            <button title="Agregar tratamiento" mat-mini-fab aria-label="Example icon-button with a heart icon" color="primary" style="margin-top: 10px">
+            <button (click)="onClick(treatment)" title="Agregar tratamiento" mat-mini-fab aria-label="Example icon-button with a heart icon" color="primary" style="margin-top: 10px">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
@@ -42,47 +44,56 @@
 
         <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
-      
+
         <!-- Position Column -->
         <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> Codigo </th>
-          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            <th mat-header-cell *matHeaderCellDef> Codigo </th>
+            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
         </ng-container>
-      
+
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Tratamiento </th>
-          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            <th mat-header-cell *matHeaderCellDef> Tratamiento </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
-      
+
         <!-- Weight Column -->
         <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef> Precio </th>
-          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+            <th mat-header-cell *matHeaderCellDef> Precio </th>
+            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
         </ng-container>
-      
+
         <!-- Symbol Column -->
         <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef> Accion </th>
-          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+            <th mat-header-cell *matHeaderCellDef> Accion </th>
+            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
         </ng-container>
-      
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+    </table>
 
-      <mat-card style="height: 13px">
-          <div align="end" style="margin-top: -17px">
-              <div class="button-row">
-                  <button title="Cancelar consulta" mat-raised-button color="warn">
+    <mat-card>
+        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0%">
+            <mat-form-field class="example-full-width" fxFlex="100">
+                <textarea matInput placeholder="Diagnostico" rows="6" cols="4" style="background: #eeeeee"></textarea>
+            </mat-form-field>
+        </div>
+    </mat-card>
+
+
+    <mat-card style="height: 13px">
+        <div align="end" style="margin-top: -17px">
+            <div class="button-row">
+                <button title="Cancelar consulta" mat-raised-button color="warn">
                       Cancelar
                   </button>
-              
-                  <button title="Guardar consulta" mat-raised-button color="primary" >
+
+                <button title="Guardar consulta" mat-raised-button color="primary">
                       Guardar
                   </button>
 
-              </div>
-          </div>
-      </mat-card>
+            </div>
+        </div>
+    </mat-card>
 </div>
