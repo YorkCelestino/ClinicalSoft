@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PatientService } from '../patient/patient.service';
 import { AppointmentService } from '../appointment/appointment.service';
 import { FormBuilder, FormGroup, Validator, Validators } from '@angular/forms';
 import { TreatmentService } from '../treatment/treatment.service';
+import { QueryService } from './query.service';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { ITpatient } from '../../models/treatmentPatient';
 
 export interface PeriodicElement {
   name: string;
@@ -12,40 +15,41 @@ export interface PeriodicElement {
 }
 
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 'GP', name: 'Gripe', weight: 1.0079, symbol: 'H'},
-  {position: 'EB', name: 'Embarazo', weight: 4.0026, symbol: 'He'},
-];
 @Component({
   selector: 'app-query',
   templateUrl: './query.component.html',
   styleUrls: ['./query.component.scss']
 })
 export class QueryComponent implements OnInit {
-
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   todayAppointment: any = [];
   treatments: any  = [];
 
-  prueva: any  = {};
+  treatmentPatient: any = [];
 
   form: FormGroup;
-  form1: FormGroup;
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  idapp: any;
+  displayedColumns: string[] = ['codeTreatment', 'idPatient', 'nameTreatment', 'price', 'actions'];
   // tslint:disable-next-line:typedef
-  dataSource = ELEMENT_DATA;
+  dataSource: any;
 
   constructor(
     private patientService: PatientService,
     private appointmentService: AppointmentService,
     private fb: FormBuilder,
-    private treatmentService: TreatmentService
+    private treatmentService: TreatmentService,
+    private  queryService: QueryService
     ) { }
 
   ngOnInit(): void {
 
     this.form = this.fb.group({
-      idPatient : ['', Validators.required]
+      id: '',
+      idPatient : ['', Validators.required],
+      idTreatment : [ '', Validators.required]
     });
+
     this.getAppointments();
     this.getTreatment();
   }
@@ -74,9 +78,40 @@ export class QueryComponent implements OnInit {
      }
    );
  }
+  // opteniendo los tratamients con paciente selecsionado
+  getTreatmentPatients(): any {
+   this.queryService.getTreatmentPatient().subscribe(
+     res => {
+        this.treatmentPatient = res;
+        this.dataSource = new MatTableDataSource<ITpatient>(this.treatmentPatient);
+        this.dataSource.paginator = this.paginator;
+        console.log(this.treatmentPatient);
+     },
+     err => {
+       console.log(err);
+     }
+   );
+ }
 
-  onClick(treatment: any ): any {
-    console.log(this.treatments);
+   addTreatmentPatients(): any {
+     this.queryService.addTreatmentPatient(this.form.value).subscribe(
+       res => {
+        this.getTreatmentPatients();
+       },
+       err => console.log(err)
+     );
+   }
+   changeStatus(isActive: boolean, id: string): any {
+     this.queryService.changeStatus(isActive, id).subscribe(
+       res => {
+        this.getTreatmentPatients();
+       },
+       err => console.log(err)
+     );
+   }
+
+  onClick(): any {
+    console.log(this.form.value);
   }
 
 

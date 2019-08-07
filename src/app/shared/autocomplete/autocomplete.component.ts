@@ -47,16 +47,16 @@ export class AutocompleteComponent implements OnInit {
 
 
 // tslint:disable-next-line: use-life-cycle-interface
-  // ngAfterViewInit(): any {
-  //   this.onParentSelect.subscribe(event => {
-  //     this.filteredControl.reset();
-  //     this.filteredOptions = this.filteredControl.valueChanges
-  //     .pipe(
-  //       startWith(''),
-  //       map(val => this.filter(val))
-  //     );
-  //   });
-  // }
+  ngAfterViewInit(): any {
+    this.onParentSelect.subscribe(event => {
+      this.filteredControl.reset();
+      this.filteredOptions = this.filteredControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(val => this.filter(val))
+      );
+    });
+  }
 
   private getDisplayFn(): any {
     return (val) => this.display(val);
