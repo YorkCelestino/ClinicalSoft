@@ -38,6 +38,7 @@ import { PortalScrollTopDirective } from './directives/portal-scroll-top.directi
 
 // modulo de mascaras
 import { NgxMaskModule } from 'ngx-mask';
+import { AboutComponent } from '../apps/about/about.component';
 
 
 @NgModule({
@@ -69,10 +70,15 @@ import { NgxMaskModule } from 'ngx-mask';
     TopHorizontalMenuComponent,
     PortalScrollTopDirective,
     LayoutLoaderComponent,
-    FooterComponent
+    FooterComponent,
+    AboutComponent
   ],
   providers: [
     LayoutService
+  ],
+  entryComponents: [
+    
+    AboutComponent
   ]
 })
 export class LayoutsModule { }

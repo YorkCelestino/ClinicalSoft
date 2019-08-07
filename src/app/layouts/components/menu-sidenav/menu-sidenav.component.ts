@@ -3,10 +3,11 @@ import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Router, RouterEvent, NavigationStart } from '@angular/router';
 import { Component, OnDestroy, Input, ViewChild, OnInit } from '@angular/core';
-import { MatSidenav } from '@angular/material';
+import { MatSidenav, MatDialog, MatDialogConfig } from '@angular/material';
 import { LoginService } from '../../../auth/login.service';
 import { IUser } from '../../../models/user';
 import { UserService } from '../../../apps/users/user.service';
+import { AboutComponent } from '../../../apps/about/about.component';
 
 @Component({
   selector: 'portal-menu-sidenav',
@@ -28,7 +29,8 @@ export class MenuSidenavComponent implements OnDestroy, OnInit {
   constructor(
     private router: Router,
     private loginService: LoginService,
-    private userService: UserService
+    private userService: UserService,
+    public dialog: MatDialog,
 
 
     ) {
@@ -97,5 +99,17 @@ export class MenuSidenavComponent implements OnDestroy, OnInit {
     );
   }
 
+  openDialog(): void {
+    const dialogConfig = new MatDialogConfig();
+   // dialogConfig.disableClose = true;
+   // dialogConfig.autoFocus = true;
+    dialogConfig.width = '30%';
+    const dialogRef = this.dialog.open(AboutComponent , dialogConfig);
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+ 
+    });
+    
+  }
 }

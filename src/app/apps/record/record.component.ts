@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./record.component.scss']
 })
 export class RecordComponent implements OnInit {
-
+  displayedColumns: string[] = ['name', 'surname','cellPhone', 'idCard', 'actions'];
   dataSource: any;
   patient: IPatient[] = [];
   @ViewChild(MatSort) sort: MatSort;
