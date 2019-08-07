@@ -3,6 +3,9 @@
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="closeDialog()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+    <h4 style="color: #dd1010">Este formulario contiene campo requerido*</h4>
+</div>
 <mat-horizontal-stepper [linear]="true" #stepper>
     <!--Primer paso del formulario-->
     <mat-step [stepControl]="firstFormGroup">
@@ -267,9 +270,9 @@
 
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLaoutWrap fxLayoutGap="3%">
 
-                <label id="example-radio-group-label">Es jefe de familia?</label>
+                
                 <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" [(ngModel)]="isTheBossCondition" formControlName="isTheBoss" fxFlex="50">
-
+                    <label id="example-radio-group-label">Es usted jefe de familia?</label>
                     <mat-radio-button color="primary" class="example-radio-button" [value]="true">
                         Si
                     </mat-radio-button>
@@ -278,26 +281,18 @@
                     </mat-radio-button>
                 </mat-radio-group>
 
+                
                 <div *ngIf="!isTheBossCondition" fxFlex="50">
-                    <label id="example-radio-group-label">Ingrese la cédula del jefe de familia</label>
-                    <app-autocomplete [options]="patientsFilterOptions" (valueChange)="onValueChange($event)"></app-autocomplete>
+                   
+                    <app-autocomplete  placeholder="Ingrese la cédula del jefe de familia" [options]="patientsFilterOptions" (valueChange)="onValueChange($event)"></app-autocomplete>
                 </div>
 
-
-                <!--mat-form-field class="portal-select-preview-example-field" fxFlex="50%" *ngIf="!isTheBossValue">
-                    <mat-select placeholder="Dijite la cedula del jefe de" formControlName="familyBossId">
-                        <mat-option value="Salió">40228255002</mat-option>
-                        <mat-option value="Murió">282232783</mat-option>
-                    </mat-select>
-                </mat-form-field-->
-
-                <!--alerta editar-->
                 <swal #editSwal title="ClinicalSoft" text="¿está seguro que desea Actualizar el Usuario {{form.value.name}}?" type="question" [showCancelButton]="true" [reverseButtons]="true" [focusCancel]="true" (confirm)="addPatient(form.value)">
                 </swal>
 
 
-
             </div>
+           
             <mat-dialog-actions align="end">
                 <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
                     <button mat-button matStepperPrevious>Atras</button >

@@ -3,87 +3,73 @@
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="closeDialog()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+    <h4 style="color: #dd1010">Este formulario contiene campo requerido*</h4>
+</div>
 <form [formGroup]="form" class="normal-form">
-    <mat-grid-list cols="2" rowHeight="300px">
-        <mat-grid-tile>
-            <div class="controles-container">
 
+    <input type="hidden" formControlName="id">
 
-                <input type="hidden" formControlName="id">
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+        <mat-form-field fxFlex="50">
+            <input formControlName="fullName" matInput placeholder="Nombre Completo*">
+            <mat-error>Nombre Completo es requerido.</mat-error>
+        </mat-form-field>
 
-                <mat-form-field>
-                    <input formControlName="fullName" matInput placeholder="Nombre Completo*">
-                    <mat-error>Nombre Completo es requerido.</mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                    <input formControlName="idCard" mask="000-0000000-0" matInput placeholder="Cedula*">
-                    <mat-error>Cedula es requerido.</mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                    <input formControlName="username" matInput placeholder="Usuario*">
-                    <mat-error>Nombre de suario es Requerido </mat-error>
-                </mat-form-field>
-                <mat-form-field>
-                    <input formControlName="cellPhone" mask="000-000-0000" matInput placeholder="Número de teléfono*">
-                    <mat-error *ngIf="form.controls['cellPhone'].errors?.required">Número de teléfono es requerido.</mat-error>
-                    <mat-error *ngIf="form.controls['cellPhone'].errors?.minlength">Se nececitan minimo 8 caracteres</mat-error>
-                </mat-form-field>
+        <mat-form-field fxFlex="50">
+            <input formControlName="idCard" mask="000-0000000-0" matInput placeholder="Cedula*">
+            <mat-error>Cedula es requerido.</mat-error>
+        </mat-form-field>
 
-            </div>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <div class="controles-container">
-                <mat-form-field>
-                    <input formControlName="speciality" matInput placeholder="Especialidad*">
-                    <mat-error>Especialidad es requerido.</mat-error>
-                </mat-form-field>
-                <!--mat-form-field>
-                    <input formControlName="userType" matInput placeholder="Tipo de usuario*">
-                    <mat-error>Tipo de usuario es requerido.</mat-error>
-                </mat-form-field-->
-                <!-- <span>Tipo de usuario*</span> -->
-                <!-- <div class="add-bottom-padding">
+    </div>
 
-                    <mat-radio-group formControlName="role" *ngFor="let role of roles">
-                        <mat-radio-button [value]="role.id">{{ role.name }}</mat-radio-button>
-                    </mat-radio-group>
-                </div> -->
-                <mat-form-field>
-                    <mat-select formControlName="role" placeholder="Tipo de usuario">
-                        <!-- <mat-option>None</mat-option> -->
-                        <ng-container *ngFor="let role of roles">
-                            <mat-option value="{{role.id}}">{{role.name}}</mat-option>
-                        </ng-container>
-                    </mat-select>
-                </mat-form-field>
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+        <mat-form-field fxFlex="50">
+            <input formControlName="cellPhone" mask="000-000-0000" matInput placeholder="Número de teléfono*">
+            <mat-error *ngIf="form.controls['cellPhone'].errors?.required">Número de teléfono es requerido.</mat-error>
+            <mat-error *ngIf="form.controls['cellPhone'].errors?.minlength">Se nececitan minimo 8 caracteres</mat-error>
+        </mat-form-field>
 
-                <mat-form-field>
-                    <input formControlName="email" matInput placeholder="Email*">
-                    <mat-error>Email incorrecto.</mat-error>
-                </mat-form-field>
-                <mat-form-field *ngIf="!data.id">
-                    <input type="password" formControlName="password" matInput placeholder="Contraseña*">
-                    <mat-error>contraseña es requerida.</mat-error>
-                </mat-form-field>
+        <mat-form-field fxFlex="50">
+            <input formControlName="email" matInput placeholder="Email*">
+            <mat-error>Email incorrecto.</mat-error>
+        </mat-form-field>
 
+    </div>
 
-                <!--mat-form-field>
-                    <input formControlName="hireDate" matInput [matDatepicker]="picker" placeholder="Hire Date">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-                <div class="add-bottom-padding">
-                    <mat-checkbox formControlName="isPermanent">Permanent Employee</mat-checkbox>
-                </div-->
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+        <mat-form-field fxFlex="50">
+            <mat-select formControlName="role" placeholder="Tipo de usuario">
+                <!-- <mat-option>None</mat-option> -->
+                <ng-container *ngFor="let role of roles">
+                    <mat-option value="{{role.id}}">{{role.name}}</mat-option>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>
 
-            </div>
-        </mat-grid-tile>
+        <mat-form-field fxFlex="50">
+            <input formControlName="speciality" matInput placeholder="Especialidad*">
+            <mat-error>Especialidad es requerido.</mat-error>
+        </mat-form-field>
 
-        <!--alerta editar-->
-        <swal #editSwal title="ClinicalSoft" text="¿está seguro que desea Actualizar el Usuario {{form.value.name}}?" type="question" [showCancelButton]="true" [reverseButtons]="true" [focusCancel]="true" (confirm)="addUser()">
-        </swal>
+    </div>
 
-    </mat-grid-list>
+    <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+        <mat-form-field fxFlex="50">
+            <input formControlName="username" matInput placeholder="Usuario*">
+            <mat-error>Nombre de suario es Requerido </mat-error>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="!data.id" fxFlex="50">
+            <input type="password" formControlName="password" matInput placeholder="Contraseña*">
+            <mat-error>contraseña es requerida.</mat-error>
+        </mat-form-field>
+    </div>
+   
+    <swal #editSwal title="ClinicalSoft" text="¿está seguro que desea Actualizar el Usuario {{form.value.name}}?" type="question" [showCancelButton]="true" [reverseButtons]="true" [focusCancel]="true" (confirm)="addUser()">
+    </swal>
+
+    
     <mat-dialog-actions align="end">
 
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
