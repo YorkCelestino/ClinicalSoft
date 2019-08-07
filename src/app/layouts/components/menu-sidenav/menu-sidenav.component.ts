@@ -62,8 +62,6 @@ export class MenuSidenavComponent implements OnDestroy, OnInit {
     this.userService.getRole().subscribe(
       res => {
         this.role = res;
-        console.log(this.role.id);
-        console.log(this.role.name);
       },
       err => {
         console.error(err);
@@ -76,7 +74,6 @@ export class MenuSidenavComponent implements OnDestroy, OnInit {
     this.loginService.getUserProfile().subscribe(
       res => {
        this.user = res;
-       console.log(this.user.role);
       },
       err => {
         console.error(err);
@@ -89,7 +86,6 @@ export class MenuSidenavComponent implements OnDestroy, OnInit {
     this.loginService.getUser().subscribe(
       res => {
        this.userPopulateRole = res;
-       console.log(this.userPopulateRole.role.name);
       },
       err => {
         console.error(err);

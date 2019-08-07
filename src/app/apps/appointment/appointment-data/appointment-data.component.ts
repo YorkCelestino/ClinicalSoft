@@ -99,7 +99,7 @@ export class AppointmentDataComponent implements OnInit {
       id: '',
       idUser: [this.docId, Validators.required],
       idPatient: [this.patId, Validators.required],
-      appointmentDate:['', Validators.required],
+      appointmentDate: ['', Validators.required],
       observations: [''],
       cellPhoneSend: false,
       emailSend: false,
