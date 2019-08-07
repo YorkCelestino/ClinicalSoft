@@ -51,6 +51,7 @@ import { TodaysdateComponent } from './todaysdate/todaysdate.component';
 
 
 
+
 @NgModule({
   imports: [
     SharedModule,
@@ -65,7 +66,6 @@ import { TodaysdateComponent } from './todaysdate/todaysdate.component';
     SpotifyModule,
     MatDialogModule,
     FlexLayoutModule,
-
     ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
   ],
   declarations: [
@@ -81,13 +81,15 @@ import { TodaysdateComponent } from './todaysdate/todaysdate.component';
     QueryComponent,
     RecordComponent,
     TodaysdateComponent,
+
   
   ],
   entryComponents: [
     UsersDataComponent,
     PatientDataComponent,
     AppointmentDataComponent,
-    TreatmentDataComponent
+    TreatmentDataComponent,
+ 
   ]
 })
 export class AppsModule { }

@@ -54,6 +54,7 @@ export class UsersComponent implements OnInit {
       // console.log(res);
         this.dataSource = new MatTableDataSource<IUser>(this.users);
         this.dataSource.paginator = this.paginator;
+        
       },
       err =>  {
         console.error(err);
