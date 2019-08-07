@@ -8,37 +8,40 @@
         <!--para poder buscar el recort del paciente-->
         <form [formGroup]="form">
 
+            <input type="hidden" name="id">
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
 
                 <mat-form-field class="portal-select-preview-example-field" fxFlex="31%">
-                    <mat-select placeholder="Selecciones el paciente" formControlName="idPatient">
-                        <mat-option *ngFor="let todayAppointments of todayAppointment" [value]="todayAppointments.id">{{todayAppointments.idPatient.name}}</mat-option>
+                    <mat-select placeholder="Selecciones el paciente" formControlName="idPatient" name="idPatient" [(ngModel)]="data">
+                        <mat-option *ngFor="let todayAppointments of todayAppointment" [value]="todayAppointments.idPatient.id">{{todayAppointments.idPatient.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
 
-                <button [disabled]="form.invalid" title="Buscar el recorf del paciente seleccionado" mat-raised-button color="primary" style="margin-top: 2px; height: 37px;" (click)="onClick(form.value)">
+                <button [disabled]="form.invalid" title="Buscar el recorf del paciente seleccionado" mat-raised-button color="primary" style="margin-top: 2px; height: 37px;" (click)="getTreatmentPatients(data)">
                       Buscar recor del paciente
                </button>
             </div>
 
-        </form>
 
-        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-            <mat-divider fxFlex="100"></mat-divider>
-        </div>
 
-        <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+                <mat-divider fxFlex="100"></mat-divider>
+            </div>
 
-            <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
-                <mat-select placeholder="Seleccionar tratamiento" [(ngModel)]="treatment">
-                    <mat-option *ngFor="let treatment of treatments" [value]="treatment.id">{{treatment.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
+            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
 
-            <button (click)="onClick(treatment)" title="Agregar tratamiento" mat-mini-fab aria-label="Example icon-button with a heart icon" color="primary" style="margin-top: 10px">
+                <mat-form-field class="portal-select-preview-example-field" fxFlex="50%">
+                    <mat-select placeholder="Seleccionar tratamiento" formControlName="idTreatment">
+                        <mat-option *ngFor="let treatment of treatments" [value]="treatment.id">{{treatment.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <button (click)="addTreatmentPatients()" title="Agregar tratamiento" mat-mini-fab aria-label="Example icon-button with a heart icon" color="primary" style="margin-top: 10px">
                 <mat-icon>add</mat-icon>
             </button>
-        </div>
+            </div>
+
+        </form>
     </mat-card>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -46,27 +49,36 @@
               The actual rendered columns are set as a property on the row definition" -->
 
         <!-- Position Column -->
-        <ng-container matColumnDef="position">
+        <ng-container matColumnDef="codeTreatment">
             <th mat-header-cell *matHeaderCellDef> Codigo </th>
-            <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.idTreatment.code}} </td>
         </ng-container>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Tratamiento </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <ng-container matColumnDef="idPatient">
+            <th mat-header-cell *matHeaderCellDef> Paciente </th>
+            <td mat-cell *matCellDef="let element"> {{element.idPatient.name}} </td>
         </ng-container>
 
         <!-- Weight Column -->
-        <ng-container matColumnDef="weight">
-            <th mat-header-cell *matHeaderCellDef> Precio </th>
-            <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        <ng-container matColumnDef="nameTreatment">
+            <th mat-header-cell *matHeaderCellDef> Nombre del Treatamiento </th>
+            <td mat-cell *matCellDef="let element"> {{element.idTreatment.name}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
-        <ng-container matColumnDef="symbol">
-            <th mat-header-cell *matHeaderCellDef> Accion </th>
-            <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Precio </th>
+            <td mat-cell *matCellDef="let element"> {{element.idTreatment.price}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Accion </th>
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell mat-header-cell *matCellDef="let row">
+
+                <button (click)="changeStatus(row.isActive, row.id)" title="Quitar tratamiento" mat-icon-button><mat-icon>remove_circle</mat-icon></button>
+            </mat-cell>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

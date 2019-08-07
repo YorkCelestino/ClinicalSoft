@@ -24,7 +24,7 @@ export class AppointmentDataComponent implements OnInit {
 
   // user filter optios and array object of user
   doctorsFilterOptions: AutoCompleteOption<IUser>[] = [];
-  doctors: any[] = [];
+  doctors: IUser[] = [];
 
   // patient filter optios and array object of patient
   patientsFilterOptions: AutoCompleteOption<IPatient>[] = [];
@@ -75,6 +75,7 @@ export class AppointmentDataComponent implements OnInit {
     // this.form.value.idUser = $event.id;
     // console.log($event.id);
     // console.log(this.form.value);
+    console.log($event);
     this.docId = $event.id;
 
     this.setForm();
@@ -85,7 +86,7 @@ export class AppointmentDataComponent implements OnInit {
   onValueChangePatient($event: IPatient): void {
 
     // this.form.value.idPatient = $event.id;
-    // console.log($event.id);
+     console.log($event);
     // console.log(this.form.value);
     this.patId = $event.id;
     this.setForm();
