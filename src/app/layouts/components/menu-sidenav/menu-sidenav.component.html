@@ -102,13 +102,6 @@
             </a>
 
         </mat-nav-list>
-        <mat-nav-list>
-            <a mat-list-item>
-                <mat-icon matListIcon>exit_to_app</mat-icon>
-                <h3 matLine>Serrar session</h3>
-            </a>
-
-        </mat-nav-list>
 
         <mat-nav-list>
             <a mat-list-item (click)="openDialog()">
@@ -116,6 +109,16 @@
                 <h3 matLine>Acerca de</h3>
             </a>
         </mat-nav-list>
+
+        <mat-nav-list>
+            <a mat-list-item (click)="onLogut()">
+                <mat-icon matListIcon>exit_to_app</mat-icon>
+                <h3 matLine>Serrar session</h3>
+            </a>
+
+        </mat-nav-list>
+
+       
 
     </div>
     <mat-toolbar>

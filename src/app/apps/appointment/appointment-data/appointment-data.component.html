@@ -3,12 +3,16 @@
     <span class="fill-remaining-space"></span>
     <button class="btn-dialog-close" mat-stroked-button (click)="closeDialog()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
+    <h4 style="color: #dd1010">Este formulario contiene campo requerido*</h4>
+</div>
+
 <form [formGroup]="form">
 
     <!--filtro de todos los pacientes-->
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-        <label >Paciente*</label>
-        <app-autocomplete [options]="patientsFilterOptions" (valueChange)="onValueChangePatient($event)" fxFlex="100"></app-autocomplete>
+
+        <app-autocomplete placeholder="Paciente*" required="" [options]="patientsFilterOptions" (valueChange)="onValueChangePatient($event)" fxFlex="100"></app-autocomplete>
         <!--mat-form-field class="example-full-width" fxFlex="100">
             <input type="text" placeholder="Paciente*" aria-label="Number" matInput [matAutocomplete]="auto">
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -25,8 +29,8 @@
     
     <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
     
-        <label >Doctor*</label >
-        <app-autocomplete [options]="doctorsFilterOptions" (valueChange)="onValueChangeDoctors($event)" fxFlex="100"></app-autocomplete>
+        
+        <app-autocomplete placeholder="Doctor*" [options]="doctorsFilterOptions" (valueChange)="onValueChangeDoctors($event)" fxFlex="100"></app-autocomplete>
         <!--mat-form-field class="example-full-width" fxFlex="100">
             <input type="text" placeholder="Doctor*" aria-label="Number" matInput [formControl]="myControlD" [matAutocomplete]="auto">
             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
@@ -64,7 +68,7 @@
     <mat-dialog-actions align="end">
         <div class="button-row" >
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="3%">
-                <button mat-raised-button color="warn">Cancelar</button>
+                <button mat-raised-button color="warn" (click)="closeDialog()">Cancelar</button>
                 <div *ngIf="!data.id">
 
                     <button mat-raised-button color="primary" type="button" [disabled]="form.invalid" (click)="addAppointments()">Registrar</button>

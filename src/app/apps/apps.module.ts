@@ -45,6 +45,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { QueryComponent } from './query/query.component';
 import { RecordComponent } from './record/record.component';
 import { TodaysdateComponent } from './todaysdate/todaysdate.component';
+import { RecordDataComponent } from './record/record-data/record-data.component';
 
 
 
@@ -81,6 +82,7 @@ import { TodaysdateComponent } from './todaysdate/todaysdate.component';
     QueryComponent,
     RecordComponent,
     TodaysdateComponent,
+    RecordDataComponent,
 
   
   ],
@@ -89,6 +91,7 @@ import { TodaysdateComponent } from './todaysdate/todaysdate.component';
     PatientDataComponent,
     AppointmentDataComponent,
     TreatmentDataComponent,
+    RecordDataComponent 
  
   ]
 })
